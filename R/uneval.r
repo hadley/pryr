@@ -1,8 +1,22 @@
-#' Capture the call for a promise.
+#' Capture the call associated with promise.
 #'
-#' Returns an error if not a promise.
+#' This is an alternative to subsitute that performs one job, and so gives
+#' a stronger signal regarding the intention of your code.  It returns an error
+#' if the name is not associated with a promise.
+#'
+#' @export
+#' @example
+#' f <- function(x) {
+#'    uneval(x)
+#' }
+#' f(a + b)
+#'
+#' delayedAssign("x", quote(1 + 4))
+#' uneval(x)
 uneval <- function(x) {
   name <- substitute(x)
+  stopifnot(is.name(name))
+
   env <- parent.frame()
 
   if (!is_promise2(name, env)) {
