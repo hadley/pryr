@@ -10,8 +10,9 @@
 #'    uneval(x)
 #' }
 #' f(a + b)
+#' f(1 + 4)
 #'
-#' delayedAssign("x", quote(1 + 4))
+#' delayedAssign("x", 1 + 4)
 #' uneval(x)
 uneval <- function(x) {
   name <- substitute(x)
