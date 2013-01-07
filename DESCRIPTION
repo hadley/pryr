@@ -9,3 +9,5 @@ Version: 0.1
 Collate:
     'make-function.r'
     'promise.r'
+    'substitute.r'
+    'uneval.r'

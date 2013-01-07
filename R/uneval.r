@@ -5,7 +5,7 @@
 #' if the name is not associated with a promise.
 #'
 #' @export
-#' @example
+#' @examples
 #' f <- function(x) {
 #'    uneval(x)
 #' }
