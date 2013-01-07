@@ -1,4 +1,4 @@
-#' Capture the call associated with promise.
+#' Capture the call associated with a promise.
 #'
 #' This is an alternative to subsitute that performs one job, and so gives
 #' a stronger signal regarding the intention of your code.  It returns an error
