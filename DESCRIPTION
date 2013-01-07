@@ -11,3 +11,4 @@ Collate:
     'promise.r'
     'substitute.r'
     'uneval.r'
+    'utils.r'

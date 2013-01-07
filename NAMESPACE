@@ -1,3 +1,4 @@
 export(make_function)
+export(substitute2)
 export(uneval)
 useDynLib(pryr)
