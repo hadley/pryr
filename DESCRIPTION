@@ -1,0 +1,11 @@
+Type: Package
+Package: pryr
+Title: Tools for computing on the language
+Description: 
+Author: Hadley Wickham <h.wickham@gmail.com>
+Maintainer: Hadley Wickham <h.wickham@gmail.com>
+License: GPL-2
+Version: 0.1
+Collate:
+    'make-function.r'
+    'promise.r'
