@@ -12,3 +12,4 @@ Collate:
     'substitute.r'
     'uneval.r'
     'utils.r'
+    'where.r'
