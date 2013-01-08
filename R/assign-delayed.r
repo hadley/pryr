@@ -8,6 +8,7 @@
 #' @param value unquoted expression to evaluate the first time \code{name} is
 #'   accessed
 #' @export
+#' @rdname assign-delayed
 #' @examples
 #' x %<d-% a + b
 #' a <- 10

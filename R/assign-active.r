@@ -8,6 +8,7 @@
 #' @param value unquoted expression to evaluate every time \code{name} is
 #'   accessed
 #' @export
+#' @rdname assign-active
 #' @examples
 #' x %<a-% runif(1)
 #' x

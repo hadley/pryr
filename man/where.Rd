@@ -1,0 +1,25 @@
+\name{where}
+\alias{where}
+\title{Find where a name is defined.}
+\usage{
+  where(name, env = parent.frame())
+}
+\arguments{
+  \item{name}{name, as string, to look for}
+
+  \item{env}{environment to start at. Defaults to the
+  calling environment of this function.}
+}
+\description{
+  Implements the regular scoping rules, but instead of
+  returning the value associated with a name, it returns
+  the environment in which it is located.
+}
+\examples{
+x <- 1
+where("x")
+where("t.test")
+where("mean")
+where("where")
+}
+
