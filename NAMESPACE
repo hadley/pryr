@@ -1,3 +1,5 @@
+export("%<a-%")
+export("%<d-%")
 export(make_function)
 export(substitute2)
 export(uneval)

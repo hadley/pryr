@@ -13,3 +13,5 @@ Collate:
     'uneval.r'
     'utils.r'
     'where.r'
+    'assign-active.r'
+    'assign-delayed.r'
