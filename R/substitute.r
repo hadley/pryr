@@ -1,4 +1,4 @@
-#' A version of substitute that doesn't evaluate it's first argument.
+#' A version of substitute that evaluates its first argument.
 #'
 #' This version of substitute is needed because \code{substitute} does not
 #' evaluate it's first argument, and it's often useful to be able to modify
