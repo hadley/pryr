@@ -1,0 +1,38 @@
+\name{rebind}
+\alias{rebind}
+\title{Rebind an existing name.}
+\usage{
+  rebind(name, value, env = parent.frame())
+}
+\arguments{
+  \item{name}{name of existing binding to re-assign}
+
+  \item{value}{new value}
+
+  \item{env}{environment to start search in.}
+}
+\description{
+  This function is similar to \code{\link{<<-}} with two
+  exceptions:
+}
+\details{
+  \itemize{ \item if no existing binding is found, it
+  throws an error \item it does not recurse past the global
+  environment into the attached packages }
+}
+\examples{
+a <- 1
+rebind("a", 2)
+a
+# Throws error if no existing binding
+\dontrun{rebind("b", 2)}
+
+local({
+  rebind("a", 3)
+})
+a
+
+# Can't find get because doesn't look past globalenv
+\dontrun{rebind("get", 1)}
+}
+

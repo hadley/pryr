@@ -25,3 +25,4 @@ And tools to make it easier to compute on the language:
 And to use existing R tools more easily:
 
 * `%<d-%` and `%<a-%` for creating delayed or active bindings
+* `rebind` as a more user friendly version of `<<-`
