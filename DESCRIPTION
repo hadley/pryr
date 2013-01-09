@@ -16,3 +16,4 @@ Collate:
     'assign-active.r'
     'assign-delayed.r'
     'unenclose.r'
+    'fget.r'
