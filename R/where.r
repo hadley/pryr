@@ -20,7 +20,7 @@ where <- function(name, env = parent.frame()) {
     stop("Can't find ", name, call. = FALSE)
   }
 
-  if (name %in% ls(env, all.names = TRUE)) {
+  if (exists(name, env, inherits = FALSE)) {
     env
   } else {
     where(name, parent.env(env))
