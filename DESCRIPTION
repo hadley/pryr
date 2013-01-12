@@ -6,6 +6,9 @@ Author: Hadley Wickham <h.wickham@gmail.com>
 Maintainer: Hadley Wickham <h.wickham@gmail.com>
 License: GPL-2
 Version: 0.1
+Imports:
+    stringr,
+    testthat
 Collate:
     'make-function.r'
     'promise.r'
@@ -18,3 +21,4 @@ Collate:
     'unenclose.r'
     'fget.r'
     'rebind.r'
+    'draw-tree.r'

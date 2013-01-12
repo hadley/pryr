@@ -16,6 +16,7 @@ install_github("pryr")
 * `promises`: `uneval`, `is_promise`, `promise_info`
 * scoping and environments: `where`
 * closures: `unenclose`
+* calls and expressions: `call_tree`
 
 And tools to make it easier to compute on the language:
 
