@@ -11,7 +11,7 @@ install_github("pryr")
 
 ## Tools
 
-`pryr` includes tools for better understanding:
+`pryr` includes tools to better understanding:
 
 * `promises`: `uneval`, `is_promise`, `promise_info`
 * scoping and environments: `where`
@@ -22,6 +22,7 @@ And tools to make it easier to compute on the language:
 
 * `make_function`
 * `substitute2`
+* `modify_lang`
 
 And to use existing R tools more easily:
 
