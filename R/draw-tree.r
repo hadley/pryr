@@ -8,6 +8,9 @@
 #' call_tree(quote(f(x, 1, g(), h(i()))))
 #' call_tree(quote(if (TRUE) 3 else 4))
 #' call_tree(expression(1, 2, 3))
+#'
+#' fq <- quote(f <- function(a = 1, b = 2) {a + b})
+#' call_tree(fq)
 #' @importFrom stringr str_c
 call_tree <- function(x, width = getOption("width")) {
   if (is.expression(x) || is.list(x)) {
