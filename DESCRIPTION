@@ -23,3 +23,4 @@ Collate:
     'rebind.r'
     'draw-tree.r'
     'modify-lang.r'
+    'subs.r'

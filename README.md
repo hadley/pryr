@@ -23,6 +23,7 @@ And tools to make it easier to compute on the language:
 * `make_function`
 * `substitute2`
 * `modify_lang`
+* `subs`
 
 And to use existing R tools more easily:
 
