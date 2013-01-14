@@ -38,24 +38,22 @@ tree <- function(x, level = 1, width = getOption("width")) {
   indent <- str_c(str_dup("  ", level - 1), "\\- ")
   label <- label(x, width - nchar(indent))
 
-  if (is.leaf(x)) {
-    str_c(indent, label)
-  } else {
-    leaves <- vapply(as.list(x[-1]), tree, character(1),
-      level = level + 1, width = width)
+  if (is.leaf(x)) return(str_c(indent, label))
 
-    str_c(indent, label, "\n", str_c(leaves, collapse = "\n"))
-  }
+  children <- vapply(as.list(x[-1]), tree, character(1),
+    level = level + 1, width = width)
+
+  str_c(indent, label, "\n", str_c(children, collapse = "\n"))
 }
 
 #' @importFrom testthat colourise
 #' @importFrom stringr str_c
-label <- function(x, width = getOptions(width)) {
+label <- function(x, width = getOption("width")) {
   if (is.call(x)) {
-    label <- str_c(deparse(x[[1]])[[1]], "()")
+    label <- str_c(as.character(x[[1]]), "()")
     colour <- "red"
   } else if (is.name(x)) {
-    label <- deparse(x)[[1]]
+    label <- str_c("`", as.character(x))
     colour <- "blue"
   } else {
     label <- deparse(x)[[1]]

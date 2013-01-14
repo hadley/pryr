@@ -24,8 +24,10 @@ And tools to make it easier to compute on the language:
 * `substitute2`
 * `modify_lang`
 * `subs`
+* `curry`
 
 And to use existing R tools more easily:
 
 * `%<d-%` and `%<a-%` for creating delayed or active bindings
+* `%<c-%` for creating constants (locked bindings)
 * `rebind` as a more user friendly version of `<<-`

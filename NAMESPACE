@@ -1,6 +1,8 @@
 export("%<a-%")
+export("%<c-%")
 export("%<d-%")
 export(call_tree)
+export(curry)
 export(make_function)
 export(modify_lang)
 export(rebind)

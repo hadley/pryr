@@ -24,3 +24,5 @@ Collate:
     'draw-tree.r'
     'modify-lang.r'
     'subs.r'
+    'assign-constant.r'
+    'curry.r'
