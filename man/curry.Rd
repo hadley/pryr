@@ -2,7 +2,7 @@
 \alias{curry}
 \title{Curry (partially apply) a function.}
 \usage{
-  curry(fname, ..., env = parent.frame())
+  curry(fname, ..., .env = parent.frame())
 }
 \arguments{
   \item{f}{function as string or quoted name}
