@@ -26,3 +26,4 @@ Collate:
     'subs.r'
     'assign-constant.r'
     'curry.r'
+    'f.r'

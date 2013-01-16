@@ -20,7 +20,7 @@ install_github("pryr")
 
 And tools to make it easier to compute on the language:
 
-* `make_function`
+* Alternative ways to make functions: `make_function`, `f`
 * `substitute2`
 * `modify_lang`
 * `subs`
