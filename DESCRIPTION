@@ -27,3 +27,4 @@ Collate:
     'assign-constant.r'
     'curry.r'
     'f.r'
+    'find-funs.r'
