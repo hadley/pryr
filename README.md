@@ -14,7 +14,7 @@ install_github("pryr")
 `pryr` includes tools to better understand:
 
 * `promises`: `uneval`, `is_promise`, `promise_info`
-* scoping and environments: `where`
+* scoping and environments: `where`, `rls`
 * closures: `unenclose`
 * calls and expressions: `call_tree`
 

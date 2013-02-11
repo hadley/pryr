@@ -28,3 +28,4 @@ Collate:
     'curry.r'
     'f.r'
     'find-funs.r'
+    'rls.r'
