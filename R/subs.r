@@ -12,6 +12,7 @@
 #' f <- function(z = x) y * z
 #' g <- subs(f, list(x = quote(runif(1)), y = 2, z = quote(x)))
 subs <- function(expr, env) {
+  env <- to_env(env)
   replace <- function(expr) {
     if (!is.name(expr)) return(expr)
 

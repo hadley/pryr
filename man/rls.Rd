@@ -2,11 +2,13 @@
 \alias{rls}
 \title{Recursive ls.}
 \usage{
-  rls(e = parent.frame(), all.names = TRUE)
+  rls(env = parent.frame(), all.names = TRUE)
 }
 \arguments{
-  \item{e}{environment to start the search at. Defaults to
-  the \code{\link{parent.frame}}}
+  \item{env}{environment to start the search at. Defaults
+  to the \code{\link{parent.frame}}. If a function is
+  supplied, uses the environment associated with the
+  function.}
 
   \item{all.names}{Show all names, even those starting with
   \code{.}?  Defaults to \code{TRUE}, the opposite of

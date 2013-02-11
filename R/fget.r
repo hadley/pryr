@@ -6,6 +6,7 @@
 #' c <- 10
 #' fget("c")
 fget <- function(name, env = parent.frame()) {
+  env <- to_env(env)
   if (identical(env, emptyenv())) {
     stop("Could not find function called ", name, call. = FALSE)
   }

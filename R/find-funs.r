@@ -22,7 +22,8 @@
 #'
 #' fun_calls(match.call)
 #' fun_calls(write.csv)
-find_funs <- function(env, extract, pattern) {
+find_funs <- function(env = parent.frame(), extract, pattern) {
+  env <- to_env(env)
   if (length(pattern) > 1) pattern <- str_c(pattern, collapse = "|")
 
   test <- function(x) {

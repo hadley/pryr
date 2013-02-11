@@ -29,3 +29,4 @@ Collate:
     'f.r'
     'find-funs.r'
     'rls.r'
+    'parenv.r'

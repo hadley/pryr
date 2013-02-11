@@ -15,6 +15,7 @@
 #' substitute(x, list(a = 1, b = 2))
 #' substitute2(x, list(a = 1, b = 2))
 substitute2 <- function(x, env) {
+  env <- to_env(env)
   stopifnot(is.language(x))
   call <- substitute(substitute(x, env), list(x = x))
   eval(call)

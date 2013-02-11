@@ -4,7 +4,7 @@
 \alias{fun_calls}
 \title{Find functions matching criteria.}
 \usage{
-  find_funs(env, extract, pattern)
+  find_funs(env = parent.frame(), extract, pattern)
 
   fun_calls(obj)
 

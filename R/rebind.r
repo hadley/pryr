@@ -27,6 +27,8 @@
 #' # Can't find get because doesn't look past globalenv
 #' \dontrun{rebind("get", 1)}
 rebind <- function(name, value, env = parent.frame()) {
+  env <- to_env(env)
+
   if (exists(name, env, inherits = FALSE)) {
     assign(name, value, env)
   } else {

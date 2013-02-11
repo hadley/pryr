@@ -30,8 +30,8 @@ make_function <- function(args, body, env = parent.frame()) {
   args <- as.pairlist(args)
   stopifnot(
     all_named(args),
-    is.language(body),
-    is.environment(env))
+    is.language(body))
+  env <- to_env(env)
 
   eval(call("function", args, body), env)
 }

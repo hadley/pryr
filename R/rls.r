@@ -4,22 +4,19 @@
 #' the parent of the global environment, the empty environment or a namespace
 #' environment).
 #'
-#' @param e environment to start the search at. Defaults to the
-#'  \code{\link{parent.frame}}
+#' @param env environment to start the search at. Defaults to the
+#'  \code{\link{parent.frame}}. If a function is supplied, uses the environment
+#'  associated with the function.
 #' @param all.names Show all names, even those starting with \code{.}?
 #'   Defaults to \code{TRUE}, the opposite of \code{\link{ls}}
 #' @export
 #' @author Winston Chang
-rls <- function(e = parent.frame(), all.names = TRUE) {
-  if (is.function(e)) {
-    e <- environment(e)
-  }
-  stopifnot(is.environment(e))
+rls <- function(env = parent.frame(), all.names = TRUE) {
+  env <- to_env(env)
+  if (terminal_env(env)) return()
 
-  if (terminal_env(e)) return()
-
-  names <- ls(e, all.names = all.names)
-  c(list(names), rls(parent.env(e), all.names = all.names))
+  names <- ls(env, all.names = all.names)
+  c(list(names), rls(parent.env(env), all.names = all.names))
 }
 
 terminal_env <- function(e) {
