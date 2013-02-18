@@ -24,7 +24,7 @@ And tools to make it easier to compute on the language:
 * `substitute2`
 * `modify_lang`
 * `subs`
-* `curry`
+* `partial`
 * `find_funs`
 
 And to use existing R tools more easily:
