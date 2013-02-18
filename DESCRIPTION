@@ -30,3 +30,4 @@ Collate:
     'rls.r'
     'parenv.r'
     'partial.r'
+    'compose.r'
