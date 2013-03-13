@@ -9,6 +9,8 @@ all_named <- function(x) {
 to_env <- function(x) {
   if (is.environment(x)) {
     x
+  } else if (is.list(x)) {
+    list2env(x)
   } else if (is.function(x)) {
     environment(x)
   } else if (length(x) == 1 && is.character(x)) {
