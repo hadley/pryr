@@ -7,7 +7,7 @@
 #'
 #' @export
 #' @examples
-#' not_null <- "!" %.% is.null
+#' not_null <- `!` %.% is.null
 #' not_null(4)
 #' not_null(NULL)
 compose <- function(...) {
