@@ -22,6 +22,9 @@
 #'
 #' fun_calls(match.call)
 #' fun_calls(write.csv)
+#'
+#' fun_body(write.csv)
+#' find_funs("package:utils", fun_body, fixed("write"))
 find_funs <- function(env = parent.frame(), extract, pattern) {
   env <- to_env(env)
   if (length(pattern) > 1) pattern <- str_c(pattern, collapse = "|")
@@ -39,15 +42,22 @@ find_funs <- function(env = parent.frame(), extract, pattern) {
 
 #' @export
 #' @rdname find_funs
-fun_calls <- function(obj) {
-  if (is.function(obj)) {
-    fun_calls(body(obj))
-  } else if (is.call(obj)) {
-    f <- as.character(obj[[1]])
-    unique(c(f, unlist(lapply(obj[-1], fun_calls), use.names = FALSE)))
+fun_calls <- function(f) {
+  if (is.function(f)) {
+    fun_calls(body(f))
+  } else if (is.call(f)) {
+    fname <- as.character(f[[1]])
+    unique(c(fname, unlist(lapply(f[-1], fun_calls), use.names = FALSE)))
   }
 }
 
 #' @export
 #' @rdname find_funs
-fun_args <- function(x) names(formals(x))
+fun_args <- function(f) {
+  stopifnot(is.function(f))
+  names(formals(f))
+}
+
+#' @export
+#' @rdname find_funs
+fun_body <- function(f) deparse(body(f))

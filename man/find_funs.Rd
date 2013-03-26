@@ -1,14 +1,17 @@
 \name{find_funs}
 \alias{find_funs}
 \alias{fun_args}
+\alias{fun_body}
 \alias{fun_calls}
 \title{Find functions matching criteria.}
 \usage{
   find_funs(env = parent.frame(), extract, pattern)
 
-  fun_calls(obj)
+  fun_calls(f)
 
-  fun_args(x)
+  fun_args(f)
+
+  fun_body(f)
 }
 \arguments{
   \item{env}{environment in which to search for functions}
@@ -42,5 +45,8 @@ find_funs("package:stats", fun_args, "^[A-Z]+$")
 
 fun_calls(match.call)
 fun_calls(write.csv)
+
+fun_body(write.csv)
+find_funs("package:utils", fun_body, fixed("write"))
 }
 
