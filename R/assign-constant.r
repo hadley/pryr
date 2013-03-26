@@ -11,10 +11,15 @@
 #' x %<c-% 10
 #' #' Generates an error:
 #' \dontrun{x <- 20}
+#'
+#' # Note that because of R's operator precedence rules, you
+#' # need to wrap compound RHS expressions in ()
+#' y %<c-% 1 + 2
+#' y
+#' z %<c-% (1 + 2)
+#' z
 "%<c-%" <- function(x, value) {
   name <- substitute(x)
-  value <- substitute(value)
-
   if (!is.name(name)) stop("Left-hand side must be a name")
 
   env <- parent.frame()
