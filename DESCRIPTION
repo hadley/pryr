@@ -23,7 +23,6 @@ Collate:
     'rebind.r'
     'draw-tree.r'
     'modify-lang.r'
-    'subs.r'
     'assign-constant.r'
     'f.r'
     'find-funs.r'

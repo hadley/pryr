@@ -1,24 +1,37 @@
 \name{subs}
 \alias{subs}
-\title{Substitute names for values.}
+\title{A version of substitute that works in the global environment.}
 \usage{
-  subs(expr, env)
-}
-\arguments{
-  \item{expr}{a language object, function, expression or
-  list of the above to modify}
-
-  \item{env}{an environment-like object containing named
-  values to subsitute.}
+  subs(x, env = parent.frame())
 }
 \description{
-  This function is a specialised version of
-  \code{\link{substitute}} that only substitutes names for
-  values.
+  This version of \code{\link{substitute}} is more suited
+  for interactive exploration because it will perform
+  substitution in the global environment: the regular
+  version has a special case for the global environment
+  where it effectively works like \code{\link{quote}}
+}
+\section{Substitution rules}{
+  Formally, substitution takes place by examining each name
+  in the expression. If the name refers to:
+
+  \itemize{
+
+  \item an ordinary variable, it's replaced by the value of
+  the variable.
+
+  \item a promise, it's replaced by the expression
+  associated with the promise.
+
+  \item \code{...}, it's replaced by the contents of
+  \code{...} }
 }
 \examples{
-subs(quote(a + 1), list(a = 2))
-f <- function(z = x) y * z
-g <- subs(f, list(x = quote(runif(1)), y = 2, z = quote(x)))
+a <- 1
+b <- 2
+x <- quote(a + b)
+substitute(x)
+
+subs(x)
 }
 
