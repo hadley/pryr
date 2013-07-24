@@ -35,3 +35,4 @@ Collate:
     'compose.r'
     'dots.r'
     'RcppExports.R'
+    'address.r'

@@ -5,6 +5,17 @@
 
 using namespace Rcpp;
 
+// address2
+std::string address2(Symbol name, Environment env);
+RcppExport SEXP pryr_address2(SEXP nameSEXP, SEXP envSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope __rngScope;
+    Symbol name = Rcpp::as<Symbol >(nameSEXP);
+    Environment env = Rcpp::as<Environment >(envSEXP);
+    std::string __result = address2(name, env);
+    return Rcpp::wrap(__result);
+END_RCPP
+}
 // is_promise2
 bool is_promise2(Symbol name, Environment env);
 RcppExport SEXP pryr_is_promise2(SEXP nameSEXP, SEXP envSEXP) {
