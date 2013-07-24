@@ -2,7 +2,7 @@
 \alias{address}
 \title{Return the memory address of an R object.}
 \usage{
-  address(x, env = parent.frame())
+  address(x)
 }
 \arguments{
   \item{x}{object to inspect}

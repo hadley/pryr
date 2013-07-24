@@ -13,6 +13,27 @@
 #' \dontrun{.Internal(inspect(x))}
 #' x[1] <- 3L
 #' address(x)
-address <- function(x, env = parent.frame()) {
-  address2(substitute(x), env)
+address <- function(x) {
+  address2(substitute(x), parent.frame())
+}
+
+#' Track if an object is copied
+#' 
+#' The title is somewhat misleading: rather than checking if an object is
+#' modified, this really checks to see if a name points to the same object.
+#' 
+#' @export
+track_copy <- function(var, env = parent.frame(), quiet = FALSE) {
+  var <- substitute(var)
+  force(env)
+  
+  old <- address2(var, parent.frame())
+  function() {
+    new <- address2(var, parent.frame())  
+    if (old == new) return(invisible(FALSE))
+    
+    if (!quiet) message(var, " copied")
+    old <<- new
+    invisible(TRUE)
+  }
 }
