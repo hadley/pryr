@@ -6,6 +6,9 @@ Author: Hadley Wickham <h.wickham@gmail.com>
 Maintainer: Hadley Wickham <h.wickham@gmail.com>
 License: GPL-2
 Version: 0.1
+Depends:
+    Rcpp (>= 0.10.1)
+LinkingTo: Rcpp
 Imports:
     stringr,
     testthat
@@ -31,3 +34,4 @@ Collate:
     'partial.r'
     'compose.r'
     'dots.r'
+    'RcppExports.R'
