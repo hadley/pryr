@@ -2,8 +2,11 @@ Type: Package
 Package: pryr
 Title: Tools for computing on the language
 Description: 
-Author: Hadley Wickham <h.wickham@gmail.com>
-Maintainer: Hadley Wickham <h.wickham@gmail.com>
+Authors@R: c(
+    person("Hadley", "Wickham",
+    email = "h.wickham@gmail.com", role = c("aut", "cre")),
+    person("R Core team", role = "ctb",
+    comment = "Some code extracted from base R"))
 License: GPL-2
 Version: 0.1
 Depends:
@@ -36,3 +39,4 @@ Collate:
     'dots.r'
     'RcppExports.R'
     'address.r'
+    'typename.r'
