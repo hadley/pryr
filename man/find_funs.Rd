@@ -22,10 +22,7 @@
   \code{fun_args}.}
 
   \item{pattern}{\pkg{stringr} regular expression to
-  results of \code{extract} function. Use
-  \code{\link[string]{fixed}} or
-  \code{\link[string]{ignore.case}} to control the
-  behaviour of the regexp.}
+  results of \code{extract} function.}
 
   \item{obj}{function object to inspect.}
 

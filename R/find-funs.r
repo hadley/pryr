@@ -11,8 +11,7 @@
 #'   takes a function as input as returns a character vector as output,
 #'   like \code{fun_calls} or \code{fun_args}.
 #' @param pattern \pkg{stringr} regular expression to results of \code{extract}
-#'   function. Use \code{\link[string]{fixed}} or
-#'   \code{\link[string]{ignore.case}} to control the behaviour of the regexp.
+#'   function.
 #' @param obj function object to inspect.
 #' @param ... other arguments passed on to \code{\link{grepl}}
 #' @export
