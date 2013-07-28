@@ -2,6 +2,7 @@
 #'
 #' @param name length one character vector giving name
 #' @param env environment to start search in.
+#' @export
 #' @examples
 #' c <- 10
 #' fget("c")
