@@ -11,7 +11,7 @@
   time \code{name} is accessed}
 }
 \description{
-  Infix form of \code{\link{delayedBinding}} which creates
+  Infix form of \code{\link{delayedAssign}} which creates
   an \emph{delayed} or lazy binding, which only evaluates
   the expression the first time it is used.
 }

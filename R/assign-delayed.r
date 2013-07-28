@@ -1,6 +1,6 @@
 #' Create an delayed binding.
 #'
-#' Infix form of \code{\link{delayedBinding}} which creates an \emph{delayed}
+#' Infix form of \code{\link{delayedAssign}} which creates an \emph{delayed}
 #' or lazy binding, which only evaluates the expression the first time it is
 #' used.
 #'
