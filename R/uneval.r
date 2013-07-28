@@ -11,8 +11,10 @@
 #' }
 #' f(a + b)
 #' f(1 + 4)
-#'
+#' 
 #' delayedAssign("x", 1 + 4)
+#' uneval(x)
+#' x
 #' uneval(x)
 uneval <- function(x) {
   name <- substitute(x)
@@ -24,5 +26,5 @@ uneval <- function(x) {
     stop(name, "is not a promise", call. = FALSE)
   }
 
-  .Call("promise_code", name, env)
+  promise_code(name, env)
 }

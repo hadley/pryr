@@ -19,5 +19,7 @@ f(1 + 4)
 
 delayedAssign("x", 1 + 4)
 uneval(x)
+x
+uneval(x)
 }
 
