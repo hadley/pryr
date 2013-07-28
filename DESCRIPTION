@@ -14,7 +14,8 @@ Depends:
 LinkingTo: Rcpp
 Imports:
     stringr,
-    testthat
+    testthat,
+    codetools
 Collate:
     'make-function.r'
     'promise.r'

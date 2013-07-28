@@ -5,6 +5,7 @@
 #'   are guessed from the code.
 #' @return a function
 #' @export
+#' @importFrom codetools findGlobals
 #' @examples
 #' f(x + y)
 #' f(x + y)(1, 10)
@@ -18,7 +19,7 @@ f <- function(..., .env = parent.frame()) {
   if (n == 1) {
     fun <- make_function(alist(... = ), dots[[1]], .env)
 
-    names <- codetools::findGlobals(fun, merge = FALSE)$variables
+    names <- findGlobals(fun, merge = FALSE)$variables
     args <- setNames(rep(list(substitute()), length(names)), names)
     formals(fun) <- args
 
