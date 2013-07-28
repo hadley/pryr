@@ -25,3 +25,7 @@ promise_env <- function(name, env) {
     .Call('pryr_promise_env', PACKAGE = 'pryr', name, env)
 }
 
+typename2 <- function(name, env) {
+    .Call('pryr_typename2', PACKAGE = 'pryr', name, env)
+}
+

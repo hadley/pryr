@@ -71,3 +71,14 @@ BEGIN_RCPP
     return Rcpp::wrap(__result);
 END_RCPP
 }
+// typename2
+std::string typename2(Symbol name, Environment env);
+RcppExport SEXP pryr_typename2(SEXP nameSEXP, SEXP envSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope __rngScope;
+    Symbol name = Rcpp::as<Symbol >(nameSEXP);
+    Environment env = Rcpp::as<Environment >(envSEXP);
+    std::string __result = typename2(name, env);
+    return Rcpp::wrap(__result);
+END_RCPP
+}
