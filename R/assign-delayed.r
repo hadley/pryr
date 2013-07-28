@@ -10,7 +10,7 @@
 #' @export
 #' @rdname assign-delayed
 #' @examples
-#' x %<d-% a + b
+#' x %<d-% (a + b)
 #' a <- 10
 #' b <- 100
 #' x
