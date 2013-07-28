@@ -3,6 +3,7 @@
 #' @param ... The last argument is the body of the function, all others are
 #'   arguments to the function.  If there is only one argument, the formals
 #'   are guessed from the code.
+#' @param .env parent environment of the created function
 #' @return a function
 #' @export
 #' @importFrom codetools findGlobals

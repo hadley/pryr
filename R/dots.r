@@ -1,6 +1,6 @@
 #' Capture unevaluated dots.
 #'
-#' @param ...
+#' @param ... \code{...} passed in to the parent function
 #' @return a list of expressions (not expression objects). \code{named_dots}
 #'  will use the deparsed expressions as default names.
 #' @export

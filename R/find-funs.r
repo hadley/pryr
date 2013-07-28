@@ -12,7 +12,6 @@
 #'   like \code{fun_calls} or \code{fun_args}.
 #' @param pattern \pkg{stringr} regular expression to results of \code{extract}
 #'   function.
-#' @param obj function object to inspect.
 #' @param ... other arguments passed on to \code{\link{grepl}}
 #' @export
 #' @examples
@@ -41,6 +40,7 @@ find_funs <- function(env = parent.frame(), extract, pattern, ...) {
 
 #' @export
 #' @rdname find_funs
+#' @param f function to extract information from
 fun_calls <- function(f) {
   if (is.function(f)) {
     fun_calls(body(f))

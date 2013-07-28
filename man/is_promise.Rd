@@ -7,6 +7,9 @@
 
   promise_info(x)
 }
+\arguments{
+  \item{x}{unquoted object name}
+}
 \description{
   Promise info
 }

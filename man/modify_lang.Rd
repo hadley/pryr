@@ -9,6 +9,8 @@
   function or list of the above.}
 
   \item{f}{function to apply to leaves}
+
+  \item{...}{other arguments passed to \code{f}}
 }
 \description{
   Recursively modify a language object

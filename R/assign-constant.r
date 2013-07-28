@@ -3,10 +3,11 @@
 #' Infix wrapper for \code{\link{assign}} + \code{\link{lockBinding}} that
 #' creates a constant: a binding whose value can not be changed.
 #'
+#' @usage x \%<c-\% value
 #' @param x unquoted expression naming variable to create
 #' @param value constant value
 #' @export
-#' @rdname assign-active
+#' @rdname assign-constant
 #' @examples
 #' x %<c-% 10
 #' #' Generates an error:

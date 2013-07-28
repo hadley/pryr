@@ -3,6 +3,7 @@
 #' @param x object to modify: should be a call, expression, function or
 #'   list of the above.
 #' @param f function to apply to leaves
+#' @param ... other arguments passed to \code{f}
 #' @export
 #' @examples
 #' a_to_b <- function(x) {

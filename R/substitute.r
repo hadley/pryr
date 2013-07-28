@@ -41,7 +41,8 @@ substitute2 <- function(x, env) {
 #'     promise.
 #'
 #'  \item \code{...}, it's replaced by the contents of \code{...}
-#'}
+#' }
+#' @inheritParams substitute2
 #' @export
 #' @examples
 #' a <- 1

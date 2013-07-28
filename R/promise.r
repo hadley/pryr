@@ -1,6 +1,7 @@
 #' Promise info
 #' 
 #' @useDynLib pryr
+#' @param x unquoted object name
 #' @family promise tools
 #' @export
 #' @examples

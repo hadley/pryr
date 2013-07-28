@@ -12,6 +12,7 @@
 #' similar as possible to the anonymous function that'd you'd create by hand,
 #' if you weren't using \code{partial}.
 #'
+#' @usage partial(`_f`, ..., .env = parent.frame())
 #' @param _f a function. For the output source to read well, this should be an
 #'   be a named function.  This argument has the weird (non-syntactic) name
 #'   \code{_f} so it doesn't accidentally capture any argument names begining

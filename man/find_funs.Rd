@@ -24,10 +24,10 @@
   \item{pattern}{\pkg{stringr} regular expression to
   results of \code{extract} function.}
 
-  \item{obj}{function object to inspect.}
-
   \item{...}{other arguments passed on to
   \code{\link{grepl}}}
+
+  \item{f}{function to extract information from}
 }
 \description{
   This is a flexible function that matches function

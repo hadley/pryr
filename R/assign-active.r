@@ -4,6 +4,7 @@
 #' binding between a name and an expression: every time the name is accessed
 #' the expression is recomputed.
 #'
+#' @usage x \%<a-\% value
 #' @param x unquoted expression naming variable to create
 #' @param value unquoted expression to evaluate every time \code{name} is
 #'   accessed

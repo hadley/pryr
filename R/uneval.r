@@ -6,6 +6,8 @@
 #'
 #' @export
 #' @family promise tools
+#' @param x unquoted variable name that refers to a promise. An error will be
+#'   thrown if it's not a promise.
 #' @examples
 #' f <- function(x) {
 #'    uneval(x)

@@ -4,6 +4,7 @@
 #' or lazy binding, which only evaluates the expression the first time it is
 #' used.
 #'
+#' @usage x \%<d-\% value
 #' @param x unquoted expression naming variable to create
 #' @param value unquoted expression to evaluate the first time \code{name} is
 #'   accessed

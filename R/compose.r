@@ -28,6 +28,7 @@ compose <- function(...) {
 
 #' @rdname compose
 #' @export
+#' @usage f \%.\% g
 '%.%' <- function(f, g) {
   f <- match.fun(f)
   g <- match.fun(g)

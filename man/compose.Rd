@@ -5,7 +5,7 @@
 \usage{
   compose(...)
 
-  %.%(f, g)
+  f \%.\% g
 }
 \arguments{
   \item{...}{n functions to apply in order from right to

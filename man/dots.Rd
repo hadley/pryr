@@ -8,7 +8,7 @@
   named_dots(...)
 }
 \arguments{
-  \item{...}{}
+  \item{...}{\code{...} passed in to the parent function}
 }
 \value{
   a list of expressions (not expression objects).

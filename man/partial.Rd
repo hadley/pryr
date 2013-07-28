@@ -2,7 +2,7 @@
 \alias{partial}
 \title{Partial apply a function, filling in some arguments.}
 \usage{
-  partial(_f, ..., .env = parent.frame())
+  partial(`_f`, ..., .env = parent.frame())
 }
 \arguments{
   \item{_f}{a function. For the output source to read well,

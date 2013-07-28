@@ -2,7 +2,7 @@
 \alias{\%<d-\%}
 \title{Create an delayed binding.}
 \usage{
-  %<d-%(x, value)
+  x \%<d-\% value
 }
 \arguments{
   \item{x}{unquoted expression naming variable to create}
