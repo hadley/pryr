@@ -5,7 +5,7 @@
 \alias{fun_calls}
 \title{Find functions matching criteria.}
 \usage{
-  find_funs(env = parent.frame(), extract, pattern)
+  find_funs(env = parent.frame(), extract, pattern, ...)
 
   fun_calls(f)
 
@@ -28,6 +28,9 @@
   behaviour of the regexp.}
 
   \item{obj}{function object to inspect.}
+
+  \item{...}{other arguments passed on to
+  \code{\link{grepl}}}
 }
 \description{
   This is a flexible function that matches function
@@ -39,14 +42,13 @@
   functions.
 }
 \examples{
-library(stringr)
-find_funs("package:base", fun_calls, fixed("match.fun"))
+find_funs("package:base", fun_calls, "match.fun", fixed = TRUE)
 find_funs("package:stats", fun_args, "^[A-Z]+$")
 
 fun_calls(match.call)
 fun_calls(write.csv)
 
 fun_body(write.csv)
-find_funs("package:utils", fun_body, fixed("write"))
+find_funs("package:utils", fun_body, "write", fixed = TRUE)
 }
 

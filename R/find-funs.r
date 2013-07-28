@@ -14,18 +14,18 @@
 #'   function. Use \code{\link[string]{fixed}} or
 #'   \code{\link[string]{ignore.case}} to control the behaviour of the regexp.
 #' @param obj function object to inspect.
+#' @param ... other arguments passed on to \code{\link{grepl}}
 #' @export
 #' @examples
-#' library(stringr)
-#' find_funs("package:base", fun_calls, fixed("match.fun"))
+#' find_funs("package:base", fun_calls, "match.fun", fixed = TRUE)
 #' find_funs("package:stats", fun_args, "^[A-Z]+$")
 #'
 #' fun_calls(match.call)
 #' fun_calls(write.csv)
 #'
 #' fun_body(write.csv)
-#' find_funs("package:utils", fun_body, fixed("write"))
-find_funs <- function(env = parent.frame(), extract, pattern) {
+#' find_funs("package:utils", fun_body, "write", fixed = TRUE)
+find_funs <- function(env = parent.frame(), extract, pattern, ...) {
   env <- to_env(env)
   if (length(pattern) > 1) pattern <- str_c(pattern, collapse = "|")
 
@@ -33,7 +33,7 @@ find_funs <- function(env = parent.frame(), extract, pattern) {
     f <- get(x, env)
     if (!is.function(f)) return(FALSE)
 
-    any(str_detect(extract(f), pattern))
+    any(grepl(pattern, extract(f) ,...))
   }
 
   fs <- ls(env)
