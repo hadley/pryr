@@ -22,4 +22,8 @@ uneval(x)
 x
 uneval(x)
 }
+\seealso{
+  Other promise.tools: \code{\link{is_promise}},
+  \code{\link{promise_info}}
+}
 

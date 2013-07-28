@@ -1,6 +1,7 @@
 #' Promise info
 #' 
 #' @useDynLib pryr
+#' @family promise tools
 #' @export
 #' @examples
 #' x <- 10
