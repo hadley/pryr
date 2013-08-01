@@ -28,3 +28,28 @@ promise_info <- function(x) {
     value = if (evaled) promise_value(name, env)
   )
 }
+
+#' Find the parent (first) promise.
+#' 
+#' @param x unquoted name of promise to find initial value for for.
+#' @export
+#' @examples
+#' f <- function(x) g(x)
+#' g <- function(y) h(y)
+#' h <- function(z) parent_promise(z)
+#' 
+#' h(x + 1)
+#' g(x + 1)
+#' f(x + 1)
+parent_promise <- function(x) {
+  name <- quote(x)
+  
+  for (frame in rev(sys.frames())) {
+    if (!is_promise2(name, frame)) return(name)
+    
+    name <- promise_code(name, frame)
+    if (!is.name(name)) return(name)    
+  }
+  
+  name
+}

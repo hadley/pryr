@@ -1,0 +1,23 @@
+\name{parent_promise}
+\alias{parent_promise}
+\title{Find the parent (first) promise.}
+\usage{
+  parent_promise(x)
+}
+\arguments{
+  \item{x}{unquoted name of promise to find initial value
+  for for.}
+}
+\description{
+  Find the parent (first) promise.
+}
+\examples{
+f <- function(x) g(x)
+g <- function(y) h(y)
+h <- function(z) parent_promise(z)
+
+h(x + 1)
+g(x + 1)
+f(x + 1)
+}
+
