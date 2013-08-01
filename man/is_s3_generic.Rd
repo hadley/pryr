@@ -1,0 +1,36 @@
+\name{is_s3_generic}
+\alias{is_s3_generic}
+\title{Determine if a function is an S3 generic or S3 method.}
+\usage{
+  is_s3_generic(fname, env = parent.frame())
+}
+\arguments{
+  \item{name}{name of function as a string. Need name of
+  function because it's impossible to determine whether or
+  not a function is a S3 method based only on its
+  contents.}
+
+  \item{env}{environment to search in.}
+}
+\description{
+  \code{is_s3_generic} compares name checks for both
+  internal and regular generics.
+
+  \code{is_s3_method} builds names of all possible generics
+  for that function and then checks if any of them actually
+  is a generic.
+}
+\examples{
+is_s3_generic("mean")
+is_s3_generic("sum")
+is_s3_generic("[[")
+is_s3_generic("unlist")
+is_s3_generic("runif")
+
+is_s3_method("t.data.frame")
+is_s3_method("t.test") # Just tricking!
+is_s3_method("as.data.frame")
+is_s3_method("mean.Date")
+}
+\keyword{internal}
+

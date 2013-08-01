@@ -1,0 +1,26 @@
+\name{ftype}
+\alias{ftype}
+\title{Determine function type.}
+\usage{
+  ftype(f)
+}
+\arguments{
+  \item{f}{unquoted function name}
+}
+\value{
+  a character of vector of length 1 or 2.
+}
+\description{
+  This function figures out whether the input function is a
+  regular/primitive/internal function, a internal/S3/S4
+  generic, or a S3/S4/RC method.
+}
+\examples{
+ftype(`\%in\%`)
+ftype(sum)
+ftype(t.data.frame)
+ftype(t.test) # Tricky!
+ftype(writeLines)
+ftype(unlist)
+}
+
