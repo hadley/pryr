@@ -19,7 +19,7 @@ compose <- function(...) {
 
   function(...) {
     out <- last(...)
-    for (f in fs) {
+    for (f in rest) {
       out <- f(out)
     }
     out
