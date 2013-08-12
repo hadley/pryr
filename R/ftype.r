@@ -8,6 +8,7 @@
 #' 
 #' @param f unquoted function name
 #' @return a character of vector of length 1 or 2.
+#' @family object inspection
 #' @importFrom methods is
 #' @export
 #' @examples

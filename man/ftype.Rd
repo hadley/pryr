@@ -27,4 +27,8 @@ ftype(t.test) # Tricky!
 ftype(writeLines)
 ftype(unlist)
 }
+\seealso{
+  Other object inspection: \code{\link{address}},
+  \code{\link{otype}}, \code{\link{typename}}
+}
 

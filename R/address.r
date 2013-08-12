@@ -6,6 +6,7 @@
 #' modification.
 #' 
 #' @param x object to inspect
+#' @family object inspection
 #' @export
 #' @examples
 #' x <- 1:5

@@ -23,4 +23,8 @@ typename(a)
 a
 typename(a)
 }
+\seealso{
+  Other object inspection: \code{\link{address}},
+  \code{\link{ftype}}, \code{\link{otype}}
+}
 

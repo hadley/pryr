@@ -1,6 +1,7 @@
 #' Determine the C typename associated with a name.
 #' 
 #' @param x name of object to inspect. This can not be a value. 
+#' @family object inspection
 #' @export
 #' @examples
 #' x <- 1:10
