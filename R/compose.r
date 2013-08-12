@@ -10,6 +10,9 @@
 #' not_null <- `!` %.% is.null
 #' not_null(4)
 #' not_null(NULL)
+#' 
+#' add1 <- function(x) x + 1
+#' compose(add1,add1)(8)
 compose <- function(...) {
   fs <- lapply(list(...), match.fun)
   n <- length(fs)
