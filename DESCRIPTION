@@ -44,3 +44,5 @@ Collate:
     'ftype.r'
     's3.r'
     'otype.r'
+    'method-from-call.r'
+    'standardise-call.r'
