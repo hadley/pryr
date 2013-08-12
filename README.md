@@ -14,26 +14,34 @@ install_github("pryr")
 
 ## Tools
 
-`pryr` includes tools to make it easier to understand the internal 
-implementation of:
+`pryr` includes tools to:
 
-* promises: `uneval()`, `is_promise()`, `promise_info()`
-* scoping and environments: `where()`, `rls()`, `parenv()`
-* closures: `unenclose()`
-* calls and expressions: `call_tree()`
+* Make it easier to understand the internal implementation of:
 
-And tools to make it easier to compute on the language:
+  * promises: `uneval()`, `is_promise()`, `promise_info()`
+  * scoping and environments: `where()`, `rls()`, `parenv()`
+  * closures: `unenclose()`
+  * calls and expressions: `call_tree()`
+  * primitive types: `typenames()`
+  * copy-on-modify: `address()`, `track_copy()`
 
-* Alternative ways to create functions: `make_function()`, `f()`
-* A version of subtitute that uses regular evaluation, `substitute2()`, and 
-  one that will substitute objects in the global environment, `subs()`
-* Tools to modify language objects: `modify_lang()`
-* `dots()` and `named_dots()` to get unevaluated `...`
-* Partial function evaluation: `partial()`
-* Find all functions matching some criteria: `find_funs()`
+* Inspect and understand R's OO systems:
 
-And to use existing R tools more easily:
+  * Determine which OO system an object belongs to: `otype()`
+  * Determine which OO system a function belongs to: `ftype()`
 
-* `%<d-%` and `%<a-%` for creating delayed or active bindings
-* `%<c-%` for creating constants (locked bindings)
-* `rebind` as a more user friendly version of `<<-`
+* Make it easier to compute on the language:
+
+  * Alternative ways to create functions: `make_function()`, `f()`
+  * A version of subtitute that uses regular evaluation, `substitute2()`, and 
+    one that will substitute objects in the global environment, `subs()`
+  * Tools to modify language objects: `modify_lang()`
+  * `dots()` and `named_dots()` to get unevaluated `...`
+  * Partial function evaluation: `partial()`
+  * Find all functions matching some criteria: `find_funs()`
+
+* To use existing R tools more easily:
+
+  * `%<d-%` and `%<a-%` for creating delayed or active bindings
+  * `%<c-%` for creating constants (locked bindings)
+  * `rebind` as a more user friendly version of `<<-`
