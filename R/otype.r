@@ -16,17 +16,12 @@
 #' otype(data.frame())
 #' otype(1:10)
 otype <- function(x) {
-  if (isS4(x)) {
-    if (is(x, "refClass")) {
-      "RC"
-    } else {
-      "S4"
-    }
+  if (!is.object(x)) return("primitive")
+  if (!isS4(x)) return("S3")
+  
+  if (is(x, "refClass")) {
+    "RC"
   } else {
-    if (is.null(attr(x, "class"))) {
-      "primitive"
-    } else {
-      "S3"
-    }
+    "S4"
   }
 }
