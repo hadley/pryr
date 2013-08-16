@@ -22,7 +22,7 @@ compose <- function(...) {
 
   function(...) {
     out <- last(...)
-    for (f in rest) {
+    for (f in rev(rest)) {
       out <- f(out)
     }
     out
