@@ -12,12 +12,12 @@
 #' fq <- quote(f <- function(a = 1, b = 2) {a + b})
 #' call_tree(fq)
 #' @importFrom stringr str_c
-call_tree <- function(x, width = getOption("width")) {
+call_tree <- function(x, width = getOption("width"), colour = interactive()) {
   if (is.expression(x) || is.list(x)) {
-    trees <- vapply(x, tree, character(1), width = width)
+    trees <- vapply(x, tree, character(1), width = width, colour = colour)
     out <- str_c(trees, collapse = "\n\n")
   } else {
-    out <- tree(x, width = width)
+    out <- tree(x, width = width, colour = colour)
   }
 
   cat(out, "\n")
@@ -34,30 +34,32 @@ is.leaf <- function(x) {
 }
 
 #' @importFrom stringr str_c str_dup
-tree <- function(x, level = 1, width = getOption("width")) {
+tree <- function(x, level = 1, width = getOption("width"), colour = FALSE) {
   indent <- str_c(str_dup("  ", level - 1), "\\- ")
-  label <- label(x, width - nchar(indent))
+  label <- label(x, width - nchar(indent), colour = colour)
 
   if (is.leaf(x)) return(str_c(indent, label))
 
   children <- vapply(as.list(x[-1]), tree, character(1),
-    level = level + 1, width = width)
+    level = level + 1, width = width, colour = colour)
 
   str_c(indent, label, "\n", str_c(children, collapse = "\n"))
 }
 
 #' @importFrom testthat colourise
 #' @importFrom stringr str_c
-label <- function(x, width = getOption("width")) {
+label <- function(x, width = getOption("width"), colour = FALSE) {
   if (is.call(x)) {
     label <- str_c(as.character(x[[1]]), "()")
-    colour <- "red"
+    col <- "red"
   } else if (is.name(x)) {
     label <- str_c("`", as.character(x))
-    colour <- "blue"
+    col <- "blue"
   } else {
     label <- deparse(x)[[1]]
-    colour <- "black"
+    col <- "black"
   }
-  colourise(str_trunc(label, width), colour)
+  
+  lbl <- str_trunc(label, width)
+  if (colour) colourise(lbl, col) else lbl
 }
