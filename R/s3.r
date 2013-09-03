@@ -25,6 +25,8 @@
 #' is_s3_method("as.data.frame")
 #' is_s3_method("mean.Date")
 is_s3_generic <- function(fname, env = parent.frame()) {
+  if (!exists(fname, env)) return(FALSE)
+  
   f <- get(fname, env, mode = "function")
   if (!is.function(f)) return(FALSE)
   
