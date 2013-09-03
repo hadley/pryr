@@ -2,7 +2,8 @@
 \alias{call_tree}
 \title{Display a call (or expression) as a tree.}
 \usage{
-  call_tree(x, width = getOption("width"))
+  call_tree(x, width = getOption("width"),
+    colour = interactive())
 }
 \arguments{
   \item{x}{quoted call, list of calls, or expression to

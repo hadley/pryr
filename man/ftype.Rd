@@ -29,6 +29,8 @@ ftype(unlist)
 }
 \seealso{
   Other object inspection: \code{\link{address}},
-  \code{\link{otype}}, \code{\link{typename}}
+  \code{\link{inspect}}, \code{\link{otype}},
+  \code{\link{refs}}, \code{\link{typename}},
+  \code{\link{typename}}
 }
 

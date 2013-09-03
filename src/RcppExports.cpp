@@ -9,76 +9,127 @@ using namespace Rcpp;
 std::string address2(Symbol name, Environment env);
 RcppExport SEXP pryr_address2(SEXP nameSEXP, SEXP envSEXP) {
 BEGIN_RCPP
-    Rcpp::RNGScope __rngScope;
-    Symbol name = Rcpp::as<Symbol >(nameSEXP);
-    Environment env = Rcpp::as<Environment >(envSEXP);
-    std::string __result = address2(name, env);
-    return Rcpp::wrap(__result);
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Symbol name = Rcpp::as<Symbol >(nameSEXP);
+        Environment env = Rcpp::as<Environment >(envSEXP);
+        std::string __result = address2(name, env);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
+// named2
+int named2(Symbol name, Environment env);
+RcppExport SEXP pryr_named2(SEXP nameSEXP, SEXP envSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Symbol name = Rcpp::as<Symbol >(nameSEXP);
+        Environment env = Rcpp::as<Environment >(envSEXP);
+        int __result = named2(name, env);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
 END_RCPP
 }
 // is_promise2
 bool is_promise2(Symbol name, Environment env);
 RcppExport SEXP pryr_is_promise2(SEXP nameSEXP, SEXP envSEXP) {
 BEGIN_RCPP
-    Rcpp::RNGScope __rngScope;
-    Symbol name = Rcpp::as<Symbol >(nameSEXP);
-    Environment env = Rcpp::as<Environment >(envSEXP);
-    bool __result = is_promise2(name, env);
-    return Rcpp::wrap(__result);
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Symbol name = Rcpp::as<Symbol >(nameSEXP);
+        Environment env = Rcpp::as<Environment >(envSEXP);
+        bool __result = is_promise2(name, env);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
 END_RCPP
 }
 // promise_code
 SEXP promise_code(Symbol name, Environment env);
 RcppExport SEXP pryr_promise_code(SEXP nameSEXP, SEXP envSEXP) {
 BEGIN_RCPP
-    Rcpp::RNGScope __rngScope;
-    Symbol name = Rcpp::as<Symbol >(nameSEXP);
-    Environment env = Rcpp::as<Environment >(envSEXP);
-    SEXP __result = promise_code(name, env);
-    return Rcpp::wrap(__result);
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Symbol name = Rcpp::as<Symbol >(nameSEXP);
+        Environment env = Rcpp::as<Environment >(envSEXP);
+        SEXP __result = promise_code(name, env);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
 END_RCPP
 }
 // promise_value
 SEXP promise_value(Symbol name, Environment env);
 RcppExport SEXP pryr_promise_value(SEXP nameSEXP, SEXP envSEXP) {
 BEGIN_RCPP
-    Rcpp::RNGScope __rngScope;
-    Symbol name = Rcpp::as<Symbol >(nameSEXP);
-    Environment env = Rcpp::as<Environment >(envSEXP);
-    SEXP __result = promise_value(name, env);
-    return Rcpp::wrap(__result);
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Symbol name = Rcpp::as<Symbol >(nameSEXP);
+        Environment env = Rcpp::as<Environment >(envSEXP);
+        SEXP __result = promise_value(name, env);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
 END_RCPP
 }
 // promise_evaled
 bool promise_evaled(Symbol name, Environment env);
 RcppExport SEXP pryr_promise_evaled(SEXP nameSEXP, SEXP envSEXP) {
 BEGIN_RCPP
-    Rcpp::RNGScope __rngScope;
-    Symbol name = Rcpp::as<Symbol >(nameSEXP);
-    Environment env = Rcpp::as<Environment >(envSEXP);
-    bool __result = promise_evaled(name, env);
-    return Rcpp::wrap(__result);
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Symbol name = Rcpp::as<Symbol >(nameSEXP);
+        Environment env = Rcpp::as<Environment >(envSEXP);
+        bool __result = promise_evaled(name, env);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
 END_RCPP
 }
 // promise_env
 SEXP promise_env(Symbol name, Environment env);
 RcppExport SEXP pryr_promise_env(SEXP nameSEXP, SEXP envSEXP) {
 BEGIN_RCPP
-    Rcpp::RNGScope __rngScope;
-    Symbol name = Rcpp::as<Symbol >(nameSEXP);
-    Environment env = Rcpp::as<Environment >(envSEXP);
-    SEXP __result = promise_env(name, env);
-    return Rcpp::wrap(__result);
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Symbol name = Rcpp::as<Symbol >(nameSEXP);
+        Environment env = Rcpp::as<Environment >(envSEXP);
+        SEXP __result = promise_env(name, env);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
 END_RCPP
 }
 // typename2
 std::string typename2(Symbol name, Environment env);
 RcppExport SEXP pryr_typename2(SEXP nameSEXP, SEXP envSEXP) {
 BEGIN_RCPP
-    Rcpp::RNGScope __rngScope;
-    Symbol name = Rcpp::as<Symbol >(nameSEXP);
-    Environment env = Rcpp::as<Environment >(envSEXP);
-    std::string __result = typename2(name, env);
-    return Rcpp::wrap(__result);
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Symbol name = Rcpp::as<Symbol >(nameSEXP);
+        Environment env = Rcpp::as<Environment >(envSEXP);
+        std::string __result = typename2(name, env);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
 END_RCPP
 }

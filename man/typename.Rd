@@ -25,6 +25,8 @@ typename(a)
 }
 \seealso{
   Other object inspection: \code{\link{address}},
-  \code{\link{ftype}}, \code{\link{otype}}
+  \code{\link{ftype}}, \code{\link{inspect}},
+  \code{\link{otype}}, \code{\link{refs}},
+  \code{\link{typename}}
 }
 

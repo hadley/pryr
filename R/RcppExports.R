@@ -5,6 +5,10 @@ address2 <- function(name, env) {
     .Call('pryr_address2', PACKAGE = 'pryr', name, env)
 }
 
+named2 <- function(name, env) {
+    .Call('pryr_named2', PACKAGE = 'pryr', name, env)
+}
+
 is_promise2 <- function(name, env) {
     .Call('pryr_is_promise2', PACKAGE = 'pryr', name, env)
 }

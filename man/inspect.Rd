@@ -1,0 +1,58 @@
+\name{inspect}
+\alias{address}
+\alias{inspect}
+\alias{refs}
+\alias{typename}
+\title{Inspect internal attributes of R objects.}
+\usage{
+  address(x)
+
+  refs(x)
+
+  typename(x)
+}
+\arguments{
+  \item{x}{name of object to inspect. This can not be a
+  value.}
+}
+\description{
+  \code{typename} determines the internal C typename,
+  \code{address} returns the memory location of the object,
+  and \code{refs} returns the number of references pointing
+  to the underlying object.
+}
+\section{Non-standard evaluation}{
+  All functions uses non-standard evaluation to capture the
+  symbol you are referring to and the environment in which
+  it lives. This means that you can not call any of these
+  functions on objects created in the function call. All
+  the underlying C level functions use \code{Rf_findVar} to
+  get to the underlying SEXP.
+}
+\examples{
+x <- 1:10
+\dontrun{.Internal(inspect(x))}
+
+typename(x)
+refs(x)
+address(x)
+
+y <- 1L
+typename(y)
+z <- list(1:10)
+typename(z)
+delayedAssign("a", 1 + 2)
+typename(a)
+a
+typename(a)
+
+x <- 1:5
+address(x)
+x[1] <- 3L
+address(x)
+}
+\seealso{
+  Other object inspection: \code{\link{ftype}},
+  \code{\link{otype}}, \code{\link{typename}}
+}
+

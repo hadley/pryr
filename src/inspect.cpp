@@ -8,3 +8,9 @@ std::string address2(Symbol name, Environment env) {
   s << object;
   return s.str();
 }
+
+// [[Rcpp::export]]
+int named2(Symbol name, Environment env) {
+  SEXP object = Rf_findVar(name, env);
+  return NAMED(object);  
+}
