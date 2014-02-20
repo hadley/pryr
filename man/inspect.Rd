@@ -53,6 +53,6 @@ address(x)
 }
 \seealso{
 Other object inspection: \code{\link{ftype}};
-  \code{\link{otype}}; \code{\link{typename}}
+  \code{\link{otype}}
 }
 
