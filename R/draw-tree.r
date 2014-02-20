@@ -1,5 +1,8 @@
 #' Display a call (or expression) as a tree.
 #'
+#' \code{call_tree} takes a quoted expression. \code{ast} does the quoting
+#' for you.
+#'
 #' @param x quoted call, list of calls, or expression to display
 #' @param width displays width, defaults to current width as reported by
 #'   \code{getOption("width")}
@@ -9,6 +12,9 @@
 #' call_tree(quote(f(x, 1, g(), h(i()))))
 #' call_tree(quote(if (TRUE) 3 else 4))
 #' call_tree(expression(1, 2, 3))
+#'
+#' ast(f(x, 1, g(), h(i())))
+#' ast(if (TRUE) 3 else 4)
 #'
 #' fq <- quote(f <- function(a = 1, b = 2) {a + b})
 #' call_tree(fq)
@@ -23,6 +29,10 @@ call_tree <- function(x, width = getOption("width"), colour = interactive()) {
 
   cat(out, "\n")
 }
+
+#' @rdname call_tree
+#' @export
+ast <- function(x) call_tree(substitute(x))
 
 #' @importFrom stringr str_c str_length str_sub
 str_trunc <- function(x, width = getOption("width")) {
