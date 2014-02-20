@@ -19,25 +19,27 @@
 #' is_s3_generic("[[")
 #' is_s3_generic("unlist")
 #' is_s3_generic("runif")
-#' 
+#'
 #' is_s3_method("t.data.frame")
 #' is_s3_method("t.test") # Just tricking!
 #' is_s3_method("as.data.frame")
 #' is_s3_method("mean.Date")
 is_s3_generic <- function(fname, env = parent.frame()) {
   if (!exists(fname, env)) return(FALSE)
-  
+
   f <- get(fname, env, mode = "function")
   if (!is.function(f)) return(FALSE)
-  
+
   if (is.primitive(f) || is_internal(f)) {
     is_internal_generic(fname)
   } else {
     uses <- findGlobals(f, merge = FALSE)$functions
-    any(uses == "UseMethod")    
+    any(uses == "UseMethod")
   }
 }
 
+#' @rdname is_s3_generic
+#' @export
 is_s3_method <- function(name, env = parent.frame()) {
   !is.null(find_generic(name, env))
 }
@@ -45,13 +47,13 @@ is_s3_method <- function(name, env = parent.frame()) {
 find_generic <- function(name, env = parent.frame()) {
   stop_list <- tools:::.make_S3_methods_stop_list(NULL)
   if (name %in% stop_list) return(NULL)
-  
+
   pieces <- strsplit(name, ".", fixed = TRUE)[[1]]
   n <- length(pieces)
-  
+
   # No . in name, so can't be method
   if (n == 1) return(NULL)
-  
+
   for(i in seq_len(n - 1)) {
     generic <- paste0(pieces[seq_len(i)], collapse = ".")
     class <- paste0(pieces[(i + 1):n], collapse = ".")
@@ -69,12 +71,12 @@ internal_generics <- function() {
   group <- c(getGroupMembers("Arith"), getGroupMembers("Compare"),
     getGroupMembers("Logic"), getGroupMembers("Math"), getGroupMembers("Math2"),
     getGroupMembers("Summary"), getGroupMembers("Complex"))
-  
+
   primitive <- .S3PrimitiveGenerics
-  
+
   # Extracted from ?"internal generic"
-  internal <- c("[", "[[", "$", "[<-", "[[<-", "$<-", "unlist", 
+  internal <- c("[", "[[", "$", "[<-", "[[<-", "$<-", "unlist",
     "cbind", "rbind", "as.vector")
-  
+
   c(group, primitive, internal)
 }
