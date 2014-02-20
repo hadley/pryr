@@ -11,6 +11,9 @@ call_tree(x, width = getOption("width"), colour = interactive())
 
   \item{width}{displays width, defaults to current width as
   reported by \code{getOption("width")}}
+
+  \item{colour}{if \code{TRUE}, use shell escapes to colour
+  tree.}
 }
 \description{
 Display a call (or expression) as a tree.

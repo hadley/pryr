@@ -5,6 +5,9 @@
 \usage{
 otype(x)
 }
+\arguments{
+  \item{x}{object to determine type of}
+}
 \description{
 Determine object type.
 }

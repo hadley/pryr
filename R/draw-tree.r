@@ -3,6 +3,7 @@
 #' @param x quoted call, list of calls, or expression to display
 #' @param width displays width, defaults to current width as reported by
 #'   \code{getOption("width")}
+#' @param colour if \code{TRUE}, use shell escapes to colour tree.
 #' @export
 #' @examples
 #' call_tree(quote(f(x, 1, g(), h(i()))))
@@ -59,7 +60,7 @@ label <- function(x, width = getOption("width"), colour = FALSE) {
     label <- deparse(x)[[1]]
     col <- "black"
   }
-  
+
   lbl <- str_trunc(label, width)
   if (colour) colourise(lbl, col) else lbl
 }
