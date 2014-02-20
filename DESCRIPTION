@@ -9,6 +9,8 @@ Authors@R: c(
     person("R Core team", role = "ctb",
     comment = "Some code extracted from base R"))
 License: GPL-2
+Url: https://github.com/hadley/pryr
+BugReports: https://github.com/hadley/pryr/issues
 Version: 0.1
 LinkingTo: Rcpp
 Imports:
