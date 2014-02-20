@@ -1,7 +1,9 @@
 # pryr (rhymes with pry bar)
 
+[![Build Status](https://travis-ci.org/hadley/pryr.png?branch=master)](https://travis-ci.org/hadley/pryr)
+
 `pryr` provides tools to pry back the surface of R and dig into the details. It
-has been developed in conjunction with 
+has been developed in conjunction with
 "[Advanced R programming](https://github.com/hadley/devtools/wiki)" to make
 it easier to understand what's going on in R.
 
@@ -33,7 +35,7 @@ install_github("pryr")
 * Make it easier to compute on the language:
 
   * Alternative ways to create functions: `make_function()`, `f()`
-  * A version of subtitute that uses regular evaluation, `substitute2()`, and 
+  * A version of subtitute that uses regular evaluation, `substitute2()`, and
     one that will substitute objects in the global environment, `subs()`
   * Tools to modify language objects: `modify_lang()`
   * `dots()` and `named_dots()` to get unevaluated `...`
