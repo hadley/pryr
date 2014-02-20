@@ -1,7 +1,8 @@
 Type: Package
 Package: pryr
 Title: Tools for computing on the language
-Description: 
+Description: Useful tools to pry back the covers of R and understand the
+    language at a deeper level.
 Authors@R: c(
     person("Hadley", "Wickham",
     email = "h.wickham@gmail.com", role = c("aut", "cre")),
@@ -9,40 +10,11 @@ Authors@R: c(
     comment = "Some code extracted from base R"))
 License: GPL-2
 Version: 0.1
-Depends:
-    Rcpp (>= 0.10.1)
 LinkingTo: Rcpp
 Imports:
     stringr,
     testthat,
-    codetools
-Collate:
-    'make-function.r'
-    'promise.r'
-    'substitute.r'
-    'uneval.r'
-    'utils.r'
-    'where.r'
-    'assign-active.r'
-    'assign-delayed.r'
-    'unenclose.r'
-    'fget.r'
-    'rebind.r'
-    'draw-tree.r'
-    'modify-lang.r'
-    'assign-constant.r'
-    'f.r'
-    'find-funs.r'
-    'rls.r'
-    'parenv.r'
-    'partial.r'
-    'compose.r'
-    'dots.r'
-    'RcppExports.R'
-    'typename.r'
-    'ftype.r'
-    's3.r'
-    'otype.r'
-    'method-from-call.r'
-    'standardise-call.r'
-    'inspect.r'
+    codetools,
+    methods,
+    Rcpp (>= 0.11.0)
+Roxygen: list(wrap = FALSE)

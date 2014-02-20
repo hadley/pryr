@@ -1,6 +1,7 @@
 #' Promise info
 #' 
 #' @useDynLib pryr
+#' @importFrom Rcpp sourceCpp
 #' @param x unquoted object name
 #' @family promise tools
 #' @export
