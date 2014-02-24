@@ -46,6 +46,10 @@ fun_calls <- function(f) {
     fun_calls(body(f))
   } else if (is.call(f)) {
     fname <- as.character(f[[1]])
+
+    # Calls inside .Internal are special and shouldn't be included
+    if (identical(fname, ".Internal")) return(fname)
+
     unique(c(fname, unlist(lapply(f[-1], fun_calls), use.names = FALSE)))
   }
 }
