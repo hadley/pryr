@@ -29,7 +29,7 @@ matched_calls <- function(fun, calls, match_any = TRUE) {
   if (!is.function(fun) || is.primitive(fun)) return()
 
   called <- fun_calls(fun)
-  matches <- called %in% calls
+  matches <- calls %in% called
   match <- if (match_any) any(matches) else all(matches)
 
   if (!match) return()
