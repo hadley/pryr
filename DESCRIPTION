@@ -15,8 +15,8 @@ Version: 0.1
 LinkingTo: Rcpp
 Imports:
     stringr,
-    testthat,
     codetools,
     methods,
     Rcpp (>= 0.11.0)
+Suggests: testthat (>= 0.8.0)
 Roxygen: list(wrap = FALSE)

@@ -6,7 +6,6 @@
 #' @param x quoted call, list of calls, or expression to display
 #' @param width displays width, defaults to current width as reported by
 #'   \code{getOption("width")}
-#' @param colour if \code{TRUE}, use shell escapes to colour tree.
 #' @export
 #' @examples
 #' call_tree(quote(f(x, 1, g(), h(i()))))
@@ -15,16 +14,15 @@
 #'
 #' ast(f(x, 1, g(), h(i())))
 #' ast(if (TRUE) 3 else 4)
-#'
-#' fq <- quote(f <- function(a = 1, b = 2) {a + b})
-#' call_tree(fq)
+#' ast(function(a = 1, b = 2) {a + b})
+#' ast(f()()())
 #' @importFrom stringr str_c
-call_tree <- function(x, width = getOption("width"), colour = interactive()) {
+call_tree <- function(x, width = getOption("width")) {
   if (is.expression(x) || is.list(x)) {
-    trees <- vapply(x, tree, character(1), width = width, colour = colour)
+    trees <- vapply(x, tree, character(1), width = width)
     out <- str_c(trees, collapse = "\n\n")
   } else {
-    out <- tree(x, width = width, colour = colour)
+    out <- tree(x, width = width)
   }
 
   cat(out, "\n")
@@ -39,38 +37,39 @@ str_trunc <- function(x, width = getOption("width")) {
   ifelse(str_length(x) <= width, x, str_c(str_sub(x, 1, width - 3), "..."))
 }
 
-is.constant <- function(x) !is.language(x)
-is.leaf <- function(x) {
-  is.constant(x) || is.name(x) || (is.call(x) && length(x) == 1)
-}
-
 #' @importFrom stringr str_c str_dup
-tree <- function(x, level = 1, width = getOption("width"), colour = FALSE) {
+tree <- function(x, level = 1, width = getOption("width")) {
   indent <- str_c(str_dup("  ", level - 1), "\\- ")
-  label <- label(x, width - nchar(indent), colour = colour)
 
-  if (is.leaf(x)) return(str_c(indent, label))
-
-  children <- vapply(as.list(x[-1]), tree, character(1),
-    level = level + 1, width = width, colour = colour)
-
-  str_c(indent, label, "\n", str_c(children, collapse = "\n"))
-}
-
-#' @importFrom testthat colourise
-#' @importFrom stringr str_c
-label <- function(x, width = getOption("width"), colour = FALSE) {
-  if (is.call(x)) {
-    label <- str_c(as.character(x[[1]]), "()")
-    col <- "red"
+  if (is.atomic(x) && length(x) == 1) {
+    label <- deparse(x)[1]
+    children <- NULL
   } else if (is.name(x)) {
-    label <- str_c("`", as.character(x))
-    col <- "blue"
+    label <- paste0("`", as.character(x))
+    children <- NULL
+  } else if (is.call(x)) {
+    label <- "()"
+    children <-  vapply(as.list(x), tree, character(1),
+      level = level + 1, width = width - 3)
+  } else if (is.pairlist(x)) {
+    label <- "[]"
+    children <-  vapply(as.list(x), tree, character(1),
+      level = level + 1, width = width - 3)
   } else {
-    label <- deparse(x)[[1]]
-    col <- "black"
+    # Special case for srcrefs, since they're commonly seen
+    if (inherits(x, "srcref")) {
+      label <- "<srcref>"
+    } else {
+      label <- paste0("<", typeof(x), ">")
+    }
+    children <- NULL
   }
 
-  lbl <- str_trunc(label, width)
-  if (colour) colourise(lbl, col) else lbl
+  label <- str_trunc(label, width - 3)
+
+  if (is.null(children)) {
+    paste0(indent, label)
+  } else {
+    paste0(indent, label, "\n", paste0(children, collapse = "\n"))
+  }
 }

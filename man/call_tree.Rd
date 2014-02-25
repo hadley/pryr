@@ -4,7 +4,7 @@
 \alias{call_tree}
 \title{Display a call (or expression) as a tree.}
 \usage{
-call_tree(x, width = getOption("width"), colour = interactive())
+call_tree(x, width = getOption("width"))
 
 ast(x)
 }
@@ -14,9 +14,6 @@ ast(x)
 
   \item{width}{displays width, defaults to current width as
   reported by \code{getOption("width")}}
-
-  \item{colour}{if \code{TRUE}, use shell escapes to colour
-  tree.}
 }
 \description{
 \code{call_tree} takes a quoted expression. \code{ast} does the quoting
@@ -29,8 +26,7 @@ call_tree(expression(1, 2, 3))
 
 ast(f(x, 1, g(), h(i())))
 ast(if (TRUE) 3 else 4)
-
-fq <- quote(f <- function(a = 1, b = 2) {a + b})
-call_tree(fq)
+ast(function(a = 1, b = 2) {a + b})
+ast(f()()())
 }
 
