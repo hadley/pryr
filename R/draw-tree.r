@@ -38,14 +38,21 @@ str_trunc <- function(x, width = getOption("width")) {
 }
 
 #' @importFrom stringr str_c str_dup
-tree <- function(x, level = 1, width = getOption("width")) {
-  indent <- str_c(str_dup("  ", level - 1), "\\- ")
+tree <- function(x, level = 1, width = getOption("width"), branch = "\\- ") {
+  indent <- str_c(str_dup("  ", level - 1), branch)
 
   if (is.atomic(x) && length(x) == 1) {
-    label <- deparse(x)[1]
+    label <- paste0(" ", deparse(x)[1])
     children <- NULL
   } else if (is.name(x)) {
-    label <- paste0("`", as.character(x))
+    x <- as.character(x)
+    if (x == "") {
+      # Special case the missing argument
+      label <- "`MISSING"
+    } else {
+      label <- paste0("`", as.character(x))
+    }
+
     children <- NULL
   } else if (is.call(x)) {
     label <- "()"
@@ -53,8 +60,13 @@ tree <- function(x, level = 1, width = getOption("width")) {
       level = level + 1, width = width - 3)
   } else if (is.pairlist(x)) {
     label <- "[]"
-    children <-  vapply(as.list(x), tree, character(1),
-      level = level + 1, width = width - 3)
+
+    branches <- paste("\\", format(names(x)), "=")
+    children <- character(length(x))
+    for (i in seq_along(x)) {
+      children[i] <- tree(x[[i]], level = level + 1, width = width - 3,
+        branch = branches[i])
+    }
   } else {
     # Special case for srcrefs, since they're commonly seen
     if (inherits(x, "srcref")) {
