@@ -37,9 +37,8 @@ effectively works like \code{\link{quote}}
 \examples{
 a <- 1
 b <- 2
-x <- quote(a + b)
-substitute(x)
 
-subs(x)
+substitute(a + b)
+subs(a + b)
 }
 

@@ -13,10 +13,11 @@
 #' @examples
 #' x <- quote(a + b)
 #' substitute(x, list(a = 1, b = 2))
-#' substitute2(x, list(a = 1, b = 2))
-substitute2 <- function(x, env) {
-  env <- to_env(env)
+#' substitute_q(x, list(a = 1, b = 2))
+substitute_q <- function(x, env) {
   stopifnot(is.language(x))
+  env <- to_env(env)
+
   call <- substitute(substitute(x, env), list(x = x))
   eval(call)
 }
@@ -42,19 +43,18 @@ substitute2 <- function(x, env) {
 #'
 #'  \item \code{...}, it's replaced by the contents of \code{...}
 #' }
-#' @inheritParams substitute2
+#' @inheritParams substitute_q
 #' @export
 #' @examples
 #' a <- 1
 #' b <- 2
-#' x <- quote(a + b)
-#' substitute(x)
 #'
-#' subs(x)
+#' substitute(a + b)
+#' subs(a + b)
 subs <- function(x, env = parent.frame()) {
   if (identical(env, globalenv())) {
     env <- as.list(env)
   }
 
-  substitute2(substitute(x), env)
+  substitute_q(substitute(x), env)
 }

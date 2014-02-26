@@ -20,5 +20,5 @@ unenclose <- function(f) {
   stopifnot(is.function(f))
 
   env <- environment(f)
-  make_function(formals(f), substitute2(body(f), env), parent.env(env))
+  make_function(formals(f), substitute_q(body(f), env), parent.env(env))
 }
