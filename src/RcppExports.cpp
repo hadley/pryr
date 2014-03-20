@@ -5,6 +5,51 @@
 
 using namespace Rcpp;
 
+// binary_repr
+std::vector<std::string> binary_repr(SEXP x);
+RcppExport SEXP pryr_binary_repr(SEXP xSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< SEXP >::type x(xSEXP );
+        std::vector<std::string> __result = binary_repr(x);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
+// hex_repr
+std::vector<std::string> hex_repr(SEXP x);
+RcppExport SEXP pryr_hex_repr(SEXP xSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< SEXP >::type x(xSEXP );
+        std::vector<std::string> __result = hex_repr(x);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
+// binary2hex
+CharacterVector binary2hex(CharacterVector x);
+RcppExport SEXP pryr_binary2hex(SEXP xSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< CharacterVector >::type x(xSEXP );
+        CharacterVector __result = binary2hex(x);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
 // address2
 std::string address2(Symbol name, Environment env);
 RcppExport SEXP pryr_address2(SEXP nameSEXP, SEXP envSEXP) {
