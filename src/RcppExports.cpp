@@ -5,6 +5,21 @@
 
 using namespace Rcpp;
 
+// dots2env
+Environment dots2env(Environment parent);
+RcppExport SEXP pryr_dots2env(SEXP parentSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< Environment >::type parent(parentSEXP );
+        Environment __result = dots2env(parent);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
 // address2
 std::string address2(Symbol name, Environment env);
 RcppExport SEXP pryr_address2(SEXP nameSEXP, SEXP envSEXP) {
