@@ -10,7 +10,7 @@ Authors@R: c(
 License: GPL-2
 Version: 0.1
 Depends:
-    Rcpp (>= 0.10.1)
+    Rcpp (>= 0.11.1)
 LinkingTo: Rcpp
 Imports:
     stringr,
