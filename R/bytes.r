@@ -37,10 +37,3 @@ bits <- function(x, split = TRUE) {
   if (split) slice(repr, 8)
   else repr
 }
-
-slice <- function(x, n, collapse = " ") {
-  vapply(x, FUN.VALUE = character(1), USE.NAMES = FALSE, function(string) {
-    starts <- seq(1L, nchar(string), by = n)
-    paste(substring(string, starts, starts + n - 1L), collapse = collapse)
-  })
-}

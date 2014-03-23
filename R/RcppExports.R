@@ -41,6 +41,10 @@ promise_env <- function(name, env) {
     .Call('pryr_promise_env', PACKAGE = 'pryr', name, env)
 }
 
+slice <- function(x, k, sep = " ") {
+    .Call('pryr_slice', PACKAGE = 'pryr', x, k, sep)
+}
+
 typename2 <- function(name, env) {
     .Call('pryr_typename2', PACKAGE = 'pryr', name, env)
 }

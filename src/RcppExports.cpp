@@ -162,6 +162,23 @@ BEGIN_RCPP
     return __sexp_result;
 END_RCPP
 }
+// slice
+CharacterVector slice(CharacterVector x, int k, std::string sep = " ");
+RcppExport SEXP pryr_slice(SEXP xSEXP, SEXP kSEXP, SEXP sepSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< CharacterVector >::type x(xSEXP );
+        Rcpp::traits::input_parameter< int >::type k(kSEXP );
+        Rcpp::traits::input_parameter< std::string >::type sep(sepSEXP );
+        CharacterVector __result = slice(x, k, sep);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
 // typename2
 std::string typename2(Symbol name, Environment env);
 RcppExport SEXP pryr_typename2(SEXP nameSEXP, SEXP envSEXP) {
