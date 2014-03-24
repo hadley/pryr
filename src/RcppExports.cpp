@@ -5,6 +5,51 @@
 
 using namespace Rcpp;
 
+// binary_repr
+std::vector<std::string> binary_repr(SEXP x);
+RcppExport SEXP pryr_binary_repr(SEXP xSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< SEXP >::type x(xSEXP );
+        std::vector<std::string> __result = binary_repr(x);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
+// hex_repr
+std::vector<std::string> hex_repr(SEXP x);
+RcppExport SEXP pryr_hex_repr(SEXP xSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< SEXP >::type x(xSEXP );
+        std::vector<std::string> __result = hex_repr(x);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
+// binary2hex
+CharacterVector binary2hex(CharacterVector x);
+RcppExport SEXP pryr_binary2hex(SEXP xSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< CharacterVector >::type x(xSEXP );
+        CharacterVector __result = binary2hex(x);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
 // address2
 std::string address2(Symbol name, Environment env);
 RcppExport SEXP pryr_address2(SEXP nameSEXP, SEXP envSEXP) {
@@ -111,6 +156,23 @@ BEGIN_RCPP
         Rcpp::traits::input_parameter< Symbol >::type name(nameSEXP );
         Rcpp::traits::input_parameter< Environment >::type env(envSEXP );
         SEXP __result = promise_env(name, env);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
+// slice
+CharacterVector slice(CharacterVector x, int k, std::string sep = " ");
+RcppExport SEXP pryr_slice(SEXP xSEXP, SEXP kSEXP, SEXP sepSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< CharacterVector >::type x(xSEXP );
+        Rcpp::traits::input_parameter< int >::type k(kSEXP );
+        Rcpp::traits::input_parameter< std::string >::type sep(sepSEXP );
+        CharacterVector __result = slice(x, k, sep);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
