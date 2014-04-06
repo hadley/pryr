@@ -45,3 +45,20 @@ test_that("encoding doesn't affect what bits / bytes are read", {
   expect_identical( bits(y), bits(z) )
 
 })
+
+
+test_that("we read character strings in the right order", {
+
+  test_char_repr <- function(f) {
+    f <- match.fun(f)
+    repr <- f(c("a", "ab", "abc"))
+    first_repr <- unlist(lapply(strsplit(repr, " "), "[[", 1))
+    lu <- length(unique(first_repr))
+    return(lu)
+  }
+
+  expect_equal(test_char_repr(bytes), 1)
+  expect_equal(test_char_repr(bits), 1)
+
+
+})
