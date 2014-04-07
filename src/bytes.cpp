@@ -3,6 +3,14 @@
 
 using namespace Rcpp;
 
+// good enough for now, I suppose
+#if defined(__sparc__) || defined(__sparc)
+#define IS_BIG_ENDIAN true
+#else
+#define IS_BIG_ENDIAN false
+#endif
+
+
 namespace pryr {
 
 // traits to denote the internal C storage of an R type
@@ -159,9 +167,9 @@ using namespace pryr;
 // [[Rcpp::export]]
 std::vector<std::string> binary_repr(SEXP x) {
   switch (TYPEOF(x)) {
-  case INTSXP: return representation<INTSXP>(x, Representation<Bits, false>());
-  case REALSXP: return representation<REALSXP>(x, Representation<Bits, false>());
-  case LGLSXP: return representation<LGLSXP>(x, Representation<Bits, false>());
+  case INTSXP: return representation<INTSXP>(x, Representation<Bits, IS_BIG_ENDIAN>());
+  case REALSXP: return representation<REALSXP>(x, Representation<Bits, IS_BIG_ENDIAN>());
+  case LGLSXP: return representation<LGLSXP>(x, Representation<Bits, IS_BIG_ENDIAN>());
   case STRSXP: return representation<STRSXP>(x, Representation<Bits, true>());
   default: {
     std::stringstream ss;
@@ -176,9 +184,9 @@ std::vector<std::string> binary_repr(SEXP x) {
 // [[Rcpp::export]]
 std::vector<std::string> hex_repr(SEXP x) {
   switch (TYPEOF(x)) {
-  case INTSXP: return representation<INTSXP>(x, Representation<Hex, false>());
-  case REALSXP: return representation<REALSXP>(x, Representation<Hex, false>());
-  case LGLSXP: return representation<LGLSXP>(x, Representation<Hex, false>());
+  case INTSXP: return representation<INTSXP>(x, Representation<Hex, IS_BIG_ENDIAN>());
+  case REALSXP: return representation<REALSXP>(x, Representation<Hex, IS_BIG_ENDIAN>());
+  case LGLSXP: return representation<LGLSXP>(x, Representation<Hex, IS_BIG_ENDIAN>());
   case STRSXP: return representation<STRSXP>(x, Representation<Hex, true>());
   default: {
     std::stringstream ss;
