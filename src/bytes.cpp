@@ -3,6 +3,14 @@
 
 using namespace Rcpp;
 
+// good enough for now, I suppose
+#if defined(__sparc__) || defined(__sparc)
+#define IS_BIG_ENDIAN true
+#else
+#define IS_BIG_ENDIAN false
+#endif
+
+
 namespace pryr {
 
 // traits to denote the internal C storage of an R type
@@ -46,7 +54,7 @@ size_t get_size(const Rcpp::Vector<STRSXP>& x, int i) {
 }
 
 // Class handling the conversion logic (from T to bits or hex)
-template <typename Repr>
+template <typename Repr, bool is_string>
 struct Representation {
 
   std::string operator()(const char* ptr, size_t n) {
@@ -57,11 +65,19 @@ struct Representation {
 
 };
 
-template<>
-std::string Representation<Bits>::repr(const char* ptr, size_t n) {
-  size_t nBits = n * 8;
+// Depending on the type of data, we either want to read from left-to-right,
+// or right-to-left, to give an output that matches what we might expect
+// from the binary representation. In particular, we read the bits in a
+// string from left to right, while we read the bits in a numeric value
+// from right to left (endianness; TODO is to handle that in the dispatch
+// later on)
+template <>
+std::string Representation<Bits, false>::repr(const char* ptr, size_t n) {
 
-  char output[nBits + 1];
+  size_t nBits = n * 8;
+  std::string out_str;
+  out_str.reserve(nBits + 1);
+  char* output = const_cast<char*>(out_str.c_str());
   output[nBits] = '\0';
 
   int counter = nBits - 1;
@@ -72,14 +88,54 @@ std::string Representation<Bits>::repr(const char* ptr, size_t n) {
       curr >>= 1;
     }
   }
+  return out_str;
+}
+
+template<>
+std::string Representation<Bits, true>::repr(const char* ptr, size_t n) {
+
+  size_t nBits = n * 8;
+  std::string out_str;
+  out_str.reserve(nBits + 1);
+  char* output = const_cast<char*>(out_str.c_str());
+  output[nBits] = '\0';
+
+  int counter = nBits - 1;
+  for (int i = n - 1; i >= 0; --i) {
+    char curr = ptr[i];
+    for (int j=0; j < 8; ++j) {
+      output[counter--] = curr & 1 ? '1' : '0';
+      curr >>= 1;
+    }
+  }
+  return out_str;
+}
+
+// The hex version
+template<>
+std::string Representation<Hex, true>::repr(const char* ptr, size_t n) {
+  size_t nout = n * 2;
+
+  std::string out_str;
+  out_str.reserve(nout + 1);
+  char* output = const_cast<char*>(out_str.c_str());
+  output[nout] = '\0';
+
+  int counter = 0;
+  for (int i = 0; i < n; ++i) {
+    sprintf(output + counter * 2, "%02X", ptr[i] & 0xFF);
+    ++counter;
+  }
   return std::string(output);
 }
 
 template<>
-std::string Representation<Hex>::repr(const char* ptr, size_t n) {
+std::string Representation<Hex, false>::repr(const char* ptr, size_t n) {
   size_t nout = n * 2;
 
-  char output[nout + 1];
+  std::string out_str;
+  out_str.reserve(nout + 1);
+  char* output = const_cast<char*>(out_str.c_str());
   output[nout] = '\0';
 
   int counter = 0;
@@ -111,10 +167,10 @@ using namespace pryr;
 // [[Rcpp::export]]
 std::vector<std::string> binary_repr(SEXP x) {
   switch (TYPEOF(x)) {
-  case INTSXP: return representation<INTSXP>(x, Representation<Bits>());
-  case REALSXP: return representation<REALSXP>(x, Representation<Bits>());
-  case LGLSXP: return representation<LGLSXP>(x, Representation<Bits>());
-  case STRSXP: return representation<STRSXP>(x, Representation<Bits>());
+  case INTSXP: return representation<INTSXP>(x, Representation<Bits, IS_BIG_ENDIAN>());
+  case REALSXP: return representation<REALSXP>(x, Representation<Bits, IS_BIG_ENDIAN>());
+  case LGLSXP: return representation<LGLSXP>(x, Representation<Bits, IS_BIG_ENDIAN>());
+  case STRSXP: return representation<STRSXP>(x, Representation<Bits, true>());
   default: {
     std::stringstream ss;
     ss << "can't print binary representation for objects of type '" <<
@@ -128,10 +184,10 @@ std::vector<std::string> binary_repr(SEXP x) {
 // [[Rcpp::export]]
 std::vector<std::string> hex_repr(SEXP x) {
   switch (TYPEOF(x)) {
-  case INTSXP: return representation<INTSXP>(x, Representation<Hex>());
-  case REALSXP: return representation<REALSXP>(x, Representation<Hex>());
-  case LGLSXP: return representation<LGLSXP>(x, Representation<Hex>());
-  case STRSXP: return representation<STRSXP>(x, Representation<Hex>());
+  case INTSXP: return representation<INTSXP>(x, Representation<Hex, IS_BIG_ENDIAN>());
+  case REALSXP: return representation<REALSXP>(x, Representation<Hex, IS_BIG_ENDIAN>());
+  case LGLSXP: return representation<LGLSXP>(x, Representation<Hex, IS_BIG_ENDIAN>());
+  case STRSXP: return representation<STRSXP>(x, Representation<Hex, true>());
   default: {
     std::stringstream ss;
     ss << "can't print binary representation for objects of type '" <<
