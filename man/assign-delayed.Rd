@@ -6,10 +6,10 @@
 x \%<d-\% value
 }
 \arguments{
-  \item{x}{unquoted expression naming variable to create}
+\item{x}{unquoted expression naming variable to create}
 
-  \item{value}{unquoted expression to evaluate the first
-  time \code{name} is accessed}
+\item{value}{unquoted expression to evaluate the first time \code{name} is
+accessed}
 }
 \description{
 Infix form of \code{\link{delayedAssign}} which creates an \emph{delayed}

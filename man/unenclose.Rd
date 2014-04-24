@@ -6,7 +6,7 @@
 unenclose(f)
 }
 \arguments{
-  \item{f}{a closure}
+\item{f}{a closure}
 }
 \description{
 Unenclose a closure by substituting names for values found in the enclosing

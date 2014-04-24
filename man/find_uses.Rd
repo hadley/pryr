@@ -6,14 +6,13 @@
 find_uses(envs, funs, match_any = TRUE)
 }
 \arguments{
-  \item{envs}{Vector of environments to look in. Can be
-  specified by name, position or as environment}
+\item{envs}{Vector of environments to look in. Can be specified by
+name, position or as environment}
 
-  \item{funs}{Functions to look for}
+\item{funs}{Functions to look for}
 
-  \item{match_any}{If \code{TRUE} return functions that use
-  any of \code{funs}.  If \code{FALSE}, return functions
-  that use all of \code{funs}.}
+\item{match_any}{If \code{TRUE} return functions that use any of \code{funs}.
+If \code{FALSE}, return functions that use all of \code{funs}.}
 }
 \description{
 Find all functions in that call supplied functions.

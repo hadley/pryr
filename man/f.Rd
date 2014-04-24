@@ -6,12 +6,11 @@
 f(..., .env = parent.frame())
 }
 \arguments{
-  \item{...}{The last argument is the body of the function,
-  all others are arguments to the function.  If there is
-  only one argument, the formals are guessed from the
-  code.}
+\item{...}{The last argument is the body of the function, all others are
+arguments to the function.  If there is only one argument, the formals
+are guessed from the code.}
 
-  \item{.env}{parent environment of the created function}
+\item{.env}{parent environment of the created function}
 }
 \value{
 a function

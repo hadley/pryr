@@ -13,8 +13,7 @@ refs(x)
 typename(x)
 }
 \arguments{
-  \item{x}{name of object to inspect. This can not be a
-  value.}
+\item{x}{name of object to inspect. This can not be a value.}
 }
 \description{
 \code{typename} determines the internal C typename, \code{address}
@@ -22,12 +21,12 @@ returns the memory location of the object, and \code{refs} returns the
 number of references pointing to the underlying object.
 }
 \section{Non-standard evaluation}{
-  All functions uses non-standard evaluation to capture the
-  symbol you are referring to and the environment in which
-  it lives. This means that you can not call any of these
-  functions on objects created in the function call. All
-  the underlying C level functions use \code{Rf_findVar} to
-  get to the underlying SEXP.
+
+All functions uses non-standard evaluation to capture the symbol you are
+referring to and the environment in which it lives. This means that you can
+not call any of these functions on objects created in the function call.
+All the underlying C level functions use \code{Rf_findVar} to get to the
+underlying SEXP.
 }
 \examples{
 x <- 1:10

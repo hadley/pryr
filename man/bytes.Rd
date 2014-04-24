@@ -9,11 +9,10 @@ bytes(x, split = TRUE)
 bits(x, split = TRUE)
 }
 \arguments{
-  \item{x}{Either an \code{integer} or a \code{numeric}
-  vector.}
+\item{x}{Either an \code{integer} or a \code{numeric} vector.}
 
-  \item{split}{Boolean; if \code{TRUE} the returned string
-  is split at regular indices for readability.}
+\item{split}{Boolean; if \code{TRUE} the returned string is split at
+regular indices for readability.}
 }
 \description{
 Print the byte-wise representation of a value

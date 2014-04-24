@@ -9,11 +9,10 @@ call_tree(x, width = getOption("width"))
 ast(x)
 }
 \arguments{
-  \item{x}{quoted call, list of calls, or expression to
-  display}
+\item{x}{quoted call, list of calls, or expression to display}
 
-  \item{width}{displays width, defaults to current width as
-  reported by \code{getOption("width")}}
+\item{width}{displays width, defaults to current width as reported by
+\code{getOption("width")}}
 }
 \description{
 \code{call_tree} takes a quoted expression. \code{ast} does the quoting

@@ -6,7 +6,7 @@
 ftype(f)
 }
 \arguments{
-  \item{f}{unquoted function name}
+\item{f}{unquoted function name}
 }
 \value{
 a character of vector of length 1 or 2.

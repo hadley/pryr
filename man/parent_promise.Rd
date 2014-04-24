@@ -6,8 +6,7 @@
 parent_promise(x)
 }
 \arguments{
-  \item{x}{unquoted name of promise to find initial value
-  for for.}
+\item{x}{unquoted name of promise to find initial value for for.}
 }
 \description{
 Find the parent (first) promise.

@@ -6,9 +6,9 @@
 parenv(env = parent.frame(), n = 1)
 }
 \arguments{
-  \item{env}{an environment}
+\item{env}{an environment}
 
-  \item{n}{number of parents to go up}
+\item{n}{number of parents to go up}
 }
 \description{
 Get parent/ancestor environment

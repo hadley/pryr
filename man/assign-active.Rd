@@ -6,10 +6,10 @@
 x \%<a-\% value
 }
 \arguments{
-  \item{x}{unquoted expression naming variable to create}
+\item{x}{unquoted expression naming variable to create}
 
-  \item{value}{unquoted expression to evaluate every time
-  \code{name} is accessed}
+\item{value}{unquoted expression to evaluate every time \code{name} is
+accessed}
 }
 \description{
 Infix form of \code{\link{makeActiveBinding}} which creates an \emph{active}

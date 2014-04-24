@@ -6,11 +6,11 @@
 rebind(name, value, env = parent.frame())
 }
 \arguments{
-  \item{name}{name of existing binding to re-assign}
+\item{name}{name of existing binding to re-assign}
 
-  \item{value}{new value}
+\item{value}{new value}
 
-  \item{env}{environment to start search in.}
+\item{env}{environment to start search in.}
 }
 \description{
 This function is similar to \code{\link{<<-}} with two exceptions:

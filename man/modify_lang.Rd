@@ -6,12 +6,12 @@
 modify_lang(x, f, ...)
 }
 \arguments{
-  \item{x}{object to modify: should be a call, expression,
-  function or list of the above.}
+\item{x}{object to modify: should be a call, expression, function or
+list of the above.}
 
-  \item{f}{function to apply to leaves}
+\item{f}{function to apply to leaves}
 
-  \item{...}{other arguments passed to \code{f}}
+\item{...}{other arguments passed to \code{f}}
 }
 \description{
 Recursively modify a language object

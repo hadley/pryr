@@ -6,10 +6,10 @@
 where(name, env = parent.frame())
 }
 \arguments{
-  \item{name}{name, as string, to look for}
+\item{name}{name, as string, to look for}
 
-  \item{env}{environment to start at. Defaults to the
-  calling environment of this function.}
+\item{env}{environment to start at. Defaults to the calling environment
+of this function.}
 }
 \description{
 Implements the regular scoping rules, but instead of returning the value

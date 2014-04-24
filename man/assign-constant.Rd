@@ -6,9 +6,9 @@
 x \%<c-\% value
 }
 \arguments{
-  \item{x}{unquoted expression naming variable to create}
+\item{x}{unquoted expression naming variable to create}
 
-  \item{value}{constant value}
+\item{value}{constant value}
 }
 \description{
 Infix wrapper for \code{\link{assign}} + \code{\link{lockBinding}} that

@@ -6,12 +6,12 @@
 subs(x, env = parent.frame())
 }
 \arguments{
-  \item{x}{a quoted call}
+\item{x}{a quoted call}
 
-  \item{env}{an environment, or something that behaves like
-  an environment (like a list or data frame), or a
-  reference to an environment (like a positive integer or
-  name, see \code{\link{as.environment}} for more details)}
+\item{env}{an environment, or something that behaves like an environment
+(like a list or data frame), or a reference to an environment (like a
+positive integer or name, see \code{\link{as.environment}} for more
+details)}
 }
 \description{
 This version of \code{\link{substitute}} is more suited for interactive
@@ -20,19 +20,20 @@ the regular version has a special case for the global environment where it
 effectively works like \code{\link{quote}}
 }
 \section{Substitution rules}{
-  Formally, substitution takes place by examining each name
-  in the expression. If the name refers to:
 
-  \itemize{
 
-  \item an ordinary variable, it's replaced by the value of
-  the variable.
+Formally, substitution takes place by examining each name in the expression.
+If the name refers to:
 
-  \item a promise, it's replaced by the expression
-  associated with the promise.
+\itemize{
 
-  \item \code{...}, it's replaced by the contents of
-  \code{...} }
+ \item an ordinary variable, it's replaced by the value of the variable.
+
+ \item a promise, it's replaced by the expression associated with the
+    promise.
+
+ \item \code{...}, it's replaced by the contents of \code{...}
+}
 }
 \examples{
 a <- 1

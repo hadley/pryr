@@ -6,10 +6,9 @@
 method_from_call(call, env = parent.frame())
 }
 \arguments{
-  \item{call}{unquoted function call}
+\item{call}{unquoted function call}
 
-  \item{env}{environment in which to look for function
-  definition}
+\item{env}{environment in which to look for function definition}
 }
 \description{
 Given a function class, find correspoding S4 method

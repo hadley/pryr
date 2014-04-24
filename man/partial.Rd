@@ -6,17 +6,15 @@
 partial(`_f`, ..., .env = parent.frame())
 }
 \arguments{
-  \item{_f}{a function. For the output source to read well,
-  this should be an be a named function.  This argument has
-  the weird (non-syntactic) name \code{_f} so it doesn't
-  accidentally capture any argument names begining with f.}
+\item{_f}{a function. For the output source to read well, this should be an
+be a named function.  This argument has the weird (non-syntactic) name
+\code{_f} so it doesn't accidentally capture any argument names begining
+with f.}
 
-  \item{...}{named arguments to \code{f} that should be
-  partially applied.}
+\item{...}{named arguments to \code{f} that should be partially applied.}
 
-  \item{.env}{the environment of the created function.
-  Defaults to \code{\link{parent.frame}} and you should
-  rarely need to modify this.}
+\item{.env}{the environment of the created function. Defaults to
+\code{\link{parent.frame}} and you should rarely need to modify this.}
 }
 \description{
 Partial function application allows you to modify a function by pre-filling
@@ -24,13 +22,13 @@ some of the arguments.  It is particularly useful in conjunction with
 functionals and other function operators.
 }
 \section{Design choices}{
-  There are many ways to implement partial function
-  application in R. (see e.g. \code{dots} in
-  \url{https://github.com/crowding/ptools} for another
-  approach.)  This implementation is based on creating
-  functions that are as similar as possible to the
-  anonymous function that'd you'd create by hand, if you
-  weren't using \code{partial}.
+
+
+There are many ways to implement partial function application in R.
+(see e.g. \code{dots} in \url{https://github.com/crowding/ptools} for another
+approach.)  This implementation is based on creating functions that are as
+similar as possible to the anonymous function that'd you'd create by hand,
+if you weren't using \code{partial}.
 }
 \examples{
 # Partial is designed to replace the use of anonymous functions for

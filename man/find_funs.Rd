@@ -15,20 +15,18 @@ fun_args(f)
 fun_body(f)
 }
 \arguments{
-  \item{env}{environment in which to search for functions}
+\item{env}{environment in which to search for functions}
 
-  \item{extract}{component of function to extract. Should
-  be a function that takes a function as input as returns a
-  character vector as output, like \code{fun_calls} or
-  \code{fun_args}.}
+\item{extract}{component of function to extract. Should be a function that
+takes a function as input as returns a character vector as output,
+like \code{fun_calls} or \code{fun_args}.}
 
-  \item{pattern}{\pkg{stringr} regular expression to
-  results of \code{extract} function.}
+\item{pattern}{\pkg{stringr} regular expression to results of \code{extract}
+function.}
 
-  \item{...}{other arguments passed on to
-  \code{\link{grepl}}}
+\item{...}{other arguments passed on to \code{\link{grepl}}}
 
-  \item{f}{function to extract information from}
+\item{f}{function to extract information from}
 }
 \description{
 This is a flexible function that matches function component against

@@ -9,12 +9,11 @@ is_s3_generic(fname, env = parent.frame())
 is_s3_method(name, env = parent.frame())
 }
 \arguments{
-  \item{name}{name of function as a string. Need name of
-  function because it's impossible to determine whether or
-  not a function is a S3 method based only on its
-  contents.}
+\item{name}{name of function as a string. Need name of function because
+it's impossible to determine whether or not a function is a S3 method
+based only on its contents.}
 
-  \item{env}{environment to search in.}
+\item{env}{environment to search in.}
 }
 \description{
 \code{is_s3_generic} compares name checks for both internal and regular

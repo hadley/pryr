@@ -6,12 +6,12 @@
 substitute_q(x, env)
 }
 \arguments{
-  \item{x}{a quoted call}
+\item{x}{a quoted call}
 
-  \item{env}{an environment, or something that behaves like
-  an environment (like a list or data frame), or a
-  reference to an environment (like a positive integer or
-  name, see \code{\link{as.environment}} for more details)}
+\item{env}{an environment, or something that behaves like an environment
+(like a list or data frame), or a reference to an environment (like a
+positive integer or name, see \code{\link{as.environment}} for more
+details)}
 }
 \description{
 This version of substitute is needed because \code{substitute} does not

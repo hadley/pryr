@@ -9,10 +9,9 @@ compose(...)
 f \%.\% g
 }
 \arguments{
-  \item{...}{n functions to apply in order from right to
-  left}
+\item{...}{n functions to apply in order from right to left}
 
-  \item{f,g}{two functions to compose for the infix form}
+\item{f,g}{two functions to compose for the infix form}
 }
 \description{
 In infix and prefix forms.

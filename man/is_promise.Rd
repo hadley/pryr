@@ -9,7 +9,7 @@ is_promise(x)
 promise_info(x)
 }
 \arguments{
-  \item{x}{unquoted object name}
+\item{x}{unquoted object name}
 }
 \description{
 Promise info

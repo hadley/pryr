@@ -6,12 +6,11 @@
 modify_call(call, new_args)
 }
 \arguments{
-  \item{call}{A call to modify. It is first standardised
-  with \code{\link{standardise_call}}.}
+\item{call}{A call to modify. It is first standardised with
+\code{\link{standardise_call}}.}
 
-  \item{new_args}{A named list of expressions (constants,
-  names or calls) used to modify the call. Use \code{NULL}
-  to remove arguments.}
+\item{new_args}{A named list of expressions (constants, names or calls)
+used to modify the call. Use \code{NULL} to remove arguments.}
 }
 \description{
 Modify the arguments of a call.

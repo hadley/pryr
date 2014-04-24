@@ -6,14 +6,12 @@
 rls(env = parent.frame(), all.names = TRUE)
 }
 \arguments{
-  \item{env}{environment to start the search at. Defaults
-  to the \code{\link{parent.frame}}. If a function is
-  supplied, uses the environment associated with the
-  function.}
+\item{env}{environment to start the search at. Defaults to the
+\code{\link{parent.frame}}. If a function is supplied, uses the environment
+associated with the function.}
 
-  \item{all.names}{Show all names, even those starting with
-  \code{.}?  Defaults to \code{TRUE}, the opposite of
-  \code{\link{ls}}}
+\item{all.names}{Show all names, even those starting with \code{.}?
+Defaults to \code{TRUE}, the opposite of \code{\link{ls}}}
 }
 \description{
 Performs \code{\link{ls}} all the way up to a top-level environment (either

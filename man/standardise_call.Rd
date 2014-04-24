@@ -6,9 +6,9 @@
 standardise_call(call, env = parent.frame())
 }
 \arguments{
-  \item{call}{A call}
+\item{call}{A call}
 
-  \item{env}{Environment in which to look up call value.}
+\item{env}{Environment in which to look up call value.}
 }
 \description{
 Standardise a function call

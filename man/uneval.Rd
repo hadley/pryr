@@ -6,8 +6,8 @@
 uneval(x)
 }
 \arguments{
-  \item{x}{unquoted variable name that refers to a promise.
-  An error will be thrown if it's not a promise.}
+\item{x}{unquoted variable name that refers to a promise. An error will be
+thrown if it's not a promise.}
 }
 \description{
 This is an alternative to subsitute that performs one job, and so gives
