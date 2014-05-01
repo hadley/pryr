@@ -35,7 +35,7 @@ install_github("pryr")
 * Make it easier to compute on the language:
 
   * Alternative ways to create functions: `make_function()`, `f()`
-  * A version of subtitute that uses regular evaluation, `substitute_q()`, and
+  * A version of substitute that uses regular evaluation, `substitute_q()`, and
     one that will substitute objects in the global environment, `subs()`
   * Tools to modify language objects: `modify_lang()`
   * `dots()` and `named_dots()` to get unevaluated `...`
