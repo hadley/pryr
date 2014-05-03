@@ -179,6 +179,21 @@ BEGIN_RCPP
     return __sexp_result;
 END_RCPP
 }
+// sexp_type
+std::string sexp_type(SEXP x);
+RcppExport SEXP pryr_sexp_type(SEXP xSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< SEXP >::type x(xSEXP );
+        std::string __result = sexp_type(x);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
 // typename2
 std::string typename2(Symbol name, Environment env);
 RcppExport SEXP pryr_typename2(SEXP nameSEXP, SEXP envSEXP) {

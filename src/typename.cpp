@@ -19,11 +19,11 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
+//' @export
+//' @rdname inspect
 // [[Rcpp::export]]
-std::string typename2(Symbol name, Environment env) {
-  SEXP object = Rf_findVar(name, env);
-
-  switch (TYPEOF(object)) {
+std::string sexp_type(SEXP x) {
+  switch (TYPEOF(x)) {
     case NILSXP:  return "NILSXP";
     case SYMSXP:  return "SYMSXP";
     case LISTSXP: return "LISTSXP";
@@ -50,4 +50,10 @@ std::string typename2(Symbol name, Environment env) {
     case RAWSXP:  return "RAWSXP";
     default:   return "<unknown>";
   }
+}
+
+// [[Rcpp::export]]
+std::string typename2(Symbol name, Environment env) {
+  SEXP object = Rf_findVar(name, env);
+  return sexp_type(object);
 }

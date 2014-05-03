@@ -45,6 +45,12 @@ slice <- function(x, k, sep = " ") {
     .Call('pryr_slice', PACKAGE = 'pryr', x, k, sep)
 }
 
+#' @export
+#' @rdname inspect
+sexp_type <- function(x) {
+    .Call('pryr_sexp_type', PACKAGE = 'pryr', x)
+}
+
 typename2 <- function(name, env) {
     .Call('pryr_typename2', PACKAGE = 'pryr', name, env)
 }
