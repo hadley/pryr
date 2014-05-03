@@ -72,7 +72,7 @@ names_c <- function() {
   lines <- readLines("http://svn.r-project.org/R/trunk/src/main/names.c")
 
   # Find lines starting with {"
-  fun_table <- lines[grepl("^[{][\"]", names.c)]
+  fun_table <- lines[grepl("^[{][\"]", lines)]
   # Strip out {}, trailing comma and comments
   fun_table <- gsub("[{}]", "", fun_table)
   fun_table <- gsub(",$", "", fun_table)
