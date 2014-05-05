@@ -23,3 +23,23 @@ node_size <- function() {
 
   if (bit == 32L) 28L else 56L
 }
+
+#' Determine change in memory from running code
+#'
+#' @param code Code to evaluate.
+#' @return Change in memory (in megabytes) before and after running code.
+#' @examples
+#' # Need about 4 mb to store 1 million integers
+#' mem_change(x <- 1:1e6)
+#' We get that memory back when we delete it
+#' mem_change(rm(x))
+#' @export
+mem_change <- function(code) {
+  start <- mem_used()
+
+  expr <- substitute(code)
+  eval(expr, parent.frame())
+  rm(code, expr)
+
+  round(mem_used() - start, 3)
+}
