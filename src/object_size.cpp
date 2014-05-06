@@ -62,14 +62,14 @@ double object_size_rec(SEXP x, std::set<SEXP>& seen) {
 
     // Strings
     case STRSXP:
-      size += v_size(XLENGTH(x), 1);
+      size += v_size(XLENGTH(x), 8);
     	for (R_xlen_t i = 0; i < XLENGTH(x); i++) {
   	    size += object_size_rec(STRING_ELT(x, i), seen);
     	}
       size += object_size_rec(ATTRIB(x), seen);
     	break;
     case CHARSXP:
-      size += v_size(LENGTH(x) / 2 + 1, 1);
+      size += v_size(LENGTH(x) + 1, 1);
       break;
 
     // Generic vectors
