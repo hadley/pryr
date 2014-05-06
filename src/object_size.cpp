@@ -5,8 +5,8 @@ using namespace Rcpp;
 double v_size(double n, int size) {
   if (n == 0) return 8;
 
-  int vec_size = std::max(sizeof(SEXP), sizeof(double));
-  int elements_per_byte = vec_size / size;
+  double vec_size = std::max(sizeof(SEXP), sizeof(double));
+  double elements_per_byte = vec_size / size;
   double n_bytes = ceil(n / elements_per_byte);
   // Rcout << n << " elements, each of " << elements_per_byte << " = " <<
   //  n_bytes << "\n";

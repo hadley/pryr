@@ -23,7 +23,7 @@ test_that("size correct for length one vectors", {
   expect_same("abc")
   expect_same(paste(rep("banaana", 100), collapse = ""))
   expect_same(charToRaw("a"))
-#   expect_same(5 + 1i)
+  expect_same(5 + 1i)
 })
 
 test_that("size of list computed recursively", {
