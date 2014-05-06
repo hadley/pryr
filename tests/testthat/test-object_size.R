@@ -84,17 +84,30 @@ test_that("environment size computed recursively", {
   expect_equal(object_size(f), 2 * object_size(e))
 })
 
-
-f <- function() {
-  y <- 1:1e3
-  a ~ b
-}
-g <- function() {
-  y <- 1:1e3
-  function() 10
-}
-
 test_that("size of function includes environment", {
+  f <- function() {
+    y <- 1:1e3
+    a ~ b
+  }
+  g <- function() {
+    y <- 1:1e3
+    function() 10
+  }
+
   expect_true(object_size(f()) > object_size(1:1e3))
   expect_true(object_size(g()) > object_size(1:1e3))
+})
+
+test_that("size doesn't include parents of current environment", {
+  x <- 1:1e4
+  embedded <- (function() {
+    g <- function() {
+      x <- 1:1e3
+      a ~ b
+    }
+    object_size(g())
+  })()
+
+  expect_true(embedded < object_size(x))
+
 })
