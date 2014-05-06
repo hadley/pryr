@@ -26,10 +26,13 @@ double v_size(double n, int size) {
     vec_size; // SEXPREC_ALIGN padding
 }
 
-// [[Rcpp::export]]
-double object_size(SEXP x) {
+
+double object_size_rec(SEXP x, std::set<SEXP>& seen) {
   //  NILSXP is a singleton, so occupies no space
   if (TYPEOF(x) == NILSXP) return 0;
+
+  // If we've seen it before already, don't count it again
+  if (!seen.insert(x).second) return 0;
 
   // As of R 3.1.0, all SEXPRECs start with sxpinfo (4 bytes + 4 bytes padding
   // automatically added by compiler), pointer  to attribute pairlist (8 bytes),
@@ -42,28 +45,28 @@ double object_size(SEXP x) {
     case LGLSXP:
     case INTSXP:
       size += v_size(XLENGTH(x), sizeof(int));
-      size += object_size(ATTRIB(x));
+      size += object_size_rec(ATTRIB(x), seen);
       break;
     case REALSXP:
       size += v_size(XLENGTH(x), sizeof(double));
-      size += object_size(ATTRIB(x));
+      size += object_size_rec(ATTRIB(x), seen);
       break;
     case CPLXSXP:
       size += v_size(XLENGTH(x), sizeof(Rcomplex));
-      size += object_size(ATTRIB(x));
+      size += object_size_rec(ATTRIB(x), seen);
       break;
     case RAWSXP:
       size += v_size(XLENGTH(x), 1);
-      size += object_size(ATTRIB(x));
+      size += object_size_rec(ATTRIB(x), seen);
       break;
 
     // Strings
     case STRSXP:
       size += v_size(XLENGTH(x), 1);
     	for (R_xlen_t i = 0; i < XLENGTH(x); i++) {
-  	    size += object_size(STRING_ELT(x, i));
+  	    size += object_size_rec(STRING_ELT(x, i), seen);
     	}
-      size += object_size(ATTRIB(x));
+      size += object_size_rec(ATTRIB(x), seen);
     	break;
     case CHARSXP:
       size += v_size(LENGTH(x) / 2 + 1, 1);
@@ -75,9 +78,9 @@ double object_size(SEXP x) {
     case WEAKREFSXP:
   	  size += v_size(XLENGTH(x), sizeof(SEXP));
     	for (R_xlen_t i = 0; i < XLENGTH(x); ++i) {
-  	    size += object_size(VECTOR_ELT(x, i));
+  	    size += object_size_rec(VECTOR_ELT(x, i), seen);
     	}
-      size += object_size(ATTRIB(x));
+      size += object_size_rec(ATTRIB(x), seen);
     	break;
 
     // Linked lists
@@ -85,16 +88,16 @@ double object_size(SEXP x) {
     case LANGSXP:
     case BCODESXP:
       size += 3 * sizeof(SEXP); // tag, car, cdr
-      size += object_size(TAG(x)); // name of first element
-    	size += object_size(CAR(x)); // first element
-    	size += object_size(CDR(x)); // pairlist (subsequent elements) or NILSXP
+      size += object_size_rec(TAG(x), seen); // name of first element
+    	size += object_size_rec(CAR(x), seen); // first element
+    	size += object_size_rec(CDR(x), seen); // pairlist (subsequent elements) or NILSXP
     	break;
 
     // Functions
     case CLOSXP:
       size += 3 * sizeof(SEXP); // formals, body, env
-      size += object_size(FORMALS(x));
-	    size += object_size(BODY(x));
+      size += object_size_rec(FORMALS(x), seen);
+	    size += object_size_rec(BODY(x), seen);
       // size += object_size(CLOENV(s));
 	    break;
 
@@ -110,6 +113,12 @@ double object_size(SEXP x) {
   return size;
 }
 
+// [[Rcpp::export]]
+double object_size(SEXP x) {
+  std::set<SEXP> seen;
+
+  return object_size_rec(x, seen);
+}
 
 // [[Rcpp::export]]
 double object_size_(Symbol name, Environment env) {
