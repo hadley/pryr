@@ -28,10 +28,13 @@ double v_size(double n, int size) {
 
 
 double object_size_rec(SEXP x, std::set<SEXP>& seen) {
-  //  NILSXP is a singleton, so occupies no space
-  if (TYPEOF(x) == NILSXP) return 0;
+  // NILSXP is a singleton, so occupies no space. Similarly SPECIAL and
+  // BUILTIN are fixed and unchanging
+  if (TYPEOF(x) == NILSXP ||
+      TYPEOF(x) == SPECIALSXP ||
+      TYPEOF(x) == BUILTINSXP) return 0;
 
-  // If we've seen it before already, don't count it again
+  // If we've seen it before in this object, don't count it again
   if (!seen.insert(x).second) return 0;
 
   // As of R 3.1.0, all SEXPRECs start with sxpinfo (4 bytes + 4 bytes padding
@@ -91,14 +94,25 @@ double object_size_rec(SEXP x, std::set<SEXP>& seen) {
       size += object_size_rec(TAG(x), seen); // name of first element
     	size += object_size_rec(CAR(x), seen); // first element
     	size += object_size_rec(CDR(x), seen); // pairlist (subsequent elements) or NILSXP
+      size += object_size_rec(ATTRIB(x), seen);
     	break;
+
+    // Environments
+    case ENVSXP:
+      if (x == R_GlobalEnv || x == R_EmptyEnv) return 0;
+      size += 3 * sizeof(SEXP); // frame, enclos, hashtab
+      size += object_size_rec(FRAME(x), seen);
+      size += object_size_rec(ENCLOS(x), seen);
+      size += object_size_rec(HASHTAB(x), seen);
+      size += object_size_rec(ATTRIB(x), seen);
 
     // Functions
     case CLOSXP:
       size += 3 * sizeof(SEXP); // formals, body, env
       size += object_size_rec(FORMALS(x), seen);
 	    size += object_size_rec(BODY(x), seen);
-      // size += object_size(CLOENV(s));
+      size += object_size_rec(CLOENV(x), seen);
+      size += object_size_rec(ATTRIB(x), seen);
 	    break;
 
     case SYMSXP:
@@ -106,6 +120,7 @@ double object_size_rec(SEXP x, std::set<SEXP>& seen) {
       break;
 
     default:
+      // Rcout << "type: " << TYPEOF(x);
       stop("Unimplemented type");
   }
 
