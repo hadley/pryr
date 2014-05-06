@@ -29,10 +29,6 @@ object_size <- function(x) {
     .Call('pryr_object_size', PACKAGE = 'pryr', x)
 }
 
-object_size_ <- function(name, env) {
-    .Call('pryr_object_size_', PACKAGE = 'pryr', name, env)
-}
-
 is_promise2 <- function(name, env) {
     .Call('pryr_is_promise2', PACKAGE = 'pryr', name, env)
 }

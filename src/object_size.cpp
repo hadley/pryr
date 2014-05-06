@@ -163,10 +163,3 @@ double object_size(SEXP x) {
 
   return object_size_rec(x, seen);
 }
-
-// [[Rcpp::export]]
-double object_size_(Symbol name, Environment env) {
-  SEXP x = Rf_findVar(name, env);
-
-  return object_size(x);
-}

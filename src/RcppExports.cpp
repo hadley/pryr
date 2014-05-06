@@ -113,22 +113,6 @@ BEGIN_RCPP
     return __sexp_result;
 END_RCPP
 }
-// object_size_
-double object_size_(Symbol name, Environment env);
-RcppExport SEXP pryr_object_size_(SEXP nameSEXP, SEXP envSEXP) {
-BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< Symbol >::type name(nameSEXP );
-        Rcpp::traits::input_parameter< Environment >::type env(envSEXP );
-        double __result = object_size_(name, env);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
-END_RCPP
-}
 // is_promise2
 bool is_promise2(Symbol name, Environment env);
 RcppExport SEXP pryr_is_promise2(SEXP nameSEXP, SEXP envSEXP) {
