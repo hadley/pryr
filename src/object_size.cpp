@@ -110,6 +110,7 @@ double object_size_rec(SEXP x, Environment base_env, std::set<SEXP>& seen) {
       size += object_size_rec(ENCLOS(x), base_env, seen);
       size += object_size_rec(HASHTAB(x), base_env, seen);
       size += object_size_rec(ATTRIB(x), base_env, seen);
+      break;
 
     // Functions
     case CLOSXP:
