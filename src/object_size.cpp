@@ -102,8 +102,6 @@ double object_size_rec(SEXP x, Environment base_env, std::set<SEXP>& seen) {
 
     // Environments
     case ENVSXP:
-      // Recurse through all environments, stopping at base, empty or any
-      // package or namespace
       if (x == R_BaseEnv || x == R_GlobalEnv || x == R_EmptyEnv ||
           x == base_env || is_namespace(x)) return 0;
 
