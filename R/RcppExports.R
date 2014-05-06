@@ -21,6 +21,18 @@ named2 <- function(name, env) {
     .Call('pryr_named2', PACKAGE = 'pryr', name, env)
 }
 
+v_size <- function(n, size) {
+    .Call('pryr_v_size', PACKAGE = 'pryr', n, size)
+}
+
+object_size <- function(x) {
+    .Call('pryr_object_size', PACKAGE = 'pryr', x)
+}
+
+object_size_ <- function(name, env) {
+    .Call('pryr_object_size_', PACKAGE = 'pryr', name, env)
+}
+
 is_promise2 <- function(name, env) {
     .Call('pryr_is_promise2', PACKAGE = 'pryr', name, env)
 }

@@ -82,6 +82,53 @@ BEGIN_RCPP
     return __sexp_result;
 END_RCPP
 }
+// v_size
+double v_size(double n, int size);
+RcppExport SEXP pryr_v_size(SEXP nSEXP, SEXP sizeSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< double >::type n(nSEXP );
+        Rcpp::traits::input_parameter< int >::type size(sizeSEXP );
+        double __result = v_size(n, size);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
+// object_size
+double object_size(SEXP x);
+RcppExport SEXP pryr_object_size(SEXP xSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< SEXP >::type x(xSEXP );
+        double __result = object_size(x);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
+// object_size_
+double object_size_(Symbol name, Environment env);
+RcppExport SEXP pryr_object_size_(SEXP nameSEXP, SEXP envSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< Symbol >::type name(nameSEXP );
+        Rcpp::traits::input_parameter< Environment >::type env(envSEXP );
+        double __result = object_size_(name, env);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
 // is_promise2
 bool is_promise2(Symbol name, Environment env);
 RcppExport SEXP pryr_is_promise2(SEXP nameSEXP, SEXP envSEXP) {
