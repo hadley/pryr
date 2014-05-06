@@ -25,6 +25,10 @@ v_size <- function(n, size) {
     .Call('pryr_v_size', PACKAGE = 'pryr', n, size)
 }
 
+object_sizes <- function(objects, base_env) {
+    .Call('pryr_object_sizes', PACKAGE = 'pryr', objects, base_env)
+}
+
 object_size_ <- function(x, base_env) {
     .Call('pryr_object_size_', PACKAGE = 'pryr', x, base_env)
 }

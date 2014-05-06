@@ -151,6 +151,19 @@ double object_size_rec(SEXP x, Environment base_env, std::set<SEXP>& seen) {
   return size;
 }
 
+// [[Rcpp::export]]
+double object_sizes(List objects, Environment base_env) {
+  std::set<SEXP> seen;
+  double size = 0;
+
+  int n = objects.size();
+  for (int i = 0; i < n; ++i) {
+    size += object_size_rec(objects[i], base_env, seen);
+  }
+
+  return size;
+}
+
 
 // [[Rcpp::export]]
 double object_size_(SEXP x, Environment base_env) {

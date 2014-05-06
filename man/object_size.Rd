@@ -4,12 +4,12 @@
 \alias{object_size}
 \title{Compute the size of an object.}
 \usage{
-object_size(x, env = parent.frame())
+object_size(..., env = parent.frame())
 
 compare_size(x)
 }
 \arguments{
-\item{x}{Object to compute size.}
+\item{...}{Set of objects to compute total size.}
 
 \item{env}{Environment in which to terminate search. This defaults to the
 current environment so that you don't include the size of objects that
@@ -47,6 +47,11 @@ elsewhere.
 x <- 1:1e3
 z <- list(x, x, x)
 compare_size(z)
+
+# this means that object_size is not transitive
+object_size(x)
+object_size(z)
+object_size(x, z)
 
 # object.size doesn't include the size of environments, which makes
 # it easy to miss objects that are carrying around large environments

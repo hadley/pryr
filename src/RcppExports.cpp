@@ -98,6 +98,22 @@ BEGIN_RCPP
     return __sexp_result;
 END_RCPP
 }
+// object_sizes
+double object_sizes(List objects, Environment base_env);
+RcppExport SEXP pryr_object_sizes(SEXP objectsSEXP, SEXP base_envSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< List >::type objects(objectsSEXP );
+        Rcpp::traits::input_parameter< Environment >::type base_env(base_envSEXP );
+        double __result = object_sizes(objects, base_env);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
 // object_size_
 double object_size_(SEXP x, Environment base_env);
 RcppExport SEXP pryr_object_size_(SEXP xSEXP, SEXP base_envSEXP) {

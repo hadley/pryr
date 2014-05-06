@@ -29,6 +29,11 @@
 #' z <- list(x, x, x)
 #' compare_size(z)
 #'
+#' # this means that object_size is not transitive
+#' object_size(x)
+#' object_size(z)
+#' object_size(x, z)
+#'
 #' # object.size doesn't include the size of environments, which makes
 #' # it easy to miss objects that are carrying around large environments
 #' f <- function() {
@@ -36,13 +41,13 @@
 #'   a ~ b
 #' }
 #' compare_size(f())
-#' @param x Object to compute size.
+#' @param ... Set of objects to compute total size.
 #' @param env Environment in which to terminate search. This defaults to the
 #'   current environment so that you don't include the size of objects that
 #'   are already stored elsewhere.
 #' @return An estimate of the size of the object, in bytes.
-object_size <- function(x, env = parent.frame()) {
-  object_size_(x, env)
+object_size <- function(..., env = parent.frame()) {
+  object_sizes(list(...), env)
 }
 
 #' @export
