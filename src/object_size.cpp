@@ -26,13 +26,9 @@ double v_size(double n, int size) {
     vec_size; // SEXPREC_ALIGN padding
 }
 
-bool is_package(Environment env) {
-  return Rf_findVarInFrame3(env, Rf_install(".Depends"), FALSE) != R_UnboundValue;
-}
 bool is_namespace(Environment env) {
   return Rf_findVarInFrame3(env, Rf_install(".__NAMESPACE__."), FALSE) != R_UnboundValue;
 }
-
 
 double object_size_rec(SEXP x, std::set<SEXP>& seen) {
   // NILSXP is a singleton, so occupies no space. Similarly SPECIAL and
@@ -109,7 +105,7 @@ double object_size_rec(SEXP x, std::set<SEXP>& seen) {
       // Recurse through all environments, stopping at base, empty or any
       // package or namespace
       if (x == R_BaseEnv || x == R_GlobalEnv || x == R_EmptyEnv ||
-          is_package(x) || is_namespace(x)) return 0;
+          is_namespace(x)) return 0;
 
       size += 3 * sizeof(SEXP); // frame, enclos, hashtab
       size += object_size_rec(FRAME(x), seen);
