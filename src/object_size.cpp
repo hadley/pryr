@@ -17,10 +17,10 @@ double v_size(double n, int size) {
   // For small vectors, round to sizes allocated in small vector pool
   else if (n_bytes > 8)  bytes = 128;
   else if (n_bytes > 6)  bytes = 64;
-	else if (n_bytes > 4)  bytes = 48;
-	else if (n_bytes > 2)  bytes = 32;
-	else if (n_bytes > 1)  bytes = 16;
-	else if (n_bytes > 0)  bytes = 8;
+  else if (n_bytes > 4)  bytes = 48;
+  else if (n_bytes > 2)  bytes = 32;
+  else if (n_bytes > 1)  bytes = 16;
+  else if (n_bytes > 0)  bytes = 8;
 
   return bytes +
     vec_size; // SEXPREC_ALIGN padding
@@ -73,11 +73,11 @@ double object_size_rec(SEXP x, std::set<SEXP>& seen) {
     // Strings
     case STRSXP:
       size += v_size(XLENGTH(x), 8);
-    	for (R_xlen_t i = 0; i < XLENGTH(x); i++) {
-  	    size += object_size_rec(STRING_ELT(x, i), seen);
-    	}
+      for (R_xlen_t i = 0; i < XLENGTH(x); i++) {
+        size += object_size_rec(STRING_ELT(x, i), seen);
+      }
       size += object_size_rec(ATTRIB(x), seen);
-    	break;
+      break;
     case CHARSXP:
       size += v_size(LENGTH(x) + 1, 1);
       break;
@@ -86,12 +86,12 @@ double object_size_rec(SEXP x, std::set<SEXP>& seen) {
     case VECSXP:
     case EXPRSXP:
     case WEAKREFSXP:
-  	  size += v_size(XLENGTH(x), sizeof(SEXP));
-    	for (R_xlen_t i = 0; i < XLENGTH(x); ++i) {
-  	    size += object_size_rec(VECTOR_ELT(x, i), seen);
-    	}
+      size += v_size(XLENGTH(x), sizeof(SEXP));
+      for (R_xlen_t i = 0; i < XLENGTH(x); ++i) {
+        size += object_size_rec(VECTOR_ELT(x, i), seen);
+      }
       size += object_size_rec(ATTRIB(x), seen);
-    	break;
+      break;
 
     // Linked lists
     case LISTSXP:
@@ -99,10 +99,10 @@ double object_size_rec(SEXP x, std::set<SEXP>& seen) {
     case BCODESXP:
       size += 3 * sizeof(SEXP); // tag, car, cdr
       size += object_size_rec(TAG(x), seen); // name of first element
-    	size += object_size_rec(CAR(x), seen); // first element
-    	size += object_size_rec(CDR(x), seen); // pairlist (subsequent elements) or NILSXP
+      size += object_size_rec(CAR(x), seen); // first element
+      size += object_size_rec(CDR(x), seen); // pairlist (subsequent elements) or NILSXP
       size += object_size_rec(ATTRIB(x), seen);
-    	break;
+      break;
 
     // Environments
     case ENVSXP:
@@ -121,10 +121,10 @@ double object_size_rec(SEXP x, std::set<SEXP>& seen) {
     case CLOSXP:
       size += 3 * sizeof(SEXP); // formals, body, env
       size += object_size_rec(FORMALS(x), seen);
-	    size += object_size_rec(BODY(x), seen);
+      size += object_size_rec(BODY(x), seen);
       size += object_size_rec(CLOENV(x), seen);
       size += object_size_rec(ATTRIB(x), seen);
-	    break;
+      break;
 
     case PROMSXP:
       size += 3 * sizeof(SEXP); // value, expr, env
@@ -134,15 +134,15 @@ double object_size_rec(SEXP x, std::set<SEXP>& seen) {
 
     case EXTPTRSXP:
       size += sizeof(void *); // the actual pointer
-    	size += object_size_rec(EXTPTR_PROT(x), seen);
-    	size += object_size_rec(EXTPTR_TAG(x), seen);
-    	break;
+      size += object_size_rec(EXTPTR_PROT(x), seen);
+      size += object_size_rec(EXTPTR_TAG(x), seen);
+      break;
 
     case S4SXP:
       // Only has TAG and ATTRIB
-    	size += object_size_rec(TAG(x), seen);
+      size += object_size_rec(TAG(x), seen);
       size += object_size_rec(ATTRIB(x), seen);
-    	break;
+      break;
 
     case SYMSXP:
       size += 3 * sizeof(SEXP); // pname, value, internal
