@@ -34,7 +34,12 @@ show_c_source  <- function(fun) {
   query <- sprintf("SEXP attribute_hidden %s+repo:wch/r-source&type=Code",
     found$cfun)
   url <- paste0("https://github.com/search?q=", URLencode(query))
-  browseURL(url)
+
+  if (interactive()) {
+    browseURL(url)
+  } else {
+    message("Please visit ", url)
+  }
 }
 
 #' Extract function table from names.c from R subversion repository.
