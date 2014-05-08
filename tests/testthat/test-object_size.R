@@ -2,7 +2,7 @@ context("Object_size")
 
 expect_same <- function(x) {
   base <- as.vector(object.size(x))
-  pryr <- object_size(x)
+  pryr <- as.vector(object_size(x))
 
   expect_equal(base, pryr)
 }
@@ -68,11 +68,11 @@ test_that("shared components only counted once", {
 
 # Environment sizes -----------------------------------------------------------
 test_that("terminal environments have size zero", {
-  expect_equal(object_size(globalenv()), 0)
-  expect_equal(object_size(baseenv()), 0)
-  expect_equal(object_size(emptyenv()), 0)
+  expect_equal(object_size(globalenv()), show_bytes(0))
+  expect_equal(object_size(baseenv()),show_bytes(0))
+  expect_equal(object_size(emptyenv()), show_bytes(0))
 
-  expect_equal(object_size(asNamespace("stats")), 0)
+  expect_equal(object_size(asNamespace("stats")), show_bytes(0))
 })
 
 test_that("environment size computed recursively", {
