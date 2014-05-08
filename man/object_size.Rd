@@ -44,7 +44,7 @@ elsewhere.
 \examples{
 # object.size doesn't keep track of shared elements in an object
 # object_size does
-x <- 1:1e3
+x <- 1:1e4
 z <- list(x, x, x)
 compare_size(z)
 

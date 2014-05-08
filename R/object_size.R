@@ -25,7 +25,7 @@
 #' @examples
 #' # object.size doesn't keep track of shared elements in an object
 #' # object_size does
-#' x <- 1:1e3
+#' x <- 1:1e4
 #' z <- list(x, x, x)
 #' compare_size(z)
 #'
@@ -47,7 +47,7 @@
 #'   are already stored elsewhere.
 #' @return An estimate of the size of the object, in bytes.
 object_size <- function(..., env = parent.frame()) {
-  object_sizes(list(...), env)
+  show_bytes(object_sizes(list(...), env))
 }
 
 #' @export
