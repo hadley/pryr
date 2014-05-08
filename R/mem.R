@@ -12,7 +12,7 @@
 #' @examples
 #' mem_used()
 mem_used <- function() {
-  sum(gc()[, 1] * c(node_size(), 8)) / (1024 ^ 2)
+  show_bytes(sum(gc()[, 1] * c(node_size(), 8)))
 }
 
 node_size <- function() {
@@ -41,5 +41,25 @@ mem_change <- function(code) {
   eval(expr, parent.frame())
   rm(code, expr)
 
-  round(mem_used() - start, 3)
+  show_bytes(mem_used() - start)
+}
+
+show_bytes <- function(x) {
+  structure(x, class = "bytes")
+}
+
+#' @export
+print.bytes <- function(x, digits = 3, ...) {
+  power <- min(floor(log(abs(x), 1000)), 4)
+  if (power == 0) {
+    unit <- "B"
+  } else {
+    unit <- c("kB", "MB", "GB", "TB")[[power]]
+    x <- x / (1000 ^ power)
+  }
+
+  formatted <- format(signif(x, digits = digits), big.mark = ",",
+    scientific = FALSE)
+
+  cat(formatted, " ", unit, "\n", sep = "")
 }
