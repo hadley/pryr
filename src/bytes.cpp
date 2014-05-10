@@ -29,8 +29,12 @@ struct dataptr<STRSXP> {
 } // namespace traits
 
 // Declaring some types
-struct Bits{};
-struct Hex{};
+struct Bits {
+  static const int size = 8;
+};
+struct Hex {
+  static const int size = 2;
+};
 
 // Utility functions
 template <int RTYPE>
@@ -57,11 +61,13 @@ size_t get_size(const Rcpp::Vector<STRSXP>& x, int i) {
 template <typename Repr, bool is_string>
 struct Representation {
 
-  SEXP operator()(const char* ptr, size_t n) {
-    return repr(ptr, n);
+  static const int size = Repr::size;
+
+  inline void operator()(const char* ptr, size_t n, char* output) {
+    return repr(ptr, n, output);
   }
 
-  SEXP repr(const char* ptr, size_t n);
+  inline void repr(const char* ptr, size_t n, char* output);
 
 };
 
@@ -72,12 +78,8 @@ struct Representation {
 // from right to left (endianness; TODO is to handle that in the dispatch
 // later on)
 template <>
-SEXP Representation<Bits, false>::repr(const char* ptr, size_t n) {
-
+void Representation<Bits, false>::repr(const char* ptr, size_t n, char* output) {
   size_t nBits = n * 8;
-  char* output = new char[nBits + 1];
-  output[nBits] = '\0';
-
   int counter = nBits - 1;
   for (int i=0; i < n; ++i) {
     char curr = ptr[i];
@@ -86,18 +88,11 @@ SEXP Representation<Bits, false>::repr(const char* ptr, size_t n) {
       curr >>= 1;
     }
   }
-  SEXP sexp = Rf_mkChar(output);
-  delete[] output;
-  return sexp;
 }
 
 template<>
-SEXP Representation<Bits, true>::repr(const char* ptr, size_t n) {
-
+void Representation<Bits, true>::repr(const char* ptr, size_t n, char* output) {
   size_t nBits = n * 8;
-  char* output = new char[nBits + 1];
-  output[nBits] = '\0';
-
   int counter = nBits - 1;
   for (int i = n - 1; i >= 0; --i) {
     char curr = ptr[i];
@@ -106,48 +101,29 @@ SEXP Representation<Bits, true>::repr(const char* ptr, size_t n) {
       curr >>= 1;
     }
   }
-  SEXP sexp = Rf_mkChar(output);
-  delete[] output;
-  return sexp;
 }
 
 // The hex version
 template<>
-SEXP Representation<Hex, true>::repr(const char* ptr, size_t n) {
-  size_t nout = n * 2;
-
-  char* output = new char[nout + 1];
-  output[nout] = '\0';
-
+void Representation<Hex, true>::repr(const char* ptr, size_t n, char* output) {
   int counter = 0;
   for (int i = 0; i < n; ++i) {
     sprintf(output + counter * 2, "%02X", ptr[i] & 0xFF);
     ++counter;
   }
-  SEXP sexp = Rf_mkChar(output);
-  delete[] output;
-  return sexp;
 }
 
 template<>
-SEXP Representation<Hex, false>::repr(const char* ptr, size_t n) {
-  size_t nout = n * 2;
-
-  char* output = new char[nout + 1];
-  output[nout] = '\0';
-
+void Representation<Hex, false>::repr(const char* ptr, size_t n, char* output) {
   int counter = 0;
   for (int i = n - 1; i >= 0; --i) {
     sprintf(output + counter * 2, "%02X", ptr[i] & 0xFF);
     ++counter;
   }
-  SEXP sexp = Rf_mkChar(output);
-  delete[] output;
-  return sexp;
 }
 
 template <int RTYPE, typename Representation>
-CharacterVector representation(const Vector<RTYPE>& x, Representation as) {
+CharacterVector representation(const Vector<RTYPE>& x, Representation fill_as) {
   typedef typename traits::dataptr<RTYPE>::type storage_t;
   int n = x.size();
   CharacterVector output = no_init(n);
@@ -155,7 +131,11 @@ CharacterVector representation(const Vector<RTYPE>& x, Representation as) {
   for (int i=0; i < n; ++i) {
     const char* ptr = reinterpret_cast<const char*>(get_pointer(x, i));
     size_t size = get_size(x, i);
-    SET_STRING_ELT(output, i, as(ptr, size));
+    char* buff = new char[ Representation::size * size + 1 ];
+    buff[ Representation::size * size ] = '\0';
+    fill_as(ptr, size, buff);
+    SET_STRING_ELT(output, i, Rf_mkChar(buff));
+    delete[] buff;
   }
 
   return output;
