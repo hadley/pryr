@@ -51,7 +51,6 @@ partial <- function(`_f`, ..., .env = parent.frame()) {
   # Capture unevaluated args, convert positional to named arguments and
   # append ... to the call
   fcall <- substitute(`_f`(...))
-  if (!is.primitive(`_f`)) match.call(`_f`, fcall)
   fcall[[length(fcall) + 1]] <- quote(...)
 
   args <- list("..." = quote(expr = ))
