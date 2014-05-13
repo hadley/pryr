@@ -15,6 +15,8 @@ with f.}
 
 \item{.env}{the environment of the created function. Defaults to
 \code{\link{parent.frame}} and you should rarely need to modify this.}
+
+\item{.force}{If \code{TRUE} eager}
 }
 \description{
 Partial function application allows you to modify a function by pre-filling
@@ -45,6 +47,13 @@ compact2
 # Note that the evaluation occurs "lazily" so that arguments will be
 # repeatedly evaluated
 f <- partial(runif, n = rpois(1, 5))
+f
+f()
+f()
+
+# You can override this by saying .lazy = FALSE
+f <- partial(runif, n = rpois(1, 5), .lazy = FALSE)
+f
 f()
 f()
 

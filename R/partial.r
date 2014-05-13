@@ -20,6 +20,7 @@
 #' @param ... named arguments to \code{f} that should be partially applied.
 #' @param .env the environment of the created function. Defaults to
 #'   \code{\link{parent.frame}} and you should rarely need to modify this.
+#' @param .force If \code{TRUE} eager
 #' @export
 #' @examples
 #' # Partial is designed to replace the use of anonymous functions for
@@ -36,6 +37,13 @@
 #' # Note that the evaluation occurs "lazily" so that arguments will be
 #' # repeatedly evaluated
 #' f <- partial(runif, n = rpois(1, 5))
+#' f
+#' f()
+#' f()
+#'
+#' # You can override this by saying .lazy = FALSE
+#' f <- partial(runif, n = rpois(1, 5), .lazy = FALSE)
+#' f
 #' f()
 #' f()
 #'
@@ -45,12 +53,15 @@
 #' plot2 <- partial(plot, my_long_variable)
 #' plot2()
 #' plot2(runif(10), type = "l")
-partial <- function(`_f`, ..., .env = parent.frame()) {
+partial <- function(`_f`, ..., .env = parent.frame(), .lazy = TRUE) {
   stopifnot(is.function(`_f`))
 
-  # Capture unevaluated args, convert positional to named arguments and
-  # append ... to the call
-  fcall <- substitute(`_f`(...))
+  if (.lazy) {
+    fcall <- substitute(`_f`(...))
+  } else {
+    fcall <- make_call(substitute(`_f`), .args = list(...))
+  }
+  # Pass on ... from parent function
   fcall[[length(fcall) + 1]] <- quote(...)
 
   args <- list("..." = quote(expr = ))
