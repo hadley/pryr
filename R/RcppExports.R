@@ -13,6 +13,12 @@ binary2hex <- function(x) {
     .Call('pryr_binary2hex', PACKAGE = 'pryr', x)
 }
 
+#' @export
+#' @rdname inspect
+address <- function(x) {
+    .Call('pryr_address', PACKAGE = 'pryr', x)
+}
+
 address2 <- function(name, env) {
     .Call('pryr_address2', PACKAGE = 'pryr', name, env)
 }

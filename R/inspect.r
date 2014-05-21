@@ -1,26 +1,26 @@
 #' Inspect internal attributes of R objects.
-#' 
+#'
 #' \code{typename} determines the internal C typename, \code{address}
 #' returns the memory location of the object, and \code{refs} returns the
 #' number of references pointing to the underlying object.
-#' 
+#'
 #' @section Non-standard evaluation:
 #' All functions uses non-standard evaluation to capture the symbol you are
 #' referring to and the environment in which it lives. This means that you can
 #' not call any of these functions on objects created in the function call.
 #' All the underlying C level functions use \code{Rf_findVar} to get to the
 #' underlying SEXP.
-#' 
-#' @param x name of object to inspect. This can not be a value. 
+#'
+#' @param x name of object to inspect. This can not be a value.
 #' @family object inspection
 #' @examples
 #' x <- 1:10
 #' \dontrun{.Internal(inspect(x))}
-#' 
+#'
 #' typename(x)
 #' refs(x)
 #' address(x)
-#' 
+#'
 #' y <- 1L
 #' typename(y)
 #' z <- list(1:10)
@@ -39,12 +39,6 @@ NULL
 
 #' @export
 #' @rdname inspect
-address <- function(x) {
-  address2(check_name(substitute(x)), parent.frame())
-}
-
-#' @export
-#' @rdname inspect
 refs <- function(x) {
   named2(check_name(substitute(x)), parent.frame())
 }
@@ -57,16 +51,16 @@ typename <- function(x) {
 
 check_name <- function(x) {
   if (!is.name(x)) {
-    stop("x must be the name of an object", call. = FALSE) 
+    stop("x must be the name of an object", call. = FALSE)
   }
   x
 }
 
 #' Track if an object is copied
-#' 
+#'
 #' The title is somewhat misleading: rather than checking if an object is
 #' modified, this really checks to see if a name points to the same object.
-#' 
+#'
 #' @param var variable name (unquoted)
 #' @param env environment name in which to track changes
 #' @param quiet if \code{FALSE}, prints a message on change; if \code{FALSE}
@@ -85,12 +79,12 @@ check_name <- function(x) {
 track_copy <- function(var, env = parent.frame(), quiet = FALSE) {
   var <- substitute(var)
   force(env)
-  
+
   old <- address2(var, parent.frame())
   function() {
-    new <- address2(var, parent.frame())  
+    new <- address2(var, parent.frame())
     if (old == new) return(invisible(FALSE))
-    
+
     if (!quiet) message(var, " copied")
     old <<- new
     invisible(TRUE)
