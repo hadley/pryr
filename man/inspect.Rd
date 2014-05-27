@@ -11,6 +11,8 @@ address(x)
 
 sexp_type(x)
 
+inspect(x, env = parent.frame())
+
 refs(x)
 
 typename(x)

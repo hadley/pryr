@@ -39,6 +39,36 @@ NULL
 
 #' @export
 #' @rdname inspect
+inspect <- function(x, env = parent.frame()) {
+  inspect_(x, env)
+}
+
+#' @export
+print.inspect <- function(x, level = 0, ...) {
+  indent <- paste(rep("  ", length = level), collapse = "")
+
+  if (!x$seen) {
+    cat(indent, "<", x$type, " ", x$address, ">\n", sep = "")
+  } else {
+    cat(indent, "[", x$type, " ", x$address, "]\n", sep = "")
+  }
+  if (length(x$children) > 0) {
+    nms <- names(x$children) %||% rep("", length(x$children))
+    Map(function(nm, val) {
+      if (nm != "") cat(indent, nm, ": \n", sep = "")
+      print(val, level = level + 1)
+    }, nms, x$children)
+  }
+}
+
+#' @export
+print.inspect_NILSXP <- function(x, level = 0, ...) {
+  indent <- paste(rep("  ", length = level), collapse = "")
+  cat(indent, "NULL\n", sep = "")
+}
+
+#' @export
+#' @rdname inspect
 refs <- function(x) {
   named2(check_name(substitute(x)), parent.frame())
 }

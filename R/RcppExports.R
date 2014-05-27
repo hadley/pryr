@@ -19,6 +19,10 @@ address <- function(x) {
     .Call('pryr_address', PACKAGE = 'pryr', x)
 }
 
+inspect_ <- function(x, base_env) {
+    .Call('pryr_inspect_', PACKAGE = 'pryr', x, base_env)
+}
+
 address2 <- function(name, env) {
     .Call('pryr_address2', PACKAGE = 'pryr', name, env)
 }

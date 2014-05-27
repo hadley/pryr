@@ -27,8 +27,8 @@ otype(1:10)
 }
 \seealso{
 Other object inspection: \code{\link{address}},
-  \code{\link{inspect}}, \code{\link{refs}},
-  \code{\link{sexp_type}}, \code{\link{typename}};
-  \code{\link{ftype}}
+  \code{\link{inspect}}, \code{\link{inspect}},
+  \code{\link{refs}}, \code{\link{sexp_type}},
+  \code{\link{typename}}; \code{\link{ftype}}
 }
 
