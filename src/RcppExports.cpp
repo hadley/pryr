@@ -6,14 +6,14 @@
 using namespace Rcpp;
 
 // binary_repr
-std::vector<std::string> binary_repr(SEXP x);
+CharacterVector binary_repr(SEXP x);
 RcppExport SEXP pryr_binary_repr(SEXP xSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
         Rcpp::traits::input_parameter< SEXP >::type x(xSEXP );
-        std::vector<std::string> __result = binary_repr(x);
+        CharacterVector __result = binary_repr(x);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
@@ -21,14 +21,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // hex_repr
-std::vector<std::string> hex_repr(SEXP x);
+CharacterVector hex_repr(SEXP x);
 RcppExport SEXP pryr_hex_repr(SEXP xSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
         Rcpp::traits::input_parameter< SEXP >::type x(xSEXP );
-        std::vector<std::string> __result = hex_repr(x);
+        CharacterVector __result = hex_repr(x);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);

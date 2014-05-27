@@ -29,8 +29,14 @@ struct dataptr<STRSXP> {
 } // namespace traits
 
 // Declaring some types
-struct Bits{};
-struct Hex{};
+// We store the number of characters needed to represent a single byte of data
+// for a given representation
+struct Bits {
+  static const int chars_per_byte = 8;
+};
+struct Hex {
+  static const int chars_per_byte = 2;
+};
 
 // Utility functions
 template <int RTYPE>
@@ -44,12 +50,12 @@ const char* get_pointer(const Rcpp::Vector<STRSXP>& x, int i) {
 }
 
 template <int RTYPE>
-size_t get_size(const Rcpp::Vector<RTYPE>& x, int i) {
+inline size_t get_length_in_bytes(const Rcpp::Vector<RTYPE>& x, int i) {
   return sizeof(typename ::Rcpp::traits::storage_type<RTYPE>::type);
 }
 
 template <>
-size_t get_size(const Rcpp::Vector<STRSXP>& x, int i) {
+inline size_t get_length_in_bytes(const Rcpp::Vector<STRSXP>& x, int i) {
   return strlen( CHAR(STRING_ELT(x, i)) );
 }
 
@@ -57,11 +63,13 @@ size_t get_size(const Rcpp::Vector<STRSXP>& x, int i) {
 template <typename Repr, bool is_string>
 struct Representation {
 
-  std::string operator()(const char* ptr, size_t n) {
-    return repr(ptr, n);
+  static const int chars_per_byte = Repr::chars_per_byte;
+
+  inline void operator()(const char* ptr, size_t n, char* output) {
+    return repr(ptr, n, output);
   }
 
-  std::string repr(const char* ptr, size_t n);
+  inline void repr(const char* ptr, size_t n, char* output);
 
 };
 
@@ -72,15 +80,8 @@ struct Representation {
 // from right to left (endianness; TODO is to handle that in the dispatch
 // later on)
 template <>
-std::string Representation<Bits, false>::repr(const char* ptr, size_t n) {
-
-  size_t nBits = n * 8;
-  std::string out_str;
-  out_str.reserve(nBits + 1);
-  char* output = const_cast<char*>(out_str.c_str());
-  output[nBits] = '\0';
-
-  int counter = nBits - 1;
+void Representation<Bits, false>::repr(const char* ptr, size_t n, char* output) {
+  int counter = n * 8 - 1;
   for (int i=0; i < n; ++i) {
     char curr = ptr[i];
     for (int j=0; j < 8; ++j) {
@@ -88,19 +89,11 @@ std::string Representation<Bits, false>::repr(const char* ptr, size_t n) {
       curr >>= 1;
     }
   }
-  return out_str;
 }
 
 template<>
-std::string Representation<Bits, true>::repr(const char* ptr, size_t n) {
-
-  size_t nBits = n * 8;
-  std::string out_str;
-  out_str.reserve(nBits + 1);
-  char* output = const_cast<char*>(out_str.c_str());
-  output[nBits] = '\0';
-
-  int counter = nBits - 1;
+void Representation<Bits, true>::repr(const char* ptr, size_t n, char* output) {
+  int counter = n * 8 - 1;
   for (int i = n - 1; i >= 0; --i) {
     char curr = ptr[i];
     for (int j=0; j < 8; ++j) {
@@ -108,55 +101,73 @@ std::string Representation<Bits, true>::repr(const char* ptr, size_t n) {
       curr >>= 1;
     }
   }
-  return out_str;
 }
 
 // The hex version
 template<>
-std::string Representation<Hex, true>::repr(const char* ptr, size_t n) {
-  size_t nout = n * 2;
-
-  std::string out_str;
-  out_str.reserve(nout + 1);
-  char* output = const_cast<char*>(out_str.c_str());
-  output[nout] = '\0';
-
+void Representation<Hex, true>::repr(const char* ptr, size_t n, char* output) {
   int counter = 0;
   for (int i = 0; i < n; ++i) {
     sprintf(output + counter * 2, "%02X", ptr[i] & 0xFF);
     ++counter;
   }
-  return std::string(output);
 }
 
 template<>
-std::string Representation<Hex, false>::repr(const char* ptr, size_t n) {
-  size_t nout = n * 2;
-
-  std::string out_str;
-  out_str.reserve(nout + 1);
-  char* output = const_cast<char*>(out_str.c_str());
-  output[nout] = '\0';
-
+void Representation<Hex, false>::repr(const char* ptr, size_t n, char* output) {
   int counter = 0;
   for (int i = n - 1; i >= 0; --i) {
     sprintf(output + counter * 2, "%02X", ptr[i] & 0xFF);
     ++counter;
   }
-  return std::string(output);
 }
 
+// generic version for non-STRSXP
 template <int RTYPE, typename Representation>
-std::vector<std::string> representation(const Vector<RTYPE>& x, Representation as) {
+CharacterVector representation(const Vector<RTYPE>& x, Representation fill_as) {
+
   typedef typename traits::dataptr<RTYPE>::type storage_t;
   int n = x.size();
-  std::vector<std::string> output;
-  output.reserve(n);
+  CharacterVector output = no_init(n);
+
+  // Allocate a buffer to hold printed results
+  size_t num_bytes = sizeof(typename Rcpp::traits::storage_type<RTYPE>::type);
+  size_t num_chars = Representation::chars_per_byte * num_bytes;
+  char* buff = new char[num_chars + 1];
+  buff[num_chars] = '\0';
+
+  // Fill the buffer and the output vector
   for (int i=0; i < n; ++i) {
     const char* ptr = reinterpret_cast<const char*>(get_pointer(x, i));
-    size_t size = get_size(x, i);
-    output.push_back( as(ptr, size) );
+    fill_as(ptr, num_bytes, buff);
+    SET_STRING_ELT(output, i, Rf_mkChar(buff));
   }
+
+  // Clean up and return
+  delete[] buff;
+  return output;
+}
+
+// STRSXP
+template <typename Representation>
+CharacterVector representation_str(const Vector<STRSXP>& x, Representation fill_as) {
+
+  typedef typename traits::dataptr<STRSXP>::type storage_t;
+  int n = x.size();
+  CharacterVector output = no_init(n);
+  size_t chars_per_byte = Representation::chars_per_byte;
+
+  for (int i=0; i < n; ++i) {
+    const char* ptr = reinterpret_cast<const char*>(get_pointer(x, i));
+    size_t num_bytes = get_length_in_bytes(x, i);
+    size_t num_chars = chars_per_byte * num_bytes;
+    char* buff = new char[num_chars + 1];
+    buff[num_chars] = '\0';
+    fill_as(ptr, num_bytes, buff);
+    SET_STRING_ELT(output, i, Rf_mkChar(buff));
+    delete[] buff;
+  }
+
   return output;
 }
 
@@ -165,12 +176,12 @@ std::vector<std::string> representation(const Vector<RTYPE>& x, Representation a
 using namespace pryr;
 
 // [[Rcpp::export]]
-std::vector<std::string> binary_repr(SEXP x) {
+CharacterVector binary_repr(SEXP x) {
   switch (TYPEOF(x)) {
   case INTSXP: return representation<INTSXP>(x, Representation<Bits, IS_BIG_ENDIAN>());
   case REALSXP: return representation<REALSXP>(x, Representation<Bits, IS_BIG_ENDIAN>());
   case LGLSXP: return representation<LGLSXP>(x, Representation<Bits, IS_BIG_ENDIAN>());
-  case STRSXP: return representation<STRSXP>(x, Representation<Bits, true>());
+  case STRSXP: return representation_str(x, Representation<Bits, true>());
   default: {
     std::stringstream ss;
     ss << "can't print binary representation for objects of type '" <<
@@ -178,16 +189,16 @@ std::vector<std::string> binary_repr(SEXP x) {
     stop(ss.str());
   }
   }
-  return std::vector< std::string >(0);
+  return CharacterVector();
 }
 
 // [[Rcpp::export]]
-std::vector<std::string> hex_repr(SEXP x) {
+CharacterVector hex_repr(SEXP x) {
   switch (TYPEOF(x)) {
   case INTSXP: return representation<INTSXP>(x, Representation<Hex, IS_BIG_ENDIAN>());
   case REALSXP: return representation<REALSXP>(x, Representation<Hex, IS_BIG_ENDIAN>());
   case LGLSXP: return representation<LGLSXP>(x, Representation<Hex, IS_BIG_ENDIAN>());
-  case STRSXP: return representation<STRSXP>(x, Representation<Hex, true>());
+  case STRSXP: return representation_str(x, Representation<Hex, true>());
   default: {
     std::stringstream ss;
     ss << "can't print binary representation for objects of type '" <<
@@ -195,7 +206,7 @@ std::vector<std::string> hex_repr(SEXP x) {
     stop(ss.str());
   }
   }
-  return std::vector< std::string >(0);
+  return CharacterVector();
 }
 
 namespace pryr {
