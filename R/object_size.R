@@ -41,7 +41,7 @@
 #'   a ~ b
 #' }
 #' compare_size(f())
-#' @param ... Set of objects to compute total size.
+#' @param x,... Set of objects to compute total size.
 #' @param env Environment in which to terminate search. This defaults to the
 #'   current environment so that you don't include the size of objects that
 #'   are already stored elsewhere.

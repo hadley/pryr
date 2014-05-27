@@ -12,6 +12,7 @@
 #' underlying SEXP.
 #'
 #' @param x name of object to inspect. This can not be a value.
+#' @param env When inspecting environments, don't go past this one.
 #' @family object inspection
 #' @examples
 #' x <- 1:10

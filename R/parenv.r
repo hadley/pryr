@@ -14,11 +14,11 @@
 #' parenvs()
 #'
 #' # Print the parent environments of the load_all function
-#' e <- parenvs(load_all)
+#' e <- parenvs(parenvs)
 #' e
 #'
 #' # Get all parent environments, going all the way to empty env
-#' e <- parenvs(load_all, TRUE)
+#' e <- parenvs(parenvs, TRUE)
 #' e
 #'
 #' # Print e with paths

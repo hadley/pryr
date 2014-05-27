@@ -19,7 +19,8 @@
 #' @param ... named arguments to \code{f} that should be partially applied.
 #' @param .env the environment of the created function. Defaults to
 #'   \code{\link{parent.frame}} and you should rarely need to modify this.
-#' @param .force If \code{TRUE} eager
+#' @param .lazy If \code{TRUE} arguments evaluated lazily, if \code{FALSE},
+#'   evaluated when \code{partial} is called.
 #' @export
 #' @examples
 #' # Partial is designed to replace the use of anonymous functions for

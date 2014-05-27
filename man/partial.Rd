@@ -16,7 +16,8 @@ with f.}
 \item{.env}{the environment of the created function. Defaults to
 \code{\link{parent.frame}} and you should rarely need to modify this.}
 
-\item{.force}{If \code{TRUE} eager}
+\item{.lazy}{If \code{TRUE} arguments evaluated lazily, if \code{FALSE},
+evaluated when \code{partial} is called.}
 }
 \description{
 Partial function application allows you to modify a function by pre-filling

@@ -6,8 +6,8 @@
 #' @param f The name of a function.
 #' @export
 #' @examples
-#' funenv("plot")
-#' funenv("t.test")
+#' enclosing_env("plot")
+#' enclosing_env("t.test")
 enclosing_env <- function(f) {
   f <- match.fun(f)
   environment(f)

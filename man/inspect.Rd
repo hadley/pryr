@@ -19,6 +19,8 @@ typename(x)
 }
 \arguments{
 \item{x}{name of object to inspect. This can not be a value.}
+
+\item{env}{When inspecting environments, don't go past this one.}
 }
 \description{
 \code{typename} determines the internal C typename, \code{address}

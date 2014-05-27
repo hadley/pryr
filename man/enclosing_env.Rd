@@ -13,7 +13,7 @@ This is a wrapper around \code{\link{environment}} with a
 consistent syntax.
 }
 \examples{
-funenv("plot")
-funenv("t.test")
+enclosing_env("plot")
+enclosing_env("t.test")
 }
 
