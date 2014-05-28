@@ -15,7 +15,7 @@ Determine object type.
 Figure out which object system an object belongs to:
 
 \itemize{
-  \item primitive: no class attribute
+  \item base: no class attribute
   \item S3: class attribute, but not S4
   \item S4: \code{\link{isS4}}, but not RC
   \item RC: inherits from "refClass"
