@@ -241,6 +241,52 @@ BEGIN_RCPP
     return __sexp_result;
 END_RCPP
 }
+// makeExplicit
+RObject makeExplicit(SEXP prom);
+RcppExport SEXP pryr_makeExplicit(SEXP promSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< SEXP >::type prom(promSEXP );
+        RObject __result = makeExplicit(prom);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
+// explicitPromise
+RObject explicitPromise(Symbol name, Environment env);
+RcppExport SEXP pryr_explicitPromise(SEXP nameSEXP, SEXP envSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< Symbol >::type name(nameSEXP );
+        Rcpp::traits::input_parameter< Environment >::type env(envSEXP );
+        RObject __result = explicitPromise(name, env);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
+// explicitDots
+std::vector<RObject> explicitDots(Environment env);
+RcppExport SEXP pryr_explicitDots(SEXP envSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< Environment >::type env(envSEXP );
+        std::vector<RObject> __result = explicitDots(env);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
 // slice
 CharacterVector slice(CharacterVector x, int k, std::string sep = " ");
 RcppExport SEXP pryr_slice(SEXP xSEXP, SEXP kSEXP, SEXP sepSEXP) {

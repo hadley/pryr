@@ -63,6 +63,18 @@ promise_env <- function(name, env) {
     .Call('pryr_promise_env', PACKAGE = 'pryr', name, env)
 }
 
+makeExplicit <- function(prom) {
+    .Call('pryr_makeExplicit', PACKAGE = 'pryr', prom)
+}
+
+explicitPromise <- function(name, env) {
+    .Call('pryr_explicitPromise', PACKAGE = 'pryr', name, env)
+}
+
+explicitDots <- function(env) {
+    .Call('pryr_explicitDots', PACKAGE = 'pryr', env)
+}
+
 slice <- function(x, k, sep = " ") {
     .Call('pryr_slice', PACKAGE = 'pryr', x, k, sep)
 }
