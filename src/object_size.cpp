@@ -1,6 +1,8 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
+static const int ptr_size = sizeof(void*);
+
 // [[Rcpp::export]]
 double v_size(double n, int size) {
   if (n == 0) return 8;
@@ -40,11 +42,10 @@ double object_size_rec(SEXP x, Environment base_env, std::set<SEXP>& seen) {
   // If we've seen it before in this object, don't count it again
   if (!seen.insert(x).second) return 0;
 
-  // As of R 3.1.0, all SEXPRECs start with sxpinfo (4 bytes + 4 bytes padding
-  // automatically added by compiler), pointer  to attribute pairlist (8 bytes),
-  // then two pointers to manage doubly linked list of all objects in
-  // memory (2 * 8 bytes)
-  double size = 4 * 8;
+  // As of R 3.1.0, all SEXPRECs start with sxpinfo (4 bytes, but aligned),
+  // followed by three pointers: attribute pairlist, next object, prev object
+  // (i.e. doubly linked list of all objects in memory)
+  double size = 4 * ptr_size;
 
   switch (TYPEOF(x)) {
     // Simple vectors
@@ -68,7 +69,7 @@ double object_size_rec(SEXP x, Environment base_env, std::set<SEXP>& seen) {
 
     // Strings
     case STRSXP:
-      size += v_size(XLENGTH(x), 8);
+      size += v_size(XLENGTH(x), ptr_size);
       for (R_xlen_t i = 0; i < XLENGTH(x); i++) {
         size += object_size_rec(STRING_ELT(x, i), base_env, seen);
       }
