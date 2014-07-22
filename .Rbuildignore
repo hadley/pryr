@@ -2,3 +2,4 @@
 ^\.Rproj\.user$
 benchmark
 ^\.travis\.yml$
+^cran-comments\.md$
