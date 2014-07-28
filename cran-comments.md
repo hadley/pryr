@@ -1,3 +1,8 @@
-It passes R CMD check on windows, os x and linux (ubuntu):
+This version adds
 
-* This is a new submission.
+  Depends: R (>= 3.1.0)
+  
+and nothing else, as requested by Uwe.
+
+Thanks!
+Hadley
