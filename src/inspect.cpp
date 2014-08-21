@@ -4,14 +4,12 @@ using namespace Rcpp;
 bool is_namespace(Environment env);
 std::string sexp_type(SEXP x);
 
-//' @export
-//' @rdname inspect
-// [[Rcpp::export]]
 std::string address(SEXP x) {
   std::ostringstream s;
   s << x;
   return s.str();
 }
+
 
 List inspect_rec(SEXP x, Environment base_env, std::set<SEXP>& seen) {
   // If we've seen it before, return nothing

@@ -76,6 +76,13 @@ refs <- function(x) {
 
 #' @export
 #' @rdname inspect
+address <- function(x) {
+  address2(check_name(substitute(x)), parent.frame())
+}
+
+
+#' @export
+#' @rdname inspect
 typename <- function(x) {
   typename2(check_name(substitute(x)), parent.frame())
 }

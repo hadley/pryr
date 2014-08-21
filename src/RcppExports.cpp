@@ -50,21 +50,6 @@ BEGIN_RCPP
     return __sexp_result;
 END_RCPP
 }
-// address
-std::string address(SEXP x);
-RcppExport SEXP pryr_address(SEXP xSEXP) {
-BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type x(xSEXP );
-        std::string __result = address(x);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
-END_RCPP
-}
 // inspect_
 List inspect_(SEXP x, Environment base_env);
 RcppExport SEXP pryr_inspect_(SEXP xSEXP, SEXP base_envSEXP) {
