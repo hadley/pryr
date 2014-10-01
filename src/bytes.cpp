@@ -82,7 +82,7 @@ struct Representation {
 template <>
 void Representation<Bits, false>::repr(const char* ptr, size_t n, char* output) {
   int counter = n * 8 - 1;
-  for (int i=0; i < n; ++i) {
+  for (size_t i=0; i < n; ++i) {
     char curr = ptr[i];
     for (int j=0; j < 8; ++j) {
       output[counter--] = curr & 1 ? '1' : '0';
@@ -107,7 +107,7 @@ void Representation<Bits, true>::repr(const char* ptr, size_t n, char* output) {
 template<>
 void Representation<Hex, true>::repr(const char* ptr, size_t n, char* output) {
   int counter = 0;
-  for (int i = 0; i < n; ++i) {
+  for (size_t i = 0; i < n; ++i) {
     sprintf(output + counter * 2, "%02X", ptr[i] & 0xFF);
     ++counter;
   }
@@ -126,7 +126,6 @@ void Representation<Hex, false>::repr(const char* ptr, size_t n, char* output) {
 template <int RTYPE, typename Representation>
 CharacterVector representation(const Vector<RTYPE>& x, Representation fill_as) {
 
-  typedef typename traits::dataptr<RTYPE>::type storage_t;
   int n = x.size();
   CharacterVector output = no_init(n);
 
@@ -152,7 +151,6 @@ CharacterVector representation(const Vector<RTYPE>& x, Representation fill_as) {
 template <typename Representation>
 CharacterVector representation_str(const Vector<STRSXP>& x, Representation fill_as) {
 
-  typedef typename traits::dataptr<STRSXP>::type storage_t;
   int n = x.size();
   CharacterVector output = no_init(n);
   size_t chars_per_byte = Representation::chars_per_byte;
