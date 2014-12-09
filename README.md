@@ -11,7 +11,7 @@ The easiest way to install `pryr` is with devtools:
 
 ```R
 library(devtools)
-install_github("pryr")
+install_github("hadley/pryr")
 ```
 
 ## Tools
