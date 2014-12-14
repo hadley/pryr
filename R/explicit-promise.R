@@ -1,6 +1,6 @@
 #' Tools for making promises explicit
 #'
-#' An explicit promise is a forumula that has the expression on the RHS, and
+#' An explicit promise is a formula that has the expression on the RHS, and
 #' the environment stored in the environment.
 #'
 #' @param x expression to make explicit, or to evaluate.
