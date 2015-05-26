@@ -16,4 +16,6 @@ There was 1 NOTE:
 
 ## Downstream dependencies
 I have also run R CMD check on the three downstream dependencies of pryr 
-(https://github.com/wch/checkresults/blob/master/pryr/r-release)
+(https://github.com/wch/checkresults/blob/master/pryr/r-release). None of the
+problems appear related to pryr (which isn't surprising beacause this release
+just includes a couple of tiny bug fixes.)
