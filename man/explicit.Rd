@@ -17,34 +17,6 @@ eval2(x, data = NULL, env = parent.frame())
 \item{env}{Enclosing environment to use if data is a list or data frame.}
 }
 \description{
-An explicit promise is a forumula that has the expression on the RHS, and
-the environment stored in the environment.
-}
-\examples{
-# To do non-standard evaluation in a disciplined way, you first define
-# the function that uses standard evaluation.  Using eval2 allows the
-# input to be a formula or quoted call.
-subset_q <- function(data, cond, env = parent.frame()) {
-  r <- eval2(cond, data, env)
-  r <- r & !is.na(r)
-  data[r, , drop = FALSE]
-}
-subset_q(mtcars, quote(mpg > 31))
-subset_q(mtcars, ~ mpg > 31)
-
-# Because formulas capture the environment in which they are created
-# this works even when the formula is generated elsewhere
-f <- function(x) ~ mpg > x
-subset_q(mtcars, f(31))
-
-# Then the the non-standard evaluation version uses explicit to turn
-# the promise into a formula
-subset <- function(data, cond) {
-  cond <- explicit(cond)
-  subset_q(data, cond)
-}
-subset(mtcars, mpg > 31)
-g <- function(x) subset(mtcars, mpg > x)
-g(31)
+Deprecated: please use the lazyeval package instead.
 }
 
