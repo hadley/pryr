@@ -44,10 +44,16 @@ is_s3_method <- function(name, env = parent.frame()) {
   !is.null(find_generic(name, env))
 }
 
-stop_list <- tools:::.make_S3_methods_stop_list(NULL)
+stop_list <- function() {
+  if (getRversion() <= "3.2.0") {
+    tools:::.make_S3_methods_stop_list(NULL)
+  } else {
+    tools::nonS3methods()
+  }
+}
 
 find_generic <- function(name, env = parent.frame()) {
-  if (name %in% stop_list) return(NULL)
+  if (name %in% stop_list()) return(NULL)
 
   pieces <- strsplit(name, ".", fixed = TRUE)[[1]]
   n <- length(pieces)
