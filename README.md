@@ -1,18 +1,14 @@
 # pryr (rhymes with pry bar)
 
 [![Build Status](https://travis-ci.org/hadley/pryr.png?branch=master)](https://travis-ci.org/hadley/pryr)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/pryr)](http://cran.r-project.org/web/packages/pryr)
 
 `pryr` provides tools to pry back the surface of R and dig into the details. It
 has been developed in conjunction with
 "[Advanced R programming](https://github.com/hadley/devtools/wiki)" to make
 it easier to understand what's going on in R.
 
-The easiest way to install `pryr` is with devtools:
-
-```R
-library(devtools)
-install_github("hadley/pryr")
-```
+Install it from CRAN with `install.packages("pryr")`.
 
 ## Tools
 

@@ -6,13 +6,15 @@
 ## R CMD check results
 There were no ERRORs or WARNINGs. 
 
-There was 1 NOTE:
+There were 2 NOTEs:
 
 * checking dependencies in R code ... NOTE
   Missing or unexported object: ‘tools::nonS3methods’
 
-  This is a new function only availabe in R-devel. The package has
+  This is a new function only available in R-devel. The package has
   a fallback for older versions of R.
+
+* I've changed my maintainer email address to hadley@rstudio.com.
 
 ## Downstream dependencies
 I have also run R CMD check on the three downstream dependencies of pryr 
