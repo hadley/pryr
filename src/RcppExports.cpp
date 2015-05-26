@@ -9,314 +9,234 @@ using namespace Rcpp;
 CharacterVector binary_repr(SEXP x);
 RcppExport SEXP pryr_binary_repr(SEXP xSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type x(xSEXP );
-        CharacterVector __result = binary_repr(x);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    __result = Rcpp::wrap(binary_repr(x));
+    return __result;
 END_RCPP
 }
 // hex_repr
 CharacterVector hex_repr(SEXP x);
 RcppExport SEXP pryr_hex_repr(SEXP xSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type x(xSEXP );
-        CharacterVector __result = hex_repr(x);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    __result = Rcpp::wrap(hex_repr(x));
+    return __result;
 END_RCPP
 }
 // binary2hex
 CharacterVector binary2hex(CharacterVector x);
 RcppExport SEXP pryr_binary2hex(SEXP xSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< CharacterVector >::type x(xSEXP );
-        CharacterVector __result = binary2hex(x);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< CharacterVector >::type x(xSEXP);
+    __result = Rcpp::wrap(binary2hex(x));
+    return __result;
 END_RCPP
 }
 // inspect_
 List inspect_(SEXP x, Environment base_env);
 RcppExport SEXP pryr_inspect_(SEXP xSEXP, SEXP base_envSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type x(xSEXP );
-        Rcpp::traits::input_parameter< Environment >::type base_env(base_envSEXP );
-        List __result = inspect_(x, base_env);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< Environment >::type base_env(base_envSEXP);
+    __result = Rcpp::wrap(inspect_(x, base_env));
+    return __result;
 END_RCPP
 }
 // address2
 std::string address2(Symbol name, Environment env);
 RcppExport SEXP pryr_address2(SEXP nameSEXP, SEXP envSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< Symbol >::type name(nameSEXP );
-        Rcpp::traits::input_parameter< Environment >::type env(envSEXP );
-        std::string __result = address2(name, env);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< Symbol >::type name(nameSEXP);
+    Rcpp::traits::input_parameter< Environment >::type env(envSEXP);
+    __result = Rcpp::wrap(address2(name, env));
+    return __result;
 END_RCPP
 }
 // named2
 int named2(Symbol name, Environment env);
 RcppExport SEXP pryr_named2(SEXP nameSEXP, SEXP envSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< Symbol >::type name(nameSEXP );
-        Rcpp::traits::input_parameter< Environment >::type env(envSEXP );
-        int __result = named2(name, env);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< Symbol >::type name(nameSEXP);
+    Rcpp::traits::input_parameter< Environment >::type env(envSEXP);
+    __result = Rcpp::wrap(named2(name, env));
+    return __result;
 END_RCPP
 }
 // v_size
 double v_size(double n, int size);
 RcppExport SEXP pryr_v_size(SEXP nSEXP, SEXP sizeSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< double >::type n(nSEXP );
-        Rcpp::traits::input_parameter< int >::type size(sizeSEXP );
-        double __result = v_size(n, size);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< double >::type n(nSEXP);
+    Rcpp::traits::input_parameter< int >::type size(sizeSEXP);
+    __result = Rcpp::wrap(v_size(n, size));
+    return __result;
 END_RCPP
 }
 // object_sizes
 double object_sizes(List objects, Environment base_env);
 RcppExport SEXP pryr_object_sizes(SEXP objectsSEXP, SEXP base_envSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< List >::type objects(objectsSEXP );
-        Rcpp::traits::input_parameter< Environment >::type base_env(base_envSEXP );
-        double __result = object_sizes(objects, base_env);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< List >::type objects(objectsSEXP);
+    Rcpp::traits::input_parameter< Environment >::type base_env(base_envSEXP);
+    __result = Rcpp::wrap(object_sizes(objects, base_env));
+    return __result;
 END_RCPP
 }
 // object_size_
 double object_size_(SEXP x, Environment base_env);
 RcppExport SEXP pryr_object_size_(SEXP xSEXP, SEXP base_envSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type x(xSEXP );
-        Rcpp::traits::input_parameter< Environment >::type base_env(base_envSEXP );
-        double __result = object_size_(x, base_env);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< Environment >::type base_env(base_envSEXP);
+    __result = Rcpp::wrap(object_size_(x, base_env));
+    return __result;
 END_RCPP
 }
 // is_promise2
 bool is_promise2(Symbol name, Environment env);
 RcppExport SEXP pryr_is_promise2(SEXP nameSEXP, SEXP envSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< Symbol >::type name(nameSEXP );
-        Rcpp::traits::input_parameter< Environment >::type env(envSEXP );
-        bool __result = is_promise2(name, env);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< Symbol >::type name(nameSEXP);
+    Rcpp::traits::input_parameter< Environment >::type env(envSEXP);
+    __result = Rcpp::wrap(is_promise2(name, env));
+    return __result;
 END_RCPP
 }
 // promise_code
 SEXP promise_code(Symbol name, Environment env);
 RcppExport SEXP pryr_promise_code(SEXP nameSEXP, SEXP envSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< Symbol >::type name(nameSEXP );
-        Rcpp::traits::input_parameter< Environment >::type env(envSEXP );
-        SEXP __result = promise_code(name, env);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< Symbol >::type name(nameSEXP);
+    Rcpp::traits::input_parameter< Environment >::type env(envSEXP);
+    __result = Rcpp::wrap(promise_code(name, env));
+    return __result;
 END_RCPP
 }
 // promise_value
 SEXP promise_value(Symbol name, Environment env);
 RcppExport SEXP pryr_promise_value(SEXP nameSEXP, SEXP envSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< Symbol >::type name(nameSEXP );
-        Rcpp::traits::input_parameter< Environment >::type env(envSEXP );
-        SEXP __result = promise_value(name, env);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< Symbol >::type name(nameSEXP);
+    Rcpp::traits::input_parameter< Environment >::type env(envSEXP);
+    __result = Rcpp::wrap(promise_value(name, env));
+    return __result;
 END_RCPP
 }
 // promise_evaled
 bool promise_evaled(Symbol name, Environment env);
 RcppExport SEXP pryr_promise_evaled(SEXP nameSEXP, SEXP envSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< Symbol >::type name(nameSEXP );
-        Rcpp::traits::input_parameter< Environment >::type env(envSEXP );
-        bool __result = promise_evaled(name, env);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< Symbol >::type name(nameSEXP);
+    Rcpp::traits::input_parameter< Environment >::type env(envSEXP);
+    __result = Rcpp::wrap(promise_evaled(name, env));
+    return __result;
 END_RCPP
 }
 // promise_env
 SEXP promise_env(Symbol name, Environment env);
 RcppExport SEXP pryr_promise_env(SEXP nameSEXP, SEXP envSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< Symbol >::type name(nameSEXP );
-        Rcpp::traits::input_parameter< Environment >::type env(envSEXP );
-        SEXP __result = promise_env(name, env);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< Symbol >::type name(nameSEXP);
+    Rcpp::traits::input_parameter< Environment >::type env(envSEXP);
+    __result = Rcpp::wrap(promise_env(name, env));
+    return __result;
 END_RCPP
 }
 // makeExplicit
 RObject makeExplicit(SEXP prom);
 RcppExport SEXP pryr_makeExplicit(SEXP promSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type prom(promSEXP );
-        RObject __result = makeExplicit(prom);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type prom(promSEXP);
+    __result = Rcpp::wrap(makeExplicit(prom));
+    return __result;
 END_RCPP
 }
 // explicitPromise
 RObject explicitPromise(Symbol name, Environment env);
 RcppExport SEXP pryr_explicitPromise(SEXP nameSEXP, SEXP envSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< Symbol >::type name(nameSEXP );
-        Rcpp::traits::input_parameter< Environment >::type env(envSEXP );
-        RObject __result = explicitPromise(name, env);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< Symbol >::type name(nameSEXP);
+    Rcpp::traits::input_parameter< Environment >::type env(envSEXP);
+    __result = Rcpp::wrap(explicitPromise(name, env));
+    return __result;
 END_RCPP
 }
 // explicitDots
 std::vector<RObject> explicitDots(Environment env);
 RcppExport SEXP pryr_explicitDots(SEXP envSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< Environment >::type env(envSEXP );
-        std::vector<RObject> __result = explicitDots(env);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< Environment >::type env(envSEXP);
+    __result = Rcpp::wrap(explicitDots(env));
+    return __result;
 END_RCPP
 }
 // slice
-CharacterVector slice(CharacterVector x, int k, std::string sep = " ");
+CharacterVector slice(CharacterVector x, int k, std::string sep);
 RcppExport SEXP pryr_slice(SEXP xSEXP, SEXP kSEXP, SEXP sepSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< CharacterVector >::type x(xSEXP );
-        Rcpp::traits::input_parameter< int >::type k(kSEXP );
-        Rcpp::traits::input_parameter< std::string >::type sep(sepSEXP );
-        CharacterVector __result = slice(x, k, sep);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< CharacterVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< int >::type k(kSEXP);
+    Rcpp::traits::input_parameter< std::string >::type sep(sepSEXP);
+    __result = Rcpp::wrap(slice(x, k, sep));
+    return __result;
 END_RCPP
 }
 // sexp_type
 std::string sexp_type(SEXP x);
 RcppExport SEXP pryr_sexp_type(SEXP xSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type x(xSEXP );
-        std::string __result = sexp_type(x);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    __result = Rcpp::wrap(sexp_type(x));
+    return __result;
 END_RCPP
 }
 // typename2
 std::string typename2(Symbol name, Environment env);
 RcppExport SEXP pryr_typename2(SEXP nameSEXP, SEXP envSEXP) {
 BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< Symbol >::type name(nameSEXP );
-        Rcpp::traits::input_parameter< Environment >::type env(envSEXP );
-        std::string __result = typename2(name, env);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< Symbol >::type name(nameSEXP);
+    Rcpp::traits::input_parameter< Environment >::type env(envSEXP);
+    __result = Rcpp::wrap(typename2(name, env));
+    return __result;
 END_RCPP
 }
