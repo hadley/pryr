@@ -1,8 +1,19 @@
-This version adds
+## Test environments
+* local OS X install, R 3.2.0
+* ubuntu 12.04 (on travis-ci), R 3.2.0
+* win-builder (devel and release)
 
-  Depends: R (>= 3.1.0)
-  
-and nothing else, as requested by Uwe.
+## R CMD check results
+There were no ERRORs or WARNINGs. 
 
-Thanks!
-Hadley
+There was 1 NOTE:
+
+* checking dependencies in R code ... NOTE
+  Missing or unexported object: ‘tools::nonS3methods’
+
+  This is a new function only availabe in R-devel. The package has
+  a fallback for older versions of R.
+
+## Downstream dependencies
+I have also run R CMD check on the three downstream dependencies of pryr 
+(https://github.com/wch/checkresults/blob/master/pryr/r-release)
