@@ -29,7 +29,7 @@
 
   # Mimic regular assignment operation which overrides existing bindings
   if (exists(deparse(x), envir = env, inherits = FALSE)) {
-    rm(x, envir = env)
+    rm(list = deparse(x), envir = env)
   }
 
   makeActiveBinding(deparse(x), f, env)
