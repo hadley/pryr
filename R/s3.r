@@ -45,7 +45,7 @@ is_s3_method <- function(name, env = parent.frame()) {
 }
 
 stop_list <- function() {
-  if (getRversion() <= "3.2.0") {
+  if (getRversion() < "3.3.0") {
     getNamespace("tools")[[".make_S3_methods_stop_list"]](NULL)
   } else {
     tools::nonS3methods(NULL)

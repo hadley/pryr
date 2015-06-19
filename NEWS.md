@@ -1,5 +1,7 @@
 # pryr 0.1.1.9000
 
+* Fixed think-o in `stop_list()`
+
 * Fixed a warning in `%<a-%` when reassigning an active binding (#39).
 
 # pryr 0.1.1
