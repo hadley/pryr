@@ -1,3 +1,8 @@
+## Release summary
+
+* This fixes my dumb error of using <= 3.2.0 instead of > 3.3.0 
+* It includes a couple of other small bug fixes/improvements.
+
 ## Test environments
 * local OS X install, R 3.2.0
 * ubuntu 12.04 (on travis-ci), R 3.2.0
@@ -13,8 +18,6 @@ There were 2 NOTEs:
 
   This is a new function only available in R-devel. The package has
   a fallback for older versions of R.
-
-* I've changed my maintainer email address to hadley@rstudio.com.
 
 ## Downstream dependencies
 I have also run R CMD check on the three downstream dependencies of pryr 
