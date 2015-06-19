@@ -30,5 +30,7 @@ a[3] <- 3L
 track_a()
 a[3] <- 3
 track_a()
+rm(a)
+track_a()
 }
 

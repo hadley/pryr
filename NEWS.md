@@ -1,8 +1,10 @@
 # pryr 0.1.1.9000
 
-* Added `is_active_binding()` (@richfitz, #33)
+* `track_copy()` no longer reports deletes as copies (#34).
 
-* Fixed think-o in `stop_list()`
+* Added `is_active_binding()` (@richfitz, #33).
+
+* Fixed think-o in `stop_list()`.
 
 * Fixed a warning in `%<a-%` when reassigning an active binding (@leeper, #39).
 

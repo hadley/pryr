@@ -114,13 +114,18 @@ check_name <- function(x) {
 #' track_a()
 #' a[3] <- 3
 #' track_a()
+#' rm(a)
+#' track_a()
 track_copy <- function(var, env = parent.frame(), quiet = FALSE) {
   var <- substitute(var)
   force(env)
 
-  old <- address2(var, parent.frame())
+  old <- address2(var, env)
   function() {
-    new <- address2(var, parent.frame())
+    if (!exists(as.character(var), envir = env, inherits = FALSE))
+      return(invisible(FALSE))
+
+    new <- address2(var, env)
     if (old == new) return(invisible(FALSE))
 
     if (!quiet) message(var, " copied")
