@@ -45,8 +45,8 @@ ftype <- function(f) {
 # Hacky method to get name of primitive function
 primitive_name <- function(f) {
   stopifnot(is.primitive(f))
-  
-  str <- capture.output(print(f))
+
+  str <- deparse(f)
   match <- regexec(".Primitive\\([\"](.*?)[\"]\\)", str)
   regmatches(str, match)[[1]][2]
 }

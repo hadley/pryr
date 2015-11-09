@@ -21,3 +21,11 @@ test_that("RC methods return as expected", {
 
   expect_equal(ftype(b$f), c("rc", "method"))
 })
+
+test_that("primitive_name return as expected", {
+
+  expect_equal(primitive_name(`@`), "@")
+
+  at <- `@`
+  expect_equal(primitive_name(at), "@")
+})
