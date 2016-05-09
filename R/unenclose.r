@@ -20,5 +20,19 @@ unenclose <- function(f) {
   stopifnot(is.function(f))
 
   env <- environment(f)
-  make_function(formals(f), substitute_q(body(f), env), parent.env(env))
+  body <- modify_lang(body(f), unenclose_a_to_b(env))
+  make_function(formals(f), body, parent.env(env))
+}
+
+
+unenclose_a_to_b <- function(env, ls_env = ls(envir = env)) {
+  function(x) {
+    if (is.name(x)) {
+      dep_x <- deparse(x)
+      if (dep_x %in% ls_env) {
+        return(get(dep_x, envir = env))
+      }
+    }
+    x
+  }
 }
