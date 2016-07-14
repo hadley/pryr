@@ -50,12 +50,12 @@ show_bytes <- function(x) {
 
 #' @export
 print.bytes <- function(x, digits = 3, ...) {
-  power <- min(floor(log(abs(x), 1000)), 4)
+  power <- min(floor(log(abs(x), 1024)), 4)
   if (power < 1) {
     unit <- "B"
   } else {
     unit <- c("kB", "MB", "GB", "TB")[[power]]
-    x <- x / (1000 ^ power)
+    x <- x / (1024 ^ power)
   }
 
   formatted <- format(signif(x, digits = digits), big.mark = ",",
