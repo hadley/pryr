@@ -49,7 +49,7 @@ show_bytes <- function(x) {
 }
 
 #' @export
-print.bytes <- function(x, digits = 3, ...) {
+as.character.bytes <- function(x, digits = 3, ...){
   power <- min(floor(log(abs(x), 1000)), 4)
   if (power < 1) {
     unit <- "B"
@@ -61,5 +61,10 @@ print.bytes <- function(x, digits = 3, ...) {
   formatted <- format(signif(x, digits = digits), big.mark = ",",
     scientific = FALSE)
 
-  cat(formatted, " ", unit, "\n", sep = "")
+  paste0(formatted, " ", unit)
+}
+
+#' @export
+print.bytes <- function(x, digits = 3, ...) {
+  cat( as.character(x, digits, ...), "\n", sep = "")
 }
