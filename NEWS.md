@@ -1,4 +1,5 @@
-# pryr 0.1.2.9000
+
+# pryr 0.1.3
 
 * `track_copy()` no longer reports deletes as copies (#34).
 
