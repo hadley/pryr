@@ -28,7 +28,7 @@ test_that("size of list computed recursively", {
   expect_same(list(list(list(list(list())))))
 })
 
-test_that("size of names same as base", {
+test_that("size of symbols same as base", {
   expect_same(quote(x))
   expect_same(quote(asfsadfasdfasdfds))
 })
@@ -57,6 +57,13 @@ test_that("shared components only counted once", {
   z <- list(x, x, x)
 
   expect_equal(object_size(z), object_size(x) + object_size(vector("list", 3)))
+})
+
+test_that("size of closures same as base", {
+  f <- function() NULL
+  attributes(f) <- NULL # zap srcrefs
+  environment(f) <- emptyenv()
+  expect_same(f)
 })
 
 # Environment sizes -----------------------------------------------------------
