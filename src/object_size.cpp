@@ -102,6 +102,7 @@ double object_size_rec(SEXP x, Environment base_env, std::set<SEXP>& seen) {
       break;
 
     // Linked lists
+    case DOTSXP:
     case LISTSXP:
     case LANGSXP:
     case BCODESXP:

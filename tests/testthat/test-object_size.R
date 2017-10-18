@@ -111,3 +111,9 @@ test_that("size doesn't include parents of current environment", {
   expect_true(embedded < object_size(x))
 
 })
+
+test_that("support dots in closure environments", {
+  fn <- (function(...) function() NULL)(foo)
+  expect_error(object_size(fn), NA)
+})
+

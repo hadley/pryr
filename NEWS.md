@@ -8,6 +8,9 @@
 
 * Fixed a warning in `%<a-%` when reassigning an active binding (@leeper, #39).
 
+* `object_size()` now supports dots in closure environments.
+
+
 # pryr 0.1.1
 
 * `address()` no longer changes `NAMED()` status of x (#24).
