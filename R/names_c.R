@@ -33,10 +33,10 @@ show_c_source  <- function(fun) {
 
   query <- sprintf("SEXP attribute_hidden %s+repo:wch/r-source&type=Code",
     found$cfun)
-  url <- paste0("https://github.com/search?q=", URLencode(query))
+  url <- paste0("https://github.com/search?q=", utils::URLencode(query))
 
   if (interactive()) {
-    browseURL(url)
+    utils::browseURL(url)
   } else {
     message("Please visit ", url)
   }
@@ -83,7 +83,7 @@ names_c <- function() {
   fun_table <- gsub(",$", "", fun_table)
   fun_table <- gsub("/[*].*[*]/", "", fun_table)
 
-  table <- read.csv(text = fun_table, strip = TRUE, header = FALSE,
+  table <- utils::read.csv(text = fun_table, strip = TRUE, header = FALSE,
     stringsAsFactors = FALSE)
   names(table) <- c("name", "cfun", "offset", "eval", "arity", "pp_kind",
     "precedence", "rightassoc")

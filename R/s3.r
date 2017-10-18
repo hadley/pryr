@@ -73,6 +73,7 @@ is_internal_generic <- function(x) {
   x %in% internal_generics()
 }
 
+#' @importFrom methods getGroupMembers
 internal_generics <- function() {
   # Functions in S4 group generics should be the same
   group <- c(getGroupMembers("Arith"), getGroupMembers("Compare"),
