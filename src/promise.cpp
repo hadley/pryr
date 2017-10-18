@@ -43,7 +43,10 @@ RObject makeExplicit(SEXP prom) {
     prom = code;
   }
 
-  RObject formula = Rf_lcons(Rf_install("~"), Rf_lcons(PRCODE(prom), R_NilValue));
+  SEXP args = PROTECT(Rf_lcons(PRCODE(prom), R_NilValue));
+  RObject formula = Rf_lcons(Rf_install("~"), args);
+  UNPROTECT(1);
+
   formula.attr(".Environment") = PRENV(prom);
   formula.attr("class") = "formula";
 
