@@ -1,12 +1,5 @@
 context("Object_size")
 
-expect_same <- function(x) {
-  base <- as.vector(object.size(x))
-  pryr <- as.vector(object_size(x))
-
-  expect_equal(base, pryr)
-}
-
 # Compatibility with base ---------------------------------------------------
 
 test_that("size scales correctly with length (accounting for vector pool)", {
