@@ -1,7 +1,7 @@
 # pryr (rhymes with pry bar)
 
 [![Build Status](https://travis-ci.org/hadley/pryr.png?branch=master)](https://travis-ci.org/hadley/pryr)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/pryr)](http://cran.r-project.org/web/packages/pryr)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/pryr)](http://cran.r-project.org/package=pryr)
 [![Coverage Status](https://img.shields.io/codecov/c/github/hadley/pryr/master.svg)](https://codecov.io/github/hadley/pryr?branch=master)
 
 `pryr` provides tools to pry back the surface of R and dig into the details. It
