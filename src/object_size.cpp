@@ -1,17 +1,16 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
+extern "C" const int sexprec_size;
+extern "C" const int vector_sexprec_aligned_size;
 static const int ptr_size = sizeof(void*);
 
 // [[Rcpp::export]]
 double v_size(double n, int size) {
-  if (n == 0) return 8;
+  if (n == 0) return 0;
 
-  double vec_size = std::max(sizeof(SEXP), sizeof(double));
-  double elements_per_byte = vec_size / size;
-  double n_bytes = ceil(n / elements_per_byte);
-  // Rcout << n << " elements, each of " << elements_per_byte << " = " <<
-  //  n_bytes << "\n";
+  size_t vec_size = std::max(sizeof(SEXP), sizeof(double));
+  size_t n_bytes = ((n * size - 1) / vec_size) + 1;
 
   double bytes = 0;
   // Big vectors always allocated in 8 byte chunks
@@ -24,12 +23,27 @@ double v_size(double n, int size) {
   else if (n_bytes > 1)  bytes = 16;
   else if (n_bytes > 0)  bytes = 8;
 
-  return bytes +
-    vec_size; // SEXPREC_ALIGN padding
+  return bytes;
 }
 
 bool is_namespace(Environment env) {
   return Rf_findVarInFrame3(env, Rf_install(".__NAMESPACE__."), FALSE) != R_UnboundValue;
+}
+
+bool is_vector(SEXP x) {
+  switch(TYPEOF(x)) {
+  case LGLSXP:
+  case INTSXP:
+  case REALSXP:
+  case CPLXSXP:
+  case STRSXP:
+  case RAWSXP:
+  case VECSXP:
+  case CHARSXP:
+    return true;
+  default:
+    return false;
+  }
 }
 
 double object_size_rec(SEXP x, Environment base_env, std::set<SEXP>& seen) {
@@ -42,10 +56,7 @@ double object_size_rec(SEXP x, Environment base_env, std::set<SEXP>& seen) {
   // If we've seen it before in this object, don't count it again
   if (!seen.insert(x).second) return 0;
 
-  // As of R 3.1.0, all SEXPRECs start with sxpinfo (4 bytes, but aligned),
-  // followed by three pointers: attribute pairlist, next object, prev object
-  // (i.e. doubly linked list of all objects in memory)
-  double size = 4 * ptr_size;
+  double size = is_vector(x) ? vector_sexprec_aligned_size : sexprec_size;
 
   switch (TYPEOF(x)) {
     // Simple vectors
@@ -91,10 +102,10 @@ double object_size_rec(SEXP x, Environment base_env, std::set<SEXP>& seen) {
       break;
 
     // Linked lists
+    case DOTSXP:
     case LISTSXP:
     case LANGSXP:
     case BCODESXP:
-      size += 3 * sizeof(SEXP); // tag, car, cdr
       size += object_size_rec(TAG(x), base_env, seen); // name of first element
       size += object_size_rec(CAR(x), base_env, seen); // first element
       size += object_size_rec(CDR(x), base_env, seen); // pairlist (subsequent elements) or NILSXP
@@ -106,7 +117,6 @@ double object_size_rec(SEXP x, Environment base_env, std::set<SEXP>& seen) {
       if (x == R_BaseEnv || x == R_GlobalEnv || x == R_EmptyEnv ||
           x == base_env || is_namespace(x)) return 0;
 
-      size += 3 * sizeof(SEXP); // frame, enclos, hashtab
       size += object_size_rec(FRAME(x), base_env, seen);
       size += object_size_rec(ENCLOS(x), base_env, seen);
       size += object_size_rec(HASHTAB(x), base_env, seen);
@@ -115,7 +125,6 @@ double object_size_rec(SEXP x, Environment base_env, std::set<SEXP>& seen) {
 
     // Functions
     case CLOSXP:
-      size += 3 * sizeof(SEXP); // formals, body, env
       size += object_size_rec(FORMALS(x), base_env, seen);
       size += object_size_rec(BODY(x), base_env, seen);
       size += object_size_rec(CLOENV(x), base_env, seen);
@@ -123,7 +132,6 @@ double object_size_rec(SEXP x, Environment base_env, std::set<SEXP>& seen) {
       break;
 
     case PROMSXP:
-      size += 3 * sizeof(SEXP); // value, expr, env
       size += object_size_rec(PRVALUE(x), base_env, seen);
       size += object_size_rec(PRCODE(x), base_env, seen);
       size += object_size_rec(PRENV(x), base_env, seen);
@@ -141,7 +149,6 @@ double object_size_rec(SEXP x, Environment base_env, std::set<SEXP>& seen) {
       break;
 
     case SYMSXP:
-      size += 3 * sizeof(SEXP); // pname, value, internal
       break;
 
     default:

@@ -57,7 +57,7 @@ is_internal <- function(f) {
   any(calls %in% ".Internal")
 }
 
-# fs <- setNames(lapply(ls("package:base"), get), ls("package:base"))
+# fs <- stats::setNames(lapply(ls("package:base"), get), ls("package:base"))
 # internal <- Filter(is_internal, fs)
 # icall <- sapply(internal, internal_name)
 # icall[names(icall) != icall]

@@ -21,7 +21,7 @@ f <- function(..., .env = parent.frame()) {
     fun <- make_function(alist(... = ), dots[[1]], .env)
 
     names <- findGlobals(fun, merge = FALSE)$variables
-    args <- setNames(rep(list(substitute()), length(names)), names)
+    args <- stats::setNames(rep(list(substitute()), length(names)), names)
     formals(fun) <- args
 
     fun

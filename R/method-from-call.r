@@ -18,7 +18,7 @@ method_from_call <- function(call, env = parent.frame()) {
   call <- standardise_call(substitute(call), env)
   
   generic <- as.character(call[[1]])
-  g_args <- setdiff(names(formals(getGeneric(generic))), "...")
+  g_args <- setdiff(names(formals(methods::getGeneric(generic))), "...")
   
   args_uneval <- as.list(call[intersect(g_args, names(call))])
   args <- lapply(args_uneval, eval, env = env)
@@ -30,5 +30,5 @@ method_from_call <- function(call, env = parent.frame()) {
     classes[missing] <- rep("missing", length(missing))  
   }
   
-  selectMethod(generic, classes)  
+  methods::selectMethod(generic, classes)  
 }

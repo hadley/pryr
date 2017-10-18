@@ -1,12 +1,5 @@
 context("Object_size")
 
-expect_same <- function(x) {
-  base <- as.vector(object.size(x))
-  pryr <- as.vector(object_size(x))
-
-  expect_equal(base, pryr)
-}
-
 # Compatibility with base ---------------------------------------------------
 
 test_that("size scales correctly with length (accounting for vector pool)", {
@@ -35,7 +28,7 @@ test_that("size of list computed recursively", {
   expect_same(list(list(list(list(list())))))
 })
 
-test_that("size of names same as base", {
+test_that("size of symbols same as base", {
   expect_same(quote(x))
   expect_same(quote(asfsadfasdfasdfds))
 })
@@ -64,6 +57,13 @@ test_that("shared components only counted once", {
   z <- list(x, x, x)
 
   expect_equal(object_size(z), object_size(x) + object_size(vector("list", 3)))
+})
+
+test_that("size of closures same as base", {
+  f <- function() NULL
+  attributes(f) <- NULL # zap srcrefs
+  environment(f) <- emptyenv()
+  expect_same(f)
 })
 
 # Environment sizes -----------------------------------------------------------
@@ -111,3 +111,9 @@ test_that("size doesn't include parents of current environment", {
   expect_true(embedded < object_size(x))
 
 })
+
+test_that("support dots in closure environments", {
+  fn <- (function(...) function() NULL)(foo)
+  expect_error(object_size(fn), NA)
+})
+

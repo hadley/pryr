@@ -53,5 +53,5 @@ object_size <- function(..., env = parent.frame()) {
 #' @export
 #' @rdname object_size
 compare_size <- function(x) {
-  c(base = object.size(x), pryr = object_size(x))
+  c(base = utils::object.size(x), pryr = object_size(x))
 }

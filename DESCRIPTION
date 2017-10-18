@@ -1,5 +1,5 @@
 Package: pryr
-Version: 0.1.2.9000
+Version: 0.1.3
 Title: Tools for Computing on the Language
 Description: Useful tools to pry back the covers of R and understand the
     language at a deeper level.
@@ -21,3 +21,4 @@ Imports:
     Rcpp (>= 0.11.0)
 Suggests:
     testthat (>= 0.8.0)
+RoxygenNote: 6.0.1
