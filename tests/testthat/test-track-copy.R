@@ -19,7 +19,7 @@ test_that("modifying type triggers copy", {
 })
 
 test_that("modifying element in vector does not trigger copy", {
-  a <- 1:5
+  a <- c(1L, 2L, 5L, 4L, 3L)
   tracker <- track_copy(a, quiet = TRUE)
 
   expect_false(tracker())

@@ -1,13 +1,12 @@
+# pryr 0.1.4
 
-# pryr 0.1.3.9000
-
+* Compatibility with R devel.
 
 # pryr 0.1.3
 
 * Compatibility with R devel.
 
 * `object_size()` now supports dots in closure environments.
-
 
 # pryr 0.1.2
 
