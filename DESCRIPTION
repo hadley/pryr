@@ -1,5 +1,5 @@
 Package: pryr
-Version: 0.1.4
+Version: 0.1.4.9000
 Title: Tools for Computing on the Language
 Description: Useful tools to pry back the covers of R and understand the
     language at a deeper level.
