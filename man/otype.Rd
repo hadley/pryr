@@ -27,6 +27,8 @@ otype(data.frame())
 otype(1:10)
 }
 \seealso{
-Other object inspection: \code{\link{ftype}},
-  \code{\link{sexp_type}}
+Other object inspection: 
+\code{\link{ftype}()},
+\code{\link{sexp_type}()}
 }
+\concept{object inspection}

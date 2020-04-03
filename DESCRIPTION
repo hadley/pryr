@@ -21,4 +21,4 @@ Imports:
     Rcpp (>= 0.11.0)
 Suggests:
     testthat (>= 0.8.0)
-RoxygenNote: 6.0.1
+RoxygenNote: 7.1.0

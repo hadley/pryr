@@ -22,7 +22,7 @@ Print the byte-wise representation of a value
 ## Encoding doesn't change the internal bytes used to represent characters;
 ## it just changes how they are interpretted!
 
-x <- y <- z <- "\\u9b3c"
+x <- y <- z <- "\u9b3c"
 Encoding(y) <- "bytes"
 Encoding(z) <- "latin1"
 print(x); print(y); print(z)

@@ -28,5 +28,7 @@ x
 uneval(x)
 }
 \seealso{
-Other promise tools: \code{\link{is_promise}}
+Other promise tools: 
+\code{\link{is_promise}()}
 }
+\concept{promise tools}

@@ -3,7 +3,6 @@
 \name{sexp_type}
 \alias{sexp_type}
 \alias{inspect}
-\alias{inspect}
 \alias{refs}
 \alias{address}
 \alias{typename}
@@ -61,6 +60,8 @@ x[1] <- 3L
 address(x)
 }
 \seealso{
-Other object inspection: \code{\link{ftype}},
-  \code{\link{otype}}
+Other object inspection: 
+\code{\link{ftype}()},
+\code{\link{otype}()}
 }
+\concept{object inspection}

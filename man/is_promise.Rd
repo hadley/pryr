@@ -21,5 +21,7 @@ is_promise(x)
 (function(x) is_promise(x))(x = 10)
 }
 \seealso{
-Other promise tools: \code{\link{uneval}}
+Other promise tools: 
+\code{\link{uneval}()}
 }
+\concept{promise tools}

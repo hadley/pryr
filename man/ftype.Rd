@@ -28,6 +28,8 @@ ftype(writeLines)
 ftype(unlist)
 }
 \seealso{
-Other object inspection: \code{\link{otype}},
-  \code{\link{sexp_type}}
+Other object inspection: 
+\code{\link{otype}()},
+\code{\link{sexp_type}()}
 }
+\concept{object inspection}
