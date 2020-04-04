@@ -68,7 +68,7 @@ std::vector<RObject> explicitDots(Environment env) {
 
   dots = env.find("...");
 
-  SEXP el;
+  SEXP el = R_NilValue;
   for(SEXP nxt = dots; nxt != R_NilValue; el = CAR(nxt), nxt = CDR(nxt)) {
     out.push_back(makeExplicit(el));
 
