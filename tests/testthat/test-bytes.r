@@ -62,3 +62,8 @@ test_that("we read character strings in the right order", {
 
 
 })
+
+test_that("bytes and bits of symbols", {
+  expect_equal(bits(as.name("foo")), bits("foo"))
+  expect_equal(bytes(as.name("foo")), bytes("foo"))
+})

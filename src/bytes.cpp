@@ -147,24 +147,42 @@ CharacterVector representation(const Vector<RTYPE>& x, Representation fill_as) {
   return output;
 }
 
+template <typename Representation>
+SEXP representation_str_impl(const char* str, Representation fill_as) {
+  size_t num_bytes = strlen(str);
+  size_t num_chars = Representation::chars_per_byte * num_bytes;
+  char* buff = new char[num_chars + 1];
+
+  buff[num_chars] = '\0';
+  fill_as(str, num_bytes, buff);
+  SEXP out = Rf_mkChar(buff);
+
+  delete[] buff;
+  return out;
+}
+
 // STRSXP
 template <typename Representation>
 CharacterVector representation_str(const Vector<STRSXP>& x, Representation fill_as) {
 
   int n = x.size();
   CharacterVector output = no_init(n);
-  size_t chars_per_byte = Representation::chars_per_byte;
 
-  for (int i=0; i < n; ++i) {
-    const char* ptr = reinterpret_cast<const char*>(get_pointer(x, i));
-    size_t num_bytes = get_length_in_bytes(x, i);
-    size_t num_chars = chars_per_byte * num_bytes;
-    char* buff = new char[num_chars + 1];
-    buff[num_chars] = '\0';
-    fill_as(ptr, num_bytes, buff);
-    SET_STRING_ELT(output, i, Rf_mkChar(buff));
-    delete[] buff;
+  for (int i = 0; i < n; ++i) {
+    const char* str = reinterpret_cast<const char*>(get_pointer(x, i));
+    SEXP bytes = representation_str_impl(str, fill_as);
+    SET_STRING_ELT(output, i, bytes);
   }
+
+  return output;
+}
+
+template <typename Representation>
+CharacterVector representation_charsxp(SEXP x, Representation fill_as) {
+  CharacterVector output = no_init(1);
+
+  SEXP bytes = representation_str_impl(CHAR(x), fill_as);
+  SET_STRING_ELT(output, 0, bytes);
 
   return output;
 }
@@ -180,6 +198,8 @@ CharacterVector binary_repr(SEXP x) {
   case REALSXP: return representation<REALSXP>(x, Representation<Bits, IS_BIG_ENDIAN>());
   case LGLSXP: return representation<LGLSXP>(x, Representation<Bits, IS_BIG_ENDIAN>());
   case STRSXP: return representation_str(x, Representation<Bits, true>());
+  case SYMSXP: x = PRINTNAME(x); // fallthrough
+  case CHARSXP: return representation_charsxp(x, Representation<Bits, true>());
   default: {
     std::stringstream ss;
     ss << "can't print binary representation for objects of type '" <<
@@ -197,6 +217,8 @@ CharacterVector hex_repr(SEXP x) {
   case REALSXP: return representation<REALSXP>(x, Representation<Hex, IS_BIG_ENDIAN>());
   case LGLSXP: return representation<LGLSXP>(x, Representation<Hex, IS_BIG_ENDIAN>());
   case STRSXP: return representation_str(x, Representation<Hex, true>());
+  case SYMSXP: x = PRINTNAME(x); // fallthrough
+  case CHARSXP: return representation_charsxp(x, Representation<Hex, true>());
   default: {
     std::stringstream ss;
     ss << "can't print binary representation for objects of type '" <<
