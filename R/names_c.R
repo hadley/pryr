@@ -74,7 +74,7 @@ show_c_source  <- function(fun) {
 #' @export
 names_c <- function() {
   if (exists("names_c", envir = cache)) return(cache$names_c)
-  lines <- readLines("http://svn.r-project.org/R/trunk/src/main/names.c")
+  lines <- readLines("https://svn.r-project.org/R/trunk/src/main/names.c")
 
   # Find lines starting with {"
   fun_table <- lines[grepl("^[{][\"]", lines)]
