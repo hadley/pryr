@@ -45,11 +45,11 @@ mem_change <- function(code) {
 }
 
 show_bytes <- function(x) {
-  structure(x, class = "bytes")
+  structure(x, class = "pryr_bytes")
 }
 
 #' @export
-print.bytes <- function(x, digits = 3, ...) {
+print.pryr_bytes <- function(x, digits = 3, ...) {
   power <- min(floor(log(abs(x), 1000)), 4)
   if (power < 1) {
     unit <- "B"
