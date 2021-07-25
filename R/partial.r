@@ -7,7 +7,7 @@
 #' @section Design choices:
 #'
 #' There are many ways to implement partial function application in R.
-#' (see e.g. \code{dots} in \url{https://github.com/crowding/ptools} for another
+#' (see e.g. \code{dots} in \url{https://github.com/crowding/vadr} for another
 #' approach.)  This implementation is based on creating functions that are as
 #' similar as possible to the anonymous function that'd you'd create by hand,
 #' if you weren't using \code{partial}.

@@ -27,13 +27,13 @@
 #' rbind( bytes(NA_real_), bytes(NA_real_ + 1) )
 #' rbind( bytes(NaN), bytes(0/0) )
 #' @references
-#' \url{http://en.wikipedia.org/wiki/Two's_complement} for more
+#' \url{https://en.wikipedia.org/wiki/Two's_complement} for more
 #' information on the representation used for \code{int}s.
 #'
-#' \url{http://en.wikipedia.org/wiki/IEEE_floating_point} for more
+#' \url{https://en.wikipedia.org/wiki/IEEE_floating_point} for more
 #' information the floating-point representation used for \code{double}s.
 #'
-#' \url{http://en.wikipedia.org/wiki/Character_encoding} for an introduction
+#' \url{https://en.wikipedia.org/wiki/Character_encoding} for an introduction
 #' to character encoding, and \code{?\link{Encoding}} for more information on
 #' how \R handles character encoding.
 bytes <- function(x, split = TRUE) {

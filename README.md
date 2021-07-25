@@ -1,6 +1,6 @@
 # pryr
 
-[![Lifecycle: superseded](https://img.shields.io/badge/lifecycle-superseded-orange.svg)](https://www.tidyverse.org/lifecycle/#superseded)
+[![Lifecycle: superseded](https://img.shields.io/badge/lifecycle-superseded-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#superseded)
 
 pryr is superseded. Please use:
 
