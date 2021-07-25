@@ -5,6 +5,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // binary_repr
 CharacterVector binary_repr(SEXP x);
 RcppExport SEXP _pryr_binary_repr(SEXP xSEXP) {
@@ -71,42 +76,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< Symbol >::type name(nameSEXP);
     Rcpp::traits::input_parameter< Environment >::type env(envSEXP);
     rcpp_result_gen = Rcpp::wrap(named2(name, env));
-    return rcpp_result_gen;
-END_RCPP
-}
-// v_size
-double v_size(double n, int size);
-RcppExport SEXP _pryr_v_size(SEXP nSEXP, SEXP sizeSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type n(nSEXP);
-    Rcpp::traits::input_parameter< int >::type size(sizeSEXP);
-    rcpp_result_gen = Rcpp::wrap(v_size(n, size));
-    return rcpp_result_gen;
-END_RCPP
-}
-// object_sizes
-double object_sizes(List objects, Environment base_env);
-RcppExport SEXP _pryr_object_sizes(SEXP objectsSEXP, SEXP base_envSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< List >::type objects(objectsSEXP);
-    Rcpp::traits::input_parameter< Environment >::type base_env(base_envSEXP);
-    rcpp_result_gen = Rcpp::wrap(object_sizes(objects, base_env));
-    return rcpp_result_gen;
-END_RCPP
-}
-// object_size_
-double object_size_(SEXP x, Environment base_env);
-RcppExport SEXP _pryr_object_size_(SEXP xSEXP, SEXP base_envSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
-    Rcpp::traits::input_parameter< Environment >::type base_env(base_envSEXP);
-    rcpp_result_gen = Rcpp::wrap(object_size_(x, base_env));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -248,9 +217,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_pryr_inspect_", (DL_FUNC) &_pryr_inspect_, 2},
     {"_pryr_address2", (DL_FUNC) &_pryr_address2, 2},
     {"_pryr_named2", (DL_FUNC) &_pryr_named2, 2},
-    {"_pryr_v_size", (DL_FUNC) &_pryr_v_size, 2},
-    {"_pryr_object_sizes", (DL_FUNC) &_pryr_object_sizes, 2},
-    {"_pryr_object_size_", (DL_FUNC) &_pryr_object_size_, 2},
     {"_pryr_is_promise2", (DL_FUNC) &_pryr_is_promise2, 2},
     {"_pryr_promise_code", (DL_FUNC) &_pryr_promise_code, 2},
     {"_pryr_promise_value", (DL_FUNC) &_pryr_promise_value, 2},

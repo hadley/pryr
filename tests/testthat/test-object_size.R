@@ -6,8 +6,8 @@ test_that("size scales correctly with length (accounting for vector pool)", {
   expect_same(numeric())
   expect_same(1)
   expect_same(2)
-  expect_same(1:10)
-  expect_same(1:1000)
+  expect_same(1:10 + 0)
+  expect_same(1:1000 + 0)
 })
 
 test_that("size correct for length one vectors", {
@@ -68,11 +68,11 @@ test_that("size of closures same as base", {
 
 # Environment sizes -----------------------------------------------------------
 test_that("terminal environments have size zero", {
-  expect_equal(object_size(globalenv()), show_bytes(0))
-  expect_equal(object_size(baseenv()),show_bytes(0))
-  expect_equal(object_size(emptyenv()), show_bytes(0))
+  expect_equal(as.numeric(object_size(globalenv())), 0)
+  expect_equal(as.numeric(object_size(baseenv())), 0)
+  expect_equal(as.numeric(object_size(emptyenv())), 0)
 
-  expect_equal(object_size(asNamespace("stats")), show_bytes(0))
+  expect_equal(as.numeric(object_size(asNamespace("stats"))), 0)
 })
 
 test_that("environment size computed recursively", {
@@ -99,7 +99,7 @@ test_that("size of function includes environment", {
 })
 
 test_that("size doesn't include parents of current environment", {
-  x <- 1:1e4
+  x <- 1:1e4 + 0
   embedded <- (function() {
     g <- function() {
       x <- 1:1e3

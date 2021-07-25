@@ -1,7 +1,10 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
-bool is_namespace(Environment env);
+bool is_namespace(Environment env) {
+  return Rf_findVarInFrame3(env, Rf_install(".__NAMESPACE__."), FALSE) != R_UnboundValue;
+}
+
 std::string sexp_type(SEXP x);
 
 std::string address(SEXP x) {

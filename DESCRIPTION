@@ -18,7 +18,8 @@ Imports:
     stringr,
     codetools,
     methods,
-    Rcpp (>= 0.11.0)
+    Rcpp (>= 0.11.0),
+    lobstr
 Suggests:
     testthat (>= 0.8.0)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1

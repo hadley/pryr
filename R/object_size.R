@@ -47,7 +47,7 @@
 #'   are already stored elsewhere.
 #' @return An estimate of the size of the object, in bytes.
 object_size <- function(..., env = parent.frame()) {
-  show_bytes(object_sizes(list(...), env))
+  lobstr::obj_size(..., env = env)
 }
 
 #' @export
