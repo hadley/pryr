@@ -1,5 +1,7 @@
 # pryr 0.1.4.9000
 
+* Compatibility with R devel.
+
 # pryr 0.1.4
 
 * Compatibility with R devel.
