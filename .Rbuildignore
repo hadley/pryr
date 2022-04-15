@@ -5,3 +5,4 @@ benchmark
 ^cran-comments\.md$
 ^NEWS\.md$
 ^revdep$
+^CRAN-RELEASE$
