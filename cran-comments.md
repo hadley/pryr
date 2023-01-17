@@ -4,4 +4,4 @@
 
 ## revdepcheck results
 
-This release fixes one test that was failing on R-devel. It shound't affect any package code so I did not re-run the tests.
+This is a patch release for R CMD check compliance so I did not re-check revdeps.
