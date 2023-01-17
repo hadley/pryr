@@ -6,3 +6,4 @@ benchmark
 ^NEWS\.md$
 ^revdep$
 ^CRAN-RELEASE$
+^\.github$
