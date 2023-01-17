@@ -108,7 +108,7 @@ template<>
 void Representation<Hex, true>::repr(const char* ptr, size_t n, char* output) {
   int counter = 0;
   for (size_t i = 0; i < n; ++i) {
-    sprintf(output + counter * 2, "%02X", ptr[i] & 0xFF);
+    snprintf(output + counter * 2, 2 + 1, "%02X", ptr[i] & 0xFF);
     ++counter;
   }
 }
@@ -117,7 +117,7 @@ template<>
 void Representation<Hex, false>::repr(const char* ptr, size_t n, char* output) {
   int counter = 0;
   for (int i = n - 1; i >= 0; --i) {
-    sprintf(output + counter * 2, "%02X", ptr[i] & 0xFF);
+    snprintf(output + counter * 2, 2 + 1, "%02X", ptr[i] & 0xFF);
     ++counter;
   }
 }
