@@ -1,25 +1,27 @@
 Package: pryr
-Version: 0.1.5
 Title: Tools for Computing on the Language
+Version: 0.1.5
+Authors@R: c(
+    person("Hadley", "Wickham", , "hadley@rstudio.com", role = c("aut", "cre")),
+    person("R Core team", role = "ctb",
+           comment = "Some code extracted from base R")
+  )
 Description: Useful tools to pry back the covers of R and understand the
     language at a deeper level.
-Authors@R: c(
-    person("Hadley", "Wickham", ,"hadley@rstudio.com", c("aut", "cre")),
-    person("R Core team", role = "ctb",
-      comment = "Some code extracted from base R")
-    )
 License: GPL-2
 URL: https://github.com/hadley/pryr
 BugReports: https://github.com/hadley/pryr/issues
-LinkingTo: Rcpp
 Depends:
     R (>= 3.1.0)
 Imports:
-    stringr,
     codetools,
+    lobstr,
     methods,
     Rcpp (>= 0.11.0),
-    lobstr
+    stringr
 Suggests:
     testthat (>= 0.8.0)
+LinkingTo: 
+    Rcpp
+Encoding: UTF-8
 RoxygenNote: 7.2.3
