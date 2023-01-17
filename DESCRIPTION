@@ -1,6 +1,6 @@
 Package: pryr
 Title: Tools for Computing on the Language
-Version: 0.1.5.9000
+Version: 0.1.6
 Authors@R: c(
     person("Hadley", "Wickham", , "hadley@rstudio.com", role = c("aut", "cre")),
     person("R Core team", role = "ctb",

@@ -1,4 +1,4 @@
-# pryr (development version)
+# pryr 0.1.6
 
 * Switch from `sprintf()` to `snprintf()`.
 
