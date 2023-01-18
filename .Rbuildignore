@@ -7,3 +7,4 @@ benchmark
 ^revdep$
 ^CRAN-RELEASE$
 ^\.github$
+^CRAN-SUBMISSION$
