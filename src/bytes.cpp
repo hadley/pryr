@@ -4,7 +4,7 @@
 using namespace Rcpp;
 
 // good enough for now, I suppose
-#if defined(__sparc__) || defined(__sparc)
+#if defined(__sparc__) || defined(__sparc) || defined(__ppc__) || defined(__ppc64__)
 #define IS_BIG_ENDIAN true
 #else
 #define IS_BIG_ENDIAN false
