@@ -1,4 +1,4 @@
-#' Given a function class, find correspoding S4 method
+#' Given a function class, find corresponding S4 method
 #' 
 #' @param call unquoted function call
 #' @param env environment in which to look for function definition
