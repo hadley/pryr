@@ -5,10 +5,10 @@
 #' nor the "gc trigger" and "max used" columns are typically important. What
 #' we're usually most interested in is the the first column: the total memory
 #' used. This function wraps around \code{gc()} to return the total amount of
-#' memory (in megabytes) currently used by R.
+#' memory (with units) currently used by R.
 #'
 #' @export
-#' @return Megabytes of ram used by R objects.
+#' @return RAM (with units) used by R objects.
 #' @examples
 #' mem_used()
 mem_used <- function() {
